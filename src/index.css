@@ -55,4 +55,5 @@ input, button, textarea {
 /* Asegura que el contenido en las filas de la tabla esté bien alineado */
 td, th {
     text-align: left;
+    
 }
