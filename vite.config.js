@@ -11,7 +11,8 @@ export default defineConfig({
   base: "http://123-edwin.github.io/CRM",
   resolve: {
     alias: {
-      '@c': path.resolve(__dirname, './src/components')
+      '@c': path.resolve(__dirname, './src/components'),
+      '@p': path.resolve(__dirname, './src/pages')
     }
   }
 })
