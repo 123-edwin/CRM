@@ -31,13 +31,33 @@
 .table-options-buttons {
     display: flex;
     align-items: center;
+    flex-wrap: wrap; /* Permite que los botones salten de línea */
     gap: 0.5rem; /* Espacio entre cada botón */
+}
+
+/* Si tienes un <select> y quieres que se vea consistente */
+.table-options select {
+    padding: 0.5rem;
+    background-color: rgba(212, 169, 250, 0.368);
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    /* Añade un borde alrededor del select */    
+}
+
+.table-options select:hover,
+.table-options select:focus {
+    border-color: #5c61f2; /* Cambia el color al pasar el mouse o enfocar */
+    outline: 1px solid #5c61f2; /* Añade un borde al enfocar */
 }
 
 /* Botones dentro de table-options (Exportar, Acciones Masivas) */
 .btn-option {
-    color: #fff;
-    background-color: rgb(3, 13, 112);
+    color: #5c61f2;;
+    font-weight: bold;;
+    background-color: #b0aefb93;
+    border-radius: 8px;
     padding: 0.5rem 1rem;
     border: none;
     cursor: pointer;
@@ -46,11 +66,19 @@
     justify-content: center;
 }
 
+.btn-option:hover,
+.btn-option:focus {
+    background-color: #b0aefb; /* Cambia el color al pasar el mouse */
+    outline: 1px solid #5c61f2; /* Añade un borde al enfocar */
+}
 /* Botón que solo tiene el ícono (refresh) */
+
 .btn-icon {
-    background-color: rgb(3, 13, 112);
-    padding: 0.5rem 1rem;
+    background-color: #b0aefb00;
+    width: 32px; 
+    height: 32px;
     border: none;
+    border-radius: 30px; /* O el que prefieras */
     cursor: pointer;
     
     /* Centra el ícono en el botón */
@@ -59,28 +87,24 @@
     justify-content: center;
 }
 
-/* Ícono de refrescar */
-.refresh-icon {
-    width: 15px;
-    height: 15px;
-    /* Si NO hay texto junto al icono, no necesitamos margin-right */
-    margin-right: 0; 
-    /* Invierte los colores del SVG */
+.btn-icon:hover,
+.btn-icon:focus {
+  background-color: rgba(176, 174, 251, 0.386); /* Un sutil fondo translúcido */
+  outline:1px solid rgb(122, 99, 255); /* Quita el outline predeterminado si no lo deseas */
 }
 
 
-
-/* Si tienes un <select> y quieres que se vea consistente */
-.table-options select {
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+/* Ícono de refrescar */
+.refresh-icon {
+    width: 25px;
+    height: 25px;
+    /* Si NO hay texto junto al icono, no necesitamos margin-right */
+    /* Invierte los colores del SVG */
 }
 
 /* Estilos de la tabla */
 .table-section {
-    background-color: #fff;
+    background-color: #e7e5fa76;
     border: 1px solid #ccc;
     border-radius: 8px;
     /* Añade sombra suave */
