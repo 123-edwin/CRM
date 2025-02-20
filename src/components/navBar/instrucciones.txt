@@ -1,3 +1,0 @@
-En la carpeta navBar crear navBar.jsx o el nombre que se te pegue la gana.
-El archivo navBar.jsx será algo así como la parte estructural, así que tendrás que crear además 
-navBar.css o el nombre que gustes e invocarlo dentro de navBar.jsx para que se apliquen los estilos. Luego borra este documento.
