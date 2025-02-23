@@ -1,6 +1,15 @@
+import './NavBar.css';
+
 export function NavBar() {
     return (
-    <>
-        <p>holaa</p>
-    </>
-    )};
+<>
+
+
+<div className="rectangle"></div>
+<br></br>
+
+
+</> 
+    );
+  }
+  
