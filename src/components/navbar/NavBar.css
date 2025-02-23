@@ -1,0 +1,11 @@
+.rectangle {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 1550px; /* Ancho máximo del rectángulo */
+    height: 50px; /* Altura del rectángulo */
+    background-color: #4fa0cb; /* Color de fondo */
+    margin-left: auto; /* Empuja el rectángulo hacia la derecha */
+  display: block; /* Asegura que respete el margen */
+  }
+  
+
+  
