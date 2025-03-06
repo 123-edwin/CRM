@@ -3,16 +3,25 @@ import "./NavBar.css";
 
 export function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false); // Estado para mostrar/ocultar el menú
+  const [secondMenuOpen, setSecondMenuOpen] = useState(false); // Estado para el segundo menú
 
   return (
     <>
-      <div className="rectangle">
-        <input type="text" className="search-box" placeholder="Buscar..." />
+      <div className="navbar">
 
+        <input type="text" className="search-box" placeholder="Buscar..." />
+        
         {/* Botón con el icono "+" */}
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>
           +
         </button>
+        
+        
+        {/* Segundo botón al lado */}
+        <button className="menu-button1" onClick={() => setSecondMenuOpen(!secondMenuOpen)}>
+        👤
+        </button>
+
 
         {/* Menú desplegable */}
         {menuOpen && (
@@ -34,8 +43,24 @@ export function NavBar() {
             </ul>
           </div>
         )}
+
+
+        {/* Menú del segundo botón */}
+        {secondMenuOpen && (
+          <div className="dropdown-menu1 second-menu">
+            <ul>
+              <li>Mi perfil</li>
+              <li>Mis tiempos</li>
+              <li>Editar perfil</li>
+              <li>Cerrar sesión</li>
+            </ul>
+          </div>
+        )}
+
       </div>
+
       <br></br>
+
     </>
   );
 }
