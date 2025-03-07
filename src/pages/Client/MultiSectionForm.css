@@ -5,13 +5,23 @@
     gap: 1rem;
 }
 
-.form-questions{
+.form-questions {
     display: flex;
     flex-direction: column;
     gap: 1%;
+    width: 100%;
 }
 
 .form-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    width: 50%;
     background-color: #e7e5fa76;
     border: 1px solid #ccc;
     border-radius: 8px;
