@@ -1,13 +1,17 @@
 import './Client.css';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
+import { Link } from 'react-router';
+
 
 export function Client() {
     return (
         <>
             <div className="options">
-                <button className="btn-primary">+ Nuevo Cliente</button>
+                <Link to='/Form'>
+                    <button className="btn-primary">+ Nuevo Cliente</button>
+                </Link>
                 <button className="btn-secondary">Importación De Clientes</button>
-            </div>
+            </div >
             <section className='table-section'>
                 <div className="table-container">
                     <div className='table-options'>
