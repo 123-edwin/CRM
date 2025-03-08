@@ -6,6 +6,10 @@ import FormLabel from '@mui/joy/FormLabel';
 import Input from '@mui/joy/Input';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import Box from '@mui/joy/Box';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import IconButton from '@mui/joy/IconButton';
+import { Link } from "react-router";
 
 
 export function MultiSectionForm() {
@@ -49,6 +53,13 @@ export function MultiSectionForm() {
         <div>
             {/* Barra de pestañas */}
             <nav style={{ display: "flex", gap: "1rem" }} className="tabs">
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+                    <Link to="/">
+                        <IconButton>
+                            <ArrowBackRoundedIcon />
+                        </IconButton>
+                    </Link>
+                </Box>
                 <Button variant={activeTab === "detalles" ? "soft" : "outlined"} onClick={() => setActiveTab("detalles")}>
                     Detalles del cliente
                 </Button>
@@ -68,25 +79,25 @@ export function MultiSectionForm() {
                             <h2>Detalles del cliente</h2>
                             <FormControl>
                                 <FormLabel htmlFor="empresa">Empresa</FormLabel>
-                                <Input type="text" id="empresa"
+                                <Input required type="text" id="empresa"
                                     value={formData.empresa}
                                     onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel htmlFor="telefono">Teléfono</FormLabel>
-                                <Input type="phone" id="telefono"
+                                <Input type="tel" id="telefono"
                                     value={formData.telefono}
                                     onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel htmlFor="website">Website</FormLabel>
-                                <Input type="website" id="website"
+                                <Input type="url" id="website"
                                     value={formData.website}
                                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel htmlFor="tipoCliente">Tipo de cliente</FormLabel>
-                                <Select
+                                <Select id="tipoCliente"
                                     value={formData.tipoCliente}
                                     onChange={(event, newValue) => {
                                         setFormData({ ...formData, tipoCliente: newValue });
@@ -100,37 +111,45 @@ export function MultiSectionForm() {
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Moneda</FormLabel>
-                                <Input
+                                <Select id="moneda"
                                     value={formData.moneda}
-                                    onChange={(e) => setFormData({ ...formData, moneda: e.target.value })}></Input>
+                                    onChange={(event, newValue) => {
+                                        setFormData({ ...formData, moneda: newValue });
+                                    }}
+                                    placeholder="Selecciona un tipo de moneda"
+                                >
+                                    <Option value="one">Dólar</Option>
+                                    <Option value="two">Pesos mexicanos</Option>
+                                    <Option value="three">Tazos</Option>
+                                </Select>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Dirección</FormLabel>
-                                <Input
+                                <Input type="text"
                                     value={formData.direccion}
                                     onChange={(e) => setFormData({ ...formData, direccion: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Localidad</FormLabel>
-                                <Input
+                                <Input type="text"
                                     value={formData.localidad}
                                     onChange={(e) => setFormData({ ...formData, localidad: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Provincia</FormLabel>
-                                <Input
+                                <Input type="text"
                                     value={formData.provincia}
                                     onChange={(e) => setFormData({ ...formData, provincia: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>Código Postal</FormLabel>
-                                <Input
+                                <Input type="number"
                                     value={formData.codigoPostal}
                                     onChange={(e) => setFormData({ ...formData, codigoPostal: e.target.value })}></Input>
                             </FormControl>
                             <FormControl>
                                 <FormLabel>País</FormLabel>
-                                <Input
+                                <Input type="text"
                                     value={formData.pais}
                                     onChange={(e) => setFormData({ ...formData, pais: e.target.value })}></Input>
                             </FormControl>
