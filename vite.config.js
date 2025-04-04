@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "https://123-edwin.github.io/CRM/",
+  base: "https://123-edwin.github.io/CRM",
   resolve: {
     alias: {
       '@c': path.resolve(__dirname, './src/components'),
