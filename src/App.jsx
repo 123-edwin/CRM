@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Client/>} />
         <Route path="/Form" element={<MultiSectionForm/>} />
-        <Route path="/factura" element={<BillForm/>} />
+        <Route path="/Factura" element={<BillForm/>} />
       </Routes>
     </BrowserRouter>
 
