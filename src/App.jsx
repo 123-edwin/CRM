@@ -13,7 +13,7 @@ function App() {
     <>
     <NavBar> </NavBar>
 
-    <BrowserRouter basename='/CRM'>
+    <BrowserRouter basename='/CRM/'>
       <Routes>
         <Route path="/" element={<Client/>} />
         <Route path="/Form" element={<MultiSectionForm/>} />
