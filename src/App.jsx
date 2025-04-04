@@ -13,11 +13,11 @@ function App() {
     <>
     <NavBar> </NavBar>
 
-    <HashRouter basename='/CRM'>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Client/>} />
-        <Route path="/Form" element={<MultiSectionForm/>} />
-        <Route path="/Factura" element={<BillForm/>} />
+        <Route path="/form" element={<MultiSectionForm/>} />
+        <Route path="/factura" element={<BillForm/>} />
       </Routes>
     </HashRouter>
 
