@@ -9,8 +9,9 @@ function App() {
   
 
   return (
-   
+   //Esto es un comentario
     <>
+     {/*Esto es otro comentario*/}
     <NavBar> </NavBar>
 
     <HashRouter>
