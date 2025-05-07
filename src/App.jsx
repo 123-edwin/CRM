@@ -1,26 +1,15 @@
 import './App.css'
-import { HashRouter, Route, Routes } from 'react-router'
-import {Client} from '@p/Client/Client'
-import {NavBar} from '@c/navbar/NavBar'
-import { MultiSectionForm } from '@p/Client/MultiSectionForm'
-import BillForm from '@p/Bill/BillForm'
+import { NavBar } from '@c/navbar/NavBar'
+import { Rutas } from '@c/Rutas/Rutas'
 
 function App() {
-  
+
 
   return (
-   //Esto es un comentario
     <>
-     {/*Esto es otro comentario*/}
-    <NavBar> </NavBar>
+      <NavBar> </NavBar>
 
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Client/>} />
-        <Route path="/form" element={<MultiSectionForm/>} />
-        <Route path="/factura" element={<BillForm/>} />
-      </Routes>
-    </HashRouter>
+      <Rutas />
 
     </>
   )
