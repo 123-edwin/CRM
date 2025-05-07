@@ -8,7 +8,7 @@ export function Client() {
     return (
         <>
             <div className="options">
-                <Link to='/Form'>
+                <Link to='/form'>
                     <button className="btn-primary">+ Nuevo Cliente</button>
                 </Link>
                 <button className="btn-secondary">Importación De Clientes</button>
