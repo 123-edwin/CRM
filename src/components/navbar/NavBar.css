@@ -1,8 +1,8 @@
 .navbar {
   width: 100%;
   max-width: 2000px;
-  height: 70px;
-  background-color: #4fa0cb;
+  height: 55px;
+  background-color: #07aa02;
   margin-left: auto;
   display: flex; /* Cambia de block a flex */
   align-items: center; /* Alinea verticalmente */
@@ -32,3 +32,4 @@
   min-width: 100px;
   font-size: 16px;
 }
+
