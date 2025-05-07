@@ -1,0 +1,36 @@
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.form-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 1%;
+    width: 100%;
+}
+
+.form-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    background-color: #e7e5fa76;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    /* Añade sombra suave */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Margen inferior para separar de otros elementos */
+    margin-bottom: 1rem;
+    /* Evita que el contenido sobresalga de los bordes redondeados */
+    overflow: hidden;
+    /* Espacio interior para que el contenido no pegue al borde */
+    padding: 1rem;
+}
