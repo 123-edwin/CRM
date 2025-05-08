@@ -2,16 +2,20 @@ import './Client.css';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
 import { Link } from 'react-router';
 
+import Button from '@mui/joy/Button';
+import Add from '@mui/icons-material/Add';
+
 import Table from '@mui/joy/Table';
 
 export function Client() {
     return (
         <>
             <div className="options">
-                <Link to='/form'>
-                    <button className="btn-primary">+ Nuevo Cliente</button>
-                </Link>
-                <button className="btn-secondary">Importación De Clientes</button>
+            <Link to='/form'>
+            <Button startDecorator={<Add />} sx={{ ml: 2 }}> Nuevo cliente </Button>
+            </Link>
+
+            <Button size="md" color="primary"> Importación De Clientes </Button>
             </div >
 
             <section className='table-section'>
