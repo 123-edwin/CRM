@@ -9,6 +9,7 @@ export function Rutas() {
             <Routes>
                 <Route path="/" element={<Client />} />
                 <Route path="/form" element={<MultiSectionForm />} />
+                
                 <Route path="/factura" element={<BillForm />} />
             </Routes>
         </HashRouter>
