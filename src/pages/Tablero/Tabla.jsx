@@ -6,6 +6,8 @@ import Stack from '@mui/joy/Stack';
 export function Tabla() {
   return (
 
+    
+
 <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', justifyContent: 'center', mt: 4 }}>
       
       <Card variant="outlined" sx={{ maxWidth: 300, minWidth: 300 }}>
