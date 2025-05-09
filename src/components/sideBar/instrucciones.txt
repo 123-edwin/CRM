@@ -1,3 +1,0 @@
-En la carpeta sideBar crear sideBar.jsx o el nombre que se te pegue la gana.
-El archivo sideBar.jsx será algo así como la parte estructural, así que tendrás que crear además 
-sideBar.css o el nombre que gustes e invocarlo dentro de sideBar.jsx para que se apliquen los estilos. Luego borra este documento.
