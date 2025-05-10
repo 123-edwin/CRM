@@ -2,11 +2,64 @@ import './Client.css';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
 import { Link } from 'react-router';
 
+import Typography from '@mui/joy/Typography';
+import List from '@mui/joy/List';
+import ListDivider from '@mui/joy/ListDivider';
+import ListItem from '@mui/joy/ListItem';
 
 
 export function Client() {
     return (
-        <>
+    <>
+
+<Typography level="h2" sx={{mt:2}}>Clientes</Typography>   
+
+{/* <List orientation="horizontal" variant="outlined" */}
+<List orientation="horizontal" variant="outlined"
+sx={{flexGrow: 0, mx: 'auto','--ListItemDecorator-size': '48px', '--ListItem-paddingY': '1rem', borderRadius: 'sm', mt: 2, mb: 3, }}>
+
+<ListItem sx={{flexDirection: 'column', alignItems: 'center' }}>
+Total de clientes
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 1 </Typography>
+</ListItem>
+<ListDivider inset="gutter" />
+
+<ListItem sx={{color: '#239d02', flexDirection: 'column', alignItems: 'center' }}>
+Clientes activos
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 1 </Typography>
+</ListItem>
+<ListDivider inset="gutter" />
+
+<ListItem sx={{color: '#b40202', flexDirection: 'column', alignItems: 'center' }}>
+Clientes desactivados
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 0 </Typography>
+</ListItem>
+<ListDivider inset="gutter" />
+
+<Link to='/form'>
+<ListItem sx={{color: '#0378ac', flexDirection: 'column', alignItems: 'center' }}>
+Contactos activos
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 1 </Typography>
+</ListItem>
+</Link>
+<ListDivider inset="gutter" />
+
+<ListItem sx={{color: '#b40202', flexDirection: 'column', alignItems: 'center' }}>
+Contactos desactivados
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 0 </Typography>
+</ListItem>
+<ListDivider inset="gutter" />
+
+<ListItem sx={{flexDirection: 'column', alignItems: 'center' }}>
+Conectados actualmente
+<Typography level="body2" sx={{ fontSize: '0.75rem', color: '#888' }}> 0 </Typography>
+</ListItem>
+<ListDivider inset="gutter" />
+
+</List>
+
+
+
             <div className="options">
                 <Link to='/form'>
                     <button className="btn-primary">+ Nuevo Cliente</button>
