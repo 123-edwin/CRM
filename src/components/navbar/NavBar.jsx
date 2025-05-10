@@ -1,6 +1,6 @@
 import React from 'react';
 //import './NavBar.css';
-//import { Link } from 'react-router';
+import { Link } from 'wouter';
 
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -32,15 +32,24 @@ export function NavBar() {
 
 
 
-      <Sheet
-        variant="solid"
-        color={color}
-        invertedColors
-        sx={[{display: 'flex', alignItems: 'center', flexGrow: 1, p: 2, borderRadius: { xs: 0, sm: 'sm' }, minWidth: 'min-content', },
-          color !== 'warning' &&
-            ((theme) => ({
-              background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-            })),]}>
+<Sheet
+  variant="solid"
+  color={color}
+  invertedColors
+  sx={[
+    {
+      display: 'flex',
+      alignItems: 'center',
+      flexGrow: 1,
+      p: 2,
+      borderRadius: { xs: 0, sm: 'sm' },
+      minWidth: 'min-content',
+    },
+    color !== 'warning' && ((theme) => ({
+      background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
+    })),
+  ]}
+>
 
 
         {/* Botón del Drawer */}
@@ -120,7 +129,8 @@ export function NavBar() {
             </MenuButton>
 
             <Menu placement="bottom-end" size="sm" sx={{ minWidth: 180 }}>
-              <MenuItem>Mi perfil</MenuItem>
+              
+              <Link href="/perfil"><MenuItem>Mi perfil</MenuItem></Link>
               <MenuItem>Mis tiempos</MenuItem>
               <MenuItem>Editar perfil</MenuItem>
               <MenuItem color="danger">Cerrar sesión</MenuItem>
@@ -130,58 +140,36 @@ export function NavBar() {
         </Box>
       </Sheet>
 
+
       {/* Drawer lateral */}
-      <Drawer
-  open={open}
-  onClose={() => setOpen(false)}
-  sx={{
-    '& .MuiDrawer-content': {
-      backgroundColor: '#0d47a1', // azul fuerte
-      width: 300,
-      color: 'white', // color de texto blanco
-    },
-  }}
->
-  <Box
-    sx={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 0.5,
-      ml: 'auto',
-      mt: 1,
-      mr: 2,
-    }}
-  >
-    <Typography
-      component="label"
-      htmlFor="close-icon"
-      sx={{ fontSize: 'sm', fontWeight: 'lg', cursor: 'pointer', color: 'white' }}
-    >
+
+
+<Drawer open={open} onClose={() => setOpen(false)} sx={{ '& .MuiDrawer-content': { backgroundColor: '#0d47a1', // azul fuerte width: 300,
+},}}>
+  
+  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ml: 'auto', mt: 1, mr: 2,}}>
+
+    <Typography component="label" htmlFor="close-icon" sx={{ fontSize: 'sm', fontWeight: 'lg', cursor: 'pointer', color: 'white' }}>
       Close
     </Typography>
+
     <ModalClose id="close-icon" sx={{ position: 'initial', color: 'white' }} />
+
   </Box>
-
-  <List
-    size="lg"
-    component="nav"
-    sx={{
-      flex: 'none',
-      fontSize: 'xl',
-      '& > div': { justifyContent: 'center', color: 'white' },
-    }}
-  >
-
-    <ListItemButton>Clientes</ListItemButton>
-    <ListItemButton>Facturación</ListItemButton>
-    <ListItemButton>Ventas</ListItemButton>
-    <ListItemButton>Gastos</ListItemButton>
-    <ListItemButton>Contratos</ListItemButton>
-    <ListItemButton>Proyectos</ListItemButton>
-    <ListItemButton>Tareas</ListItemButton>
-    <ListItemButton>Soporte</ListItemButton>
-    <ListItemButton>Clientes potenciales</ListItemButton>
-    <ListItemButton>Utilidades</ListItemButton>
+  
+  <List size="lg" component="nav" sx={{ flex: 'none', fontSize: 'xl', '& > div': { justifyContent: 'center', color: 'white' },}}>
+    
+    <Link href="/table"><ListItemButton sx={{color: '#ffffff'}}>Tablero</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Cliente</ListItemButton></Link>
+    <Link href="/factura"><ListItemButton sx={{color: '#ffffff'}}>Facturación</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Ventas</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Gastos</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Contratos</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Proyectos</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Soporte</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Clientes potenciales</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Utilidades</ListItemButton></Link>
 
   </List>
 </Drawer>
@@ -189,3 +177,6 @@ export function NavBar() {
     </>
   );
 }
+
+
+
