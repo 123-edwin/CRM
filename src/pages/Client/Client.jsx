@@ -1,6 +1,6 @@
 import './Client.css';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
-import { Link } from 'react-router';
+import { Link } from 'wouter';
 
 
 
@@ -8,34 +8,24 @@ export function Client() {
     return (
         <>
             <div className="options">
-                <Link to='/form'>
+                <Link href='form'>
                     <button className="btn-primary">+ Nuevo Cliente</button>
                 </Link>
-                <Link to='/importacion'>
                 <button className="btn-secondary">Importación De Clientes</button>
-                </Link>
             </div >
-
             <section className='table-section'>
-
                 <div className="table-container">
-
                     <div className='table-options'>
-
                         <select name="select" defaultValue="value2"> {/* Use defaultValue instead of selected */}
                             <option className='select-option' value="value2">25</option>
                             <option className='select-option' value="value3">30</option>
                         </select>
-
                         <section className='table-options-buttons'>
                             <button className="btn-option">Exportar</button>
                             <button className="btn-option">Acciones Masivas</button>
                             <button className="btn-icon"><img src={refreshIcon} alt="Refresh" className='refresh-icon' /></button> {/* Use the imported icon */}
                         </section>
-                        
                     </div>
-
-
 
                     <div className='only-table'>
                         <table className="styled-table">
@@ -90,9 +80,6 @@ export function Client() {
                             </tbody>
                         </table>
                     </div>
-
-
-                    
                 </div>
             </section>
         </>

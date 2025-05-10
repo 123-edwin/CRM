@@ -1,17 +1,14 @@
 import './App.css'
 import { NavBar } from '@c/navbar/NavBar'
 import { Rutas } from '@c/Rutas/Rutas'
+import { Router } from 'wouter' // Importar Router
 
 function App() {
-
-
   return (
-    <>
-      <NavBar> </NavBar>
-
+    <Router base="/CRM"> {/* Envolver la aplicación con Router y configurar el base */}
+      <NavBar />
       <Rutas />
-
-    </>
+    </Router>
   )
 }
 

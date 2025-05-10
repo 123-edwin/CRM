@@ -1,21 +1,14 @@
 //import { useState } from "react";
 import "./NavBar.css";
-//import { Link } from 'react-router';
+import { Link } from 'wouter';
 
 export function NavBar() {
 
   return (
     <>
-        <div>
-  {/* 
-        <Link to='/form'>
-        <button className="btn-primary">+ Nuevo Cliente</button>
+        <Link href="/table">
+        <button>Click para viajar a tablas</button> 
         </Link>
-
-<button className="btn-primary">+ Nuevo Cliente</button>*/}
-
-
-        </div>    
     </>
   );
 }
