@@ -9,7 +9,7 @@ import Option from '@mui/joy/Option';
 import Box from '@mui/joy/Box';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import IconButton from '@mui/joy/IconButton';
-import { Link } from "react-router";
+import { Link } from "wouter";
 
 
 export function MultiSectionForm() {
@@ -32,7 +32,7 @@ export function MultiSectionForm() {
 
                 <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
 
-                    <Link to="/">
+                    <Link href="/">
                         <IconButton>
                             <ArrowBackRoundedIcon />
                         </IconButton>
