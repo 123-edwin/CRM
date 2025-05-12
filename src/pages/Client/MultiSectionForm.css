@@ -23,11 +23,11 @@
     flex-direction: column; /* Acomoda su contenido en columna */
     align-items: flex-start; /* Alinea contenido al inicio (izquierda) */
     width: 100%; /* Ocupa todo el ancho disponible del contenedor padre */
-    max-width: 300px; /* ✅ Ajusta este valor según el tamaño que desees */
-    background-color: #e7e5fa76;
+    max-width: 650px; /* ✅ Ajusta este valor según el tamaño que desees */
+    background-color: #ffffff76;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(192, 188, 188, 0.081);
     margin-bottom: 1rem;
     overflow: hidden;
     padding: 1rem;

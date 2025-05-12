@@ -1,39 +1,50 @@
 import "./ContactosActivos.css";
 
 import Switch from '@mui/joy/Switch';
-import Typography from '@mui/joy/Typography';
+
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
 
+import Card from '@mui/joy/Card';
+import Box from '@mui/joy/Box';
+import Typography from '@mui/joy/Typography';
+
 export function ContactosActivos() {
+
     return (
-        <div>
-            <Typography level="h2" sx={{ mt: 2 }}>Contactos</Typography>
 
-            <section className="form-section">
-                <div className="form-container">
+        <>
 
-                    {/* Contenedor centrado para el Select */}
-                    <div style={{ marginBottom: '1rem' }}>
-                        <Select defaultValue="10" sx={{ width: 110 }}>
-                            <Option value="10">10</Option>
-                            <Option value="25">25</Option>
-                            <Option value="50">50</Option>
-                            <Option value="100">100</Option>
-                            <Option value="todo">Todo</Option>
-                        </Select>
-                    </div> 
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+            <Typography level="h3">Contactos activos</Typography>
+        </Box>
 
-<div>
-    <ButtonGroup aria-label="outlined primary button group">
-    <Button>Exportar</Button>
-    <Button><img src={refreshIcon} alt="Refresh" className='refresh-icon' /></Button>
-    </ButtonGroup>
-</div>
+        <Card sx={{width:'70%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
+
+{/*SELECT, BOTON Y ACTUALIZAR*/}
+
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 2, mb: 2 }}>
+          <Select defaultValue="10" sx={{ width: 110 }}>
+            <Option value="10">10</Option>
+            <Option value="25">25</Option>
+            <Option value="50">50</Option>
+            <Option value="100">100</Option>
+            <Option value="todo">Todo</Option>
+          </Select>
+
+          <ButtonGroup>
+            <Button>Exportar</Button>
+            <Button>
+              <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
+            </Button>
+          </ButtonGroup>
+        </Box>
+
                     <table className="custom-table">
+
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -46,6 +57,7 @@ export function ContactosActivos() {
                                 <th>Activo</th>
                             </tr>
                         </thead>
+
                         <tbody>
                             <tr>
                                 <td>Juan</td>
@@ -68,10 +80,10 @@ export function ContactosActivos() {
                                 <td><Switch defaultChecked /></td>
                             </tr>
                         </tbody>
+
                     </table>
 
-                </div>
-            </section>
-        </div>
-    );
-}
+        </Card>
+</>
+        )
+};

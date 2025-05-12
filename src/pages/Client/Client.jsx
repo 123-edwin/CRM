@@ -8,7 +8,7 @@ import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
-
+import Box from '@mui/joy/Box';
 
 export function Client() {
 
@@ -61,17 +61,15 @@ sx={{bgcolor: 'background.level1',borderRadius: 'sm',p: 2,my: 1.5,display: 'flex
 
 {/*BOTONES*/}
 
-<div className="options">
-    
+<Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap',  mb: 3 }}>
     <Link href="/form">
-    <button className="btn-primary">+ Nuevo Cliente</button>
+    <Button onClick={function(){}} variant="outlined">+ Nuevo Cliente</Button>
     </Link>
 
     <Link href="/importacion">
-    <button className="btn-secondary">Importación De Clientes</button>
+    <Button onClick={function(){}} variant="outlined">Importación De Clientes</Button>
     </Link>
-
-</div >
+</Box>
 
 {/*TABLA DE CLIENTES*/}
 
@@ -81,25 +79,26 @@ sx={{bgcolor: 'background.level1',borderRadius: 'sm',p: 2,my: 1.5,display: 'flex
         
         <div className='table-options'>
             
-            <div style={{ marginBottom: '0rem' }}>  
-                <Select defaultValue="10" sx={{ width: 110 }}>
-                    <Option value="10">10</Option>
-                    <Option value="25">25</Option>
-                    <Option value="50">50</Option>
-                    <Option value="100">100</Option>
-                    <Option value="todo">Todo</Option>
-                </Select>
-            </div>
-            
-            <section className='table-options-buttons'>
-                <ButtonGroup aria-label="outlined primary button group">  
-                    <Button>Exportar</Button>
-                    <Button>Acciones masivas</Button>
-                    <Button><img src={refreshIcon} alt="Refresh" className='refresh-icon' /></Button>
-                </ButtonGroup>
-            </section>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-start', gap: 2, mb: 2 }}>
+          <Select defaultValue="10" sx={{ width: 110 }}>
+            <Option value="10">10</Option>
+            <Option value="25">25</Option>
+            <Option value="50">50</Option>
+            <Option value="100">100</Option>
+            <Option value="todo">Todo</Option>
+          </Select>
+
+          <ButtonGroup>
+            <Button>Exportar</Button>
+            <Button>Acciones masivas</Button>
+            <Button><img src={refreshIcon} alt="Refresh" className="refresh-icon" /></Button>
+          </ButtonGroup>
+        </Box>
 
         </div>
+
+
+
         
         <div className='only-table'>
             
@@ -162,7 +161,6 @@ sx={{bgcolor: 'background.level1',borderRadius: 'sm',p: 2,my: 1.5,display: 'flex
     </div>
     
 </section>
-
         </>
     );
 }
