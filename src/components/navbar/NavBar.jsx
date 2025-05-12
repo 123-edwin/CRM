@@ -30,33 +30,15 @@ export function NavBar() {
   return (
     <>
 
-
-
-<Sheet
-  variant="solid"
-  color={color}
-  invertedColors
-  sx={[
-    {
-      display: 'flex',
-      alignItems: 'center',
-      flexGrow: 1,
-      p: 2,
-      borderRadius: { xs: 0, sm: 'sm' },
-      minWidth: 'min-content',
-    },
+<Sheet variant="solid" color={color} invertedColors
+  sx={[{ display: 'flex', alignItems: 'center', flexGrow: 1, p: 2, borderRadius: { xs: 0, sm: 'sm' }, minWidth: 'min-content',},
     color !== 'warning' && ((theme) => ({
-      background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-    })),
-  ]}
->
-
+      background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,})),]}>
 
         {/* Botón del Drawer */}
         <IconButton variant="outlined" color="neutral" onClick={() => setOpen(true)}>
           <MenuIcon/>
         </IconButton>
-
 
         {/* Dropdown */}
         <Box sx={{ flex: 1, display: 'flex', gap: 1, px: 2,}}>
@@ -64,16 +46,11 @@ export function NavBar() {
           <Dropdown>
 
             <MenuButton
-              sx={{ '--Button-radius': '1.5rem' }}
-              variant="outlined"
-              endDecorator={<KeyboardArrowDownIcon />}>
+              sx={{ '--Button-radius': '1.5rem' }} variant="outlined" endDecorator={<KeyboardArrowDownIcon />}>
             </MenuButton>
 
             <Menu
-              variant="outlined"
-              placement="bottom-start"
-              disablePortal
-              size="sm"
+              variant="outlined" placement="bottom-start" disablePortalsize="sm"
               sx={{'--ListItemDecorator-size': '24px', '--ListItem-minHeight': '40px', '--ListDivider-gap': '4px', minWidth: 200,}}>
 
               <MenuItem>Factura</MenuItem>
@@ -132,19 +109,18 @@ export function NavBar() {
               
               <Link href="/perfil"><MenuItem>Mi perfil</MenuItem></Link>
               <MenuItem>Mis tiempos</MenuItem>
-              <MenuItem>Editar perfil</MenuItem>
+              <Link href="/editarp"><MenuItem>Editar perfil</MenuItem></Link>
               <MenuItem color="danger">Cerrar sesión</MenuItem>
+
             </Menu>
           </Dropdown>
           
         </Box>
       </Sheet>
 
-
       {/* Drawer lateral */}
 
-
-<Drawer open={open} onClose={() => setOpen(false)} sx={{ '& .MuiDrawer-content': { backgroundColor: '#0d47a1', // azul fuerte width: 300,
+<Drawer open={open} onClose={() => setOpen(false)} sx={{ '& .MuiDrawer-content': { backgroundColor: '#0d47a1', // azul fuerte width: 300
 },}}>
   
   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ml: 'auto', mt: 1, mr: 2,}}>
@@ -160,6 +136,7 @@ export function NavBar() {
   <List size="lg" component="nav" sx={{ flex: 'none', fontSize: 'xl', '& > div': { justifyContent: 'center', color: 'white' },}}>
     
     <Link href="/table"><ListItemButton sx={{color: '#ffffff'}}>Tablero</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
     <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Cliente</ListItemButton></Link>
     <Link href="/factura"><ListItemButton sx={{color: '#ffffff'}}>Facturación</ListItemButton></Link>
     <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Ventas</ListItemButton></Link>

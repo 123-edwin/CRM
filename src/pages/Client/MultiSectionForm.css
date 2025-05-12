@@ -20,17 +20,15 @@
 
 .form-container {
     display: flex;
-    justify-content: center;
-    width: 50%;
+    flex-direction: column; /* Acomoda su contenido en columna */
+    align-items: flex-start; /* Alinea contenido al inicio (izquierda) */
+    width: 100%; /* Ocupa todo el ancho disponible del contenedor padre */
+    max-width: 300px; /* ✅ Ajusta este valor según el tamaño que desees */
     background-color: #e7e5fa76;
     border: 1px solid #ccc;
     border-radius: 8px;
-    /* Añade sombra suave */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Margen inferior para separar de otros elementos */
     margin-bottom: 1rem;
-    /* Evita que el contenido sobresalga de los bordes redondeados */
     overflow: hidden;
-    /* Espacio interior para que el contenido no pegue al borde */
     padding: 1rem;
 }
