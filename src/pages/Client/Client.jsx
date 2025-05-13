@@ -118,82 +118,47 @@ sx={{bgcolor: 'background.level1',borderRadius: 'sm',p: 2,my: 1.5,display: 'flex
           </Dropdown>
 
  <React.Fragment>
-      <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
-        Acciones masivas
-      </Button>
+
+      <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}> Acciones masivas</Button>
+
       <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalDialog
-          aria-labelledby="nested-modal-title"
-          aria-describedby="nested-modal-description"
-          sx={(theme) => ({
-            [theme.breakpoints.only('xs')]: {
-              top: 'unset',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              borderRadius: 0,
-              transform: 'none',
-              maxWidth: 'unset',
-            },
-          })}
-        >
-          <Typography id="nested-modal-title" level="h2">
-            Acciones masivas
-          </Typography>
+
+        <ModalDialog aria-labelledby="nested-modal-title" aria-describedby="nested-modal-description"
+          sx={(theme) => ({[theme.breakpoints.only('xs')]: {
+            top: 'unset',bottom: 0,left: 0,right: 0,borderRadius: 0,transform: 'none',maxWidth: 'unset', },})}>
+          <Typography id="nested-modal-title" level="h2">Acciones masivas</Typography>
           <Typography id="nested-modal-description" textColor="text.tertiary">
           <Checkbox label="Eliminación masiva" />
-          <FormControl>
-  <FormLabel>Tipo de cliente</FormLabel>
-  <Select
-    multiple
-    placeholder="Selecciona cliente"
-    onChange={(event, newValue) => {
-      console.log(newValue); // newValue será un array de los valores seleccionados
-    }}
-  >
-    <Option value="one">Audiovisual</Option>
-    <Option value="two">Correos corporativos</Option>
-    <Option value="three">Diseño gráfico</Option>
-    <Option value="four">Diseño web</Option>
-    <Option value="five">Diseño web-Plan comienza</Option>
-    <Option value="six">Diseño web-Plan corporativo</Option>
-    <Option value="seven">Diseño web-Plan crece</Option>
-    <Option value="eight">Dominio</Option>
-    <Option value="nine">eCommerce</Option>
-    <Option value="teen">Google Ads</Option>
-    <Option value="eleven">Redes sociales</Option>
-    <Option value="twelve">Servidor</Option>
-    <Option value="thirteen">Sesión de fotos</Option>
-    <Option value="fourteen">Shopify</Option>
-    <Option value="fifteen">Software</Option>
-  </Select>
-</FormControl>
-          </Typography>
-          <Box
-            sx={{
-              mt: 1,
-              display: 'flex',
-              gap: 1,
-              flexDirection: { xs: 'column', sm: 'row-reverse' },
-            }}
-          >
-            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>
-              Confirmar
-            </Button>
-            <Button
-              variant="outlined"
-              color="neutral"
-              onClick={() => setOpen(false)}
-            >
-              Cancelar
-            </Button>
+
+        <FormControl>
+            <FormLabel>Tipo de cliente</FormLabel>
+            <Select multiple placeholder="Selecciona cliente" onChange={(event, newValue) => {console.log(newValue); }}>
+                <Option value="one">Audiovisual</Option>
+                <Option value="two">Correos corporativos</Option>
+                <Option value="three">Diseño gráfico</Option>
+                <Option value="four">Diseño web</Option>
+                <Option value="five">Diseño web-Plan comienza</Option>
+                <Option value="six">Diseño web-Plan corporativo</Option>
+                <Option value="seven">Diseño web-Plan crece</Option>
+                <Option value="eight">Dominio</Option>
+                <Option value="nine">eCommerce</Option>
+                <Option value="teen">Google Ads</Option>
+                <Option value="eleven">Redes sociales</Option>
+                <Option value="twelve">Servidor</Option>
+                <Option value="thirteen">Sesión de fotos</Option>
+                <Option value="fourteen">Shopify</Option>
+                <Option value="fifteen">Software</Option>
+            </Select>
+        </FormControl>
+        </Typography>
+
+          <Box sx={{mt: 1,display: 'flex',gap: 1,flexDirection: { xs: 'column', sm: 'row-reverse' },}}>
+            <Button variant="solid" color="primary" onClick={() => setOpen(false)}>Confirmar</Button>
+            <Button variant="outlined"color="neutral" onClick={() => setOpen(false)}>Cancelar</Button>
           </Box>
         </ModalDialog>
       </Modal>
     </React.Fragment>
-
-
-
 
 
             <Button><img src={refreshIcon} alt="Refresh" className="refresh-icon" /></Button>

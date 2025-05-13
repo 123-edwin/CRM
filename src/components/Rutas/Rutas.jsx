@@ -9,6 +9,8 @@ import { Tabla } from '@p/Tablero/Tabla';
 import { Miperfil } from '@p/Perfil/Miperfil';
 import { EditarPerfil } from '@p/Perfil/EditarPerfil';
 
+import { Tarea } from '@p/Tareas/Tarea';
+
 import { ContactosActivos } from '@p/Client/ContactosActivos';
 
 
@@ -23,6 +25,7 @@ export function Rutas() {
             <Route path="/importacion" component={ImportacionCliente} />
             <Route path="/factura" component={BillForm} />
             <Route path="/editarp" component={EditarPerfil} />
+            <Route path="/tareass" component={Tarea} />
         </>
     );
 }

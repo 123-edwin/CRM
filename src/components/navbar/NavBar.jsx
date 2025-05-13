@@ -134,7 +134,7 @@ export function NavBar() {
   <List size="lg" component="nav" sx={{ flex: 'none', fontSize: 'xl', '& > div': { justifyContent: 'center', color: 'white' },}}>
     
     <Link href="/table"><ListItemButton sx={{color: '#ffffff'}}>Tablero</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
+    <Link href="/tareass"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
     <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Cliente</ListItemButton></Link>
     <Link href="/factura"><ListItemButton sx={{color: '#ffffff'}}>Facturación</ListItemButton></Link>
     <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Ventas</ListItemButton></Link>
