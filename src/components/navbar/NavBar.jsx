@@ -16,12 +16,9 @@ import Drawer from '@mui/joy/Drawer';
 import List from '@mui/joy/List';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ModalClose from '@mui/joy/ModalClose';
-
-//import Button from '@mui/joy/Button';
-
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
+import Add from '@mui/icons-material/Add';
 
 export function NavBar() {
   const color = 'primary';
@@ -31,7 +28,7 @@ export function NavBar() {
     <>
 
 <Sheet variant="solid" color={color} invertedColors
-  sx={[{ display: 'flex', alignItems: 'center', flexGrow: 1, p: 2, borderRadius: { xs: 0, sm: 'sm' }, minWidth: 'min-content',},
+  sx={[{ display: 'flex', alignItems: 'center', flexGrow: 1, p: 2, minWidth: 'min-content',},
     color !== 'warning' && ((theme) => ({
       background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,})),]}>
 
@@ -45,8 +42,9 @@ export function NavBar() {
 
           <Dropdown>
 
-            <MenuButton
-              sx={{ '--Button-radius': '1.5rem' }} variant="outlined" endDecorator={<KeyboardArrowDownIcon />}>
+            <MenuButton variant="outlined" color="neutral"
+            sx={{ width: 48,height: 48,borderRadius: '50%'}}>
+              <Add sx={{ color: '#fff' }} />
             </MenuButton>
 
             <Menu
@@ -83,7 +81,7 @@ export function NavBar() {
             placeholder="Search"
             variant="soft"
             size="sm"
-            sx={{'--Input-paddingInline': '12px', width: 160, display: { xs: 'none', lg: 'flex' },}}/>
+            sx={{'--Input-paddingInline': '12px', width: 200, display: { xs: 'none', lg: 'flex' },}}/>
 
           {/*Notificación*/} 
           <Badge badgeContent={1} variant="solid" color="danger">
@@ -102,7 +100,7 @@ export function NavBar() {
               <img
                 src="https://img.freepik.com/vector-premium/icono-imagen-perfil-avatar-fondo-azul-estilo-diseno-plano-recursos-diseno-elementos-graficos_991720-653.jpg?semt=ais_hybrid&w=740"
                 alt="Perfil"
-                style={{ width: 32, height: 32, borderRadius: '50%' }}/>
+                style={{ width: 40, height: 40, borderRadius: '50%' }}/>
             </MenuButton>
 
             <Menu placement="bottom-end" size="sm" sx={{ minWidth: 180 }}>

@@ -7,6 +7,10 @@ import Option from '@mui/joy/Option';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
 
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
@@ -36,7 +40,20 @@ export function ContactosActivos() {
           </Select>
 
           <ButtonGroup>
-            <Button>Exportar</Button>
+            <Dropdown>
+            <MenuButton variant="outlined" color="neutral"
+            sx={{ width: 100,height: 48,borderRadius: '50%'}}> <p>Exportar</p>
+            </MenuButton>
+
+            <Menu
+              variant="outlined" placement="bottom-start" disablePortalsize="sm"
+              sx={{'--ListItemDecorator-size': '24px', '--ListItem-minHeight': '40px', '--ListDivider-gap': '4px', minWidth: 100,}}>
+              <MenuItem>Excel</MenuItem>
+              <MenuItem>CSV</MenuItem>
+              <MenuItem>PDF</MenuItem>
+              <MenuItem>Imprimir</MenuItem>
+            </Menu>
+          </Dropdown>
             <Button>
               <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
             </Button>
@@ -82,7 +99,6 @@ export function ContactosActivos() {
                         </tbody>
 
                     </table>
-
         </Card>
 </>
         )
