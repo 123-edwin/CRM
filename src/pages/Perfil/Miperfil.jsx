@@ -11,6 +11,10 @@ import ButtonGroup from '@mui/joy/ButtonGroup';
 import refreshIcon from '/refresh.svg'; // Import the refresh icon
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
+import Dropdown from '@mui/joy/Dropdown';
+import Menu from '@mui/joy/Menu';
+import MenuButton from '@mui/joy/MenuButton';
+import MenuItem from '@mui/joy/MenuItem';
 import {List,ListItem,ListItemAvatar,Avatar,ListItemText,Divider} from "@mui/material";
 
 export function Miperfil() {
@@ -75,12 +79,7 @@ export function Miperfil() {
 
   </Box>
 
-
-
-
-
-
-
+ {/* NOTIFICACIONES Y TABLA*/}
 
 <Box sx={{ display: 'flex', gap: 3, mt: 4, px: 2,
         flexWrap: 'nowrap', // <- evita que se apilen
@@ -161,11 +160,28 @@ export function Miperfil() {
           </Select>
 
           <ButtonGroup>
-            <Button>Exportar</Button>
+
+            <Dropdown>
+
+            <MenuButton variant="outlined" color="neutral"
+            sx={{ width: 100,height: 48,borderRadius: '50%'}}> <p>Exportar</p></MenuButton>
+
+            <Menu variant="outlined" placement="bottom-start" disablePortalsize="sm"
+              sx={{'--ListItemDecorator-size': '24px', '--ListItem-minHeight': '40px', '--ListDivider-gap': '4px', minWidth: 100,}}>
+              <MenuItem>Excel</MenuItem>
+              <MenuItem>CSV</MenuItem>
+              <MenuItem>PDF</MenuItem>
+              <MenuItem>Imprimir</MenuItem>
+            </Menu>
+
+            </Dropdown>
+          
             <Button>
               <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
             </Button>
+
           </ButtonGroup>
+
         </Box>
 
         <table
@@ -197,7 +213,6 @@ export function Miperfil() {
         </table>
       </Card>
     </Box>
-
 
     </>
   );
