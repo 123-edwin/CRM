@@ -132,8 +132,7 @@ export function Tarea() {
 
           <ListItem alignItems="flex-start">
             <ListItemText
-              primary={
-                <Typography variant="body1">
+              primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong>Client meeting</strong>
                     <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
@@ -147,33 +146,70 @@ export function Tarea() {
 
           <ListItem alignItems="flex-start">
             <ListItemText
-              primary={
-                <Typography variant="body1">
+              primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong>Plan webinar</strong>
                     <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
                   </Box>
                   <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
-                </Typography>
-              }
-              secondary={<Typography variant="body2" color="text.secondary">17/02/2025</Typography>}
-            />
+                </Typography>}
+              secondary={<Typography variant="body2" color="text.secondary">17/02/2025</Typography>}/>
           </ListItem>
 
           <Divider />
+
           <ListItem alignItems="flex-start">
             <ListItemText
-              primary={
-                <Typography variant="body1">
+              primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong>Email newsletter</strong>
                     <Chip size="sm" color="success" variant="soft">Completada</Chip>
                   </Box>
                   <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
-                </Typography>
-              }
-              secondary={<Typography variant="body2" color="text.secondary">24/02/2025</Typography>}
-            />
+                </Typography>}
+              secondary={<Typography variant="body2" color="text.secondary">25/02/2025</Typography>}/>
+          </ListItem>
+
+          <Divider />
+          
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary={<Typography variant="body1">
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong>Email newsletter</strong>
+                    <Chip size="sm" color="success" variant="soft">Completada</Chip>
+                  </Box>
+                  <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
+                </Typography>}
+              secondary={<Typography variant="body2" color="text.secondary">26/02/2025</Typography>}/>
+          </ListItem>
+
+                    <Divider />
+
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary={<Typography variant="body1">
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong>Client meeting</strong>
+                    <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
+                  </Box>
+                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</p>
+                </Typography>}
+              secondary={<Typography variant="body2" color="text.secondary">27/02/2025</Typography>}/>
+          </ListItem>
+
+          <Divider />
+
+          <ListItem alignItems="flex-start">
+            <ListItemText
+              primary={<Typography variant="body1">
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong>Plan webinar</strong>
+                    <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
+                  </Box>
+                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
+                </Typography>}
+              secondary={<Typography variant="body2" color="text.secondary">28/02/2025</Typography>}/>
           </ListItem>
 
         </Card>
