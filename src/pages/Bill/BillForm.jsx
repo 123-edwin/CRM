@@ -7,6 +7,7 @@ import Add from '@mui/icons-material/Add';
 import FormControl from '@mui/joy/FormControl';
 import Input from '@mui/joy/Input';
 import FormLabel from '@mui/joy/FormLabel';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 import { useState } from "react";
 
@@ -316,6 +317,7 @@ function BillForm() {
         </Box>
 
         <br />
+        <Box sx={{ display: 'flex', gap: 2 }}>
 
         <Typography level="h3">Conceptos</Typography>
 
@@ -323,7 +325,9 @@ function BillForm() {
 
         <Button startDecorator={<Add />}type="button" onClick={agregarConcepto}>Agregar concepto</Button>
 
-        <br /> <br />
+        </Box>
+
+        <br /> 
 
         {conceptos.map((concepto, index) => (
 
@@ -366,7 +370,6 @@ function BillForm() {
         
         <br />
 
-
         <Box sx={{ display: 'flex', gap: 2 }}>
 
           <FormControl sx={{ flex: 1 }}>
@@ -402,15 +405,20 @@ function BillForm() {
 
         ))}
 
+        <br />
 
-        <br /><br />
-        <button type="submit">Generar XML</button>
+        <Button endDecorator={<KeyboardArrowRight />} color="success"type="submit">
+        Generar XML
+      </Button>
+      <br />
 
       </form>
 
       {xml && (
         <div>
-          <h3>XML Generado</h3>
+          <br />
+          <Typography level="h4">XML Generado</Typography>
+          <br />
           <textarea rows="15" cols="80" value={xml} readOnly />
         </div>
       )}
