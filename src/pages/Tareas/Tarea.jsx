@@ -134,7 +134,7 @@ export function Tarea() {
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Client meeting</strong>
+                    <strong>Lorem ipsum</strong>
                     <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
                   </Box>
                   <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</p>
@@ -148,7 +148,7 @@ export function Tarea() {
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Plan webinar</strong>
+                    <strong>Lorem ipsum</strong>
                     <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
                   </Box>
                   <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
@@ -162,7 +162,7 @@ export function Tarea() {
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Email newsletter</strong>
+                    <strong>Lorem ipsum</strong>
                     <Chip size="sm" color="success" variant="soft">Completada</Chip>
                   </Box>
                   <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
@@ -176,7 +176,7 @@ export function Tarea() {
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Email newsletter</strong>
+                    <strong>Lorem ipsum</strong>
                     <Chip size="sm" color="success" variant="soft">Completada</Chip>
                   </Box>
                   <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
@@ -184,13 +184,13 @@ export function Tarea() {
               secondary={<Typography variant="body2" color="text.secondary">26/02/2025</Typography>}/>
           </ListItem>
 
-                    <Divider />
+          <Divider />
 
           <ListItem alignItems="flex-start">
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Client meeting</strong>
+                    <strong>Lorem ipsum </strong>
                     <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
                   </Box>
                   <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</p>
@@ -204,7 +204,7 @@ export function Tarea() {
             <ListItemText
               primary={<Typography variant="body1">
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Plan webinar</strong>
+                    <strong>Lorem ipsum </strong>
                     <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
                   </Box>
                   <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
