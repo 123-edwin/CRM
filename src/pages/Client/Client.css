@@ -1,120 +1,3 @@
-/* Opciones principales (Nuevo Cliente, Importación De Clientes) */
-.options {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start;
-    margin-top: 1rem; /* Espacio arriba */
-    margin-bottom: 1rem;
-}
-
-/* Estilos genéricos para los botones principales */
-.btn-primary,
-.btn-secondary {
-    color: #fff;
-    background-color: rgb(3, 13, 112);
-    padding: 0.5rem 1rem;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-}
-
-/* Contenedor de opciones de la tabla (select, Exportar, etc.) */
-.table-options {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    /* Espacio horizontal entre select y los botones */
-    margin-bottom: 1rem;
-}
-
-/* Contenedor específico para los botones (Exportar, Acciones, Refresh) */
-.table-options-buttons {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Permite que los botones salten de línea */
-    gap: 0.5rem;
-    /* Espacio entre cada botón */
-}
-
-/* Si tienes un <select> y quieres que se vea consistente */
-.table-options select {
-    /* Elimina el estilo nativo */
-    -webkit-appearance: none;
-    /* Safari/Chrome */
-    -moz-appearance: none;
-    /* Firefox */
-    appearance: none;
-    /* Estándar */
-
-    /* Tu fondo translúcido */
-    background-color: rgba(212, 169, 250, 0.368);
-
-    /* Espacio interno */
-    padding: 0.5rem;
-    /* Añade un padding-right mayor para que no se solape el ícono con el texto */
-    padding-right: 2rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-
-    /* Inserta tu propia flecha como imagen de fondo (ej. arrow.svg) */
-    background: rgba(212, 169, 250, 0.368) url('/vector.svg')
-        /* O tu arrow.svg */
-        no-repeat right 0.75rem center;
-    background-size: 15px 15px;
-    /* Ajusta tamaño de la flecha */
-
-    /* Cambia la tipografía y color del texto */
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    /* Color del texto */
-}
-
-
-/* Oculta la flecha nativa en Internet Explorer y Edge (versión antigua) */
-.table-options select::-ms-expand {
-    display: none;
-}
-
-
-.table-options select:hover,
-.table-options select:focus {
-    border-color: #5c61f2;
-    /* Cambia el color al pasar el mouse o enfocar */
-    outline: 1px solid #5c61f2;
-    /* Añade un borde al enfocar */
-}
-
-/* Botones dentro de table-options (Exportar, Acciones Masivas) */
-.btn-option {
-    color: #5c61f2;
-    ;
-    font-weight: bold;
-    ;
-    background-color: #b0aefb93;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    /* Si quieres icono + texto alineados, mantén flex */
-    align-items: center;
-    /* Alinea verticalmente icono y texto */
-    justify-content: center;
-}
-
-.btn-option:hover,
-.btn-option:focus {
-    background-color: #b0aefb;
-    /* Cambia el color al pasar el mouse */
-    outline: 1px solid #5c61f2;
-    /* Añade un borde al enfocar */
-}
-
 /* Botón que solo tiene el ícono (refresh) */
 
 .btn-icon {
@@ -134,11 +17,13 @@
 
 .btn-icon:hover,
 .btn-icon:focus {
-    background-color: rgba(176, 174, 251, 0.386);
+    background-color: rgba(232, 231, 255, 0.386);
     /* Un sutil fondo translúcido */
     outline: 1px solid rgb(122, 99, 255);
     /* Quita el outline predeterminado si no lo deseas */
 }
+
+
 
 
 /* Ícono de refrescar */
@@ -149,19 +34,22 @@
     /* Invierte los colores del SVG */
 }
 
-/* Estilos de la tabla */
+
+/* Estilos del cuadrado */
 .table-section {
-    background-color: #e7e5fa76;
-    border: 1px solid #ccc;
+    
+    background-color: #ffffffe4;
+    border: 1px solid #9c9a9a;
     border-radius: 8px;
     /* Añade sombra suave */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(52, 0, 0, 0.1);
     /* Margen inferior para separar de otros elementos */
     margin-bottom: 1rem;
     /* Evita que el contenido sobresalga de los bordes redondeados */
     overflow: hidden;
     /* Espacio interior para que el contenido no pegue al borde */
     padding: 1rem;
+     width: 1701px;
 }
 
 .only-table {
@@ -169,24 +57,33 @@
     overflow-x: auto; /* Scroll horizontal solo si es necesario */
   }
   
-  .styled-table {
+/* Estilos de la tabla */
+.custom-table {
     width: 100%;
     border-collapse: collapse;
-    box-sizing: border-box;
-    
-  }
-  
-  .styled-table th,
-  .styled-table td {
-    border: 1px solid #000000;
-    padding: 8px;
-  }
-  
-  .styled-table thead {
-    background-color: #3d419c;
-    color: #ffffff;
-  }
-  
-  .styled-table tbody{
-    background-color: #b6c6fc;
-  }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+}
+
+.custom-table thead {
+    background-color: #4c7bb8;
+    color: white;
+}
+
+.custom-table th, .custom-table td {
+    text-align: left;
+    padding: 12px 16px;
+}
+
+.custom-table tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.custom-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.custom-table td strong {
+    font-weight: bold;
+}
+

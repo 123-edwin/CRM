@@ -1,4 +1,14 @@
-import "./BillForm.css";
+
+import Typography from '@mui/joy/Typography';
+import Card from '@mui/joy/Card';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Add from '@mui/icons-material/Add';
+import FormControl from '@mui/joy/FormControl';
+import Input from '@mui/joy/Input';
+import FormLabel from '@mui/joy/FormLabel';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+
 import { useState } from "react";
 
 function BillForm() {
@@ -155,207 +165,269 @@ function BillForm() {
   };
 
   return (
+    
+    <>
+
+<Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+  <Typography level="h2" sx={{mt:2}}>Generar CFDI</Typography>{/*TITULO*/}
+</Box>
+
+<Card sx={{width:'90%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
+
     <div>
-      <h2>Generar CFDI</h2>
+
       <form onSubmit={handleSubmit}>
-        <h3>Comprobante</h3>
-        <input
-          type="text"
-          placeholder="Forma de Pago"
-          value={comprobante.formaPago}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, formaPago: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Método de Pago"
-          value={comprobante.metodoPago}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, metodoPago: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Tipo de Cambio"
-          value={comprobante.tipoCambio}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, tipoCambio: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Tipo de Comprobante"
-          value={comprobante.tipoDeComprobante}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, tipoDeComprobante: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Exportación"
-          value={comprobante.exportacion}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, exportacion: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Lugar de Expedición"
-          value={comprobante.lugarExpedicion}
-          onChange={(e) =>
-            setComprobante({ ...comprobante, lugarExpedicion: e.target.value })
-          }
-        />
+        
+        <Typography level="h3">Comprobante</Typography>
 
-        <h3>Emisor</h3>
-        <input
-          type="text"
-          placeholder="RFC Emisor"
-          value={emisor.rfc}
-          onChange={(e) =>
-            setEmisor({ ...emisor, rfc: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Nombre Emisor"
-          value={emisor.nombre}
-          onChange={(e) =>
-            setEmisor({ ...emisor, nombre: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Régimen Fiscal Emisor"
-          value={emisor.regimen}
-          onChange={(e) =>
-            setEmisor({ ...emisor, regimen: e.target.value })
-          }
-        />
+        <br/>
 
-        <h3>Receptor</h3>
-        <input
-          type="text"
-          placeholder="RFC Receptor"
-          value={receptor.rfc}
-          onChange={(e) =>
-            setReceptor({ ...receptor, rfc: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Nombre Receptor"
-          value={receptor.nombre}
-          onChange={(e) =>
-            setReceptor({ ...receptor, nombre: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Domicilio Fiscal Receptor"
-          value={receptor.domicilio}
-          onChange={(e) =>
-            setReceptor({ ...receptor, domicilio: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Régimen Fiscal Receptor"
-          value={receptor.regimen}
-          onChange={(e) =>
-            setReceptor({ ...receptor, regimen: e.target.value })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Uso CFDI"
-          value={receptor.usoCFDI}
-          onChange={(e) =>
-            setReceptor({ ...receptor, usoCFDI: e.target.value })
-          }
-        />
+        <Box sx={{ display: 'flex', gap: 2 }}>
 
-        <h3>Conceptos</h3>
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Forma de pago</FormLabel>
+            <Input type="text" placeholder="Forma de pago" value={comprobante.formaPago}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, formaPago: e.target.value })}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Método de pago</FormLabel>
+            <Input type="text" placeholder="Método de pago" value={comprobante.metodoPago}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, formaPago: e.target.value })}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Tipo de cambio</FormLabel>
+            <Input type="text" placeholder="Tipo de cambio" value={comprobante.tipoCambio}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, tipoCambio: e.target.value })}/>
+          </FormControl>    
+
+        </Box>
+
+        <br/>
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Tipo de comprobante</FormLabel>
+            <Input type="text" placeholder="Tipo de comprobante" value={comprobante.tipoDeComprobante}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, tipoDeComprobante: e.target.value })}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Exportación</FormLabel>
+            <Input type="text" placeholder="Exportación" value={comprobante.exportacion}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, exportacion: e.target.value })}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Lugar de expedición</FormLabel>
+            <Input type="text" placeholder="Lugar de expedición" value={comprobante.lugarExpedicion}
+            onChange={(e) =>
+            setComprobante({ ...comprobante, lugarExpedicion: e.target.value })}/>
+          </FormControl>    
+
+        </Box>
+
+        <br />
+
+        <Typography level="h3">Emisor</Typography>
+
+        <br />
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>RFC Emisor</FormLabel>
+            <Input type="text" placeholder="RFC Emisor" value={emisor.rfc}
+            onChange={(e) =>
+            setEmisor({ ...emisor, rfc: e.target.value })}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Nombre emisor</FormLabel>
+            <Input type="text" placeholder="Nombre emisor" value={emisor.nombre}
+            onChange={(e) =>
+            setEmisor({ ...emisor, nombre: e.target.value })}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Régimen Fiscal Emisor</FormLabel>
+            <Input type="text" placeholder="Régimen Fiscal Emisor" value={emisor.regimen}
+            onChange={(e) =>
+            setEmisor({ ...emisor, regimen: e.target.value })}/>
+          </FormControl>    
+
+        </Box>
+
+        <br />
+
+        <Typography level="h3">Receptor</Typography>
+
+        <br />
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>RFC Receptor</FormLabel>
+            <Input type="text" placeholder="RFC Receptor" value={receptor.rfc}
+            onChange={(e) =>
+            setReceptor({ ...receptor, rfc: e.target.value })}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Nombre emisor</FormLabel>
+            <Input type="text" placeholder="Nombre receptor" value={receptor.nombre}
+            onChange={(e) =>
+            setReceptor({ ...receptor, nombre: e.target.value })}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Domicilio Fiscal Receptor</FormLabel>
+            <Input type="text" placeholder="Domicilio Fiscal Receptor" value={emisor.regimen}
+            onChange={(e) =>
+            setReceptor({ ...receptor, domicilio: e.target.value })}/>
+          </FormControl>    
+
+        </Box>
+        
+        <br />
+    
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Régimen Fiscal Receptor</FormLabel>
+            <Input type="text" placeholder="Régimen Fiscal Receptor" value={receptor.regimen}
+            onChange={(e) =>
+            setReceptor({ ...receptor, regimen: e.target.value })}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Uso CFDI</FormLabel>
+            <Input type="text" placeholder="Uso CFDI" value={receptor.usoCFDI}
+            onChange={(e) =>
+            setReceptor({ ...receptor, usoCFDI: e.target.value })}/>
+          </FormControl>    
+
+        </Box>
+
+        <br />
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+        <Typography level="h3">Conceptos</Typography>
+
+        <br />
+
+        <Button startDecorator={<Add />}type="button" onClick={agregarConcepto}>Agregar concepto</Button>
+
+        </Box>
+
+        <br /> 
+
         {conceptos.map((concepto, index) => (
+
           <div key={index} className="concepto">
-            <h4>Concepto {index + 1}</h4>
-            <input
-              type="text"
-              placeholder="Clave Producto/Servicio"
-              value={concepto.claveProdServ}
-              onChange={(e) => {
+
+            <Typography level="h4">Concepto {index + 1}</Typography>
+
+            <br />
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Clave Producto/Servicio</FormLabel>
+            <Input type="text" placeholder="Clave Producto/Servicio" value={concepto.claveProdServ}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].claveProdServ = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Clave Unidad"
-              value={concepto.claveUnidad}
-              onChange={(e) => {
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Clave Unidad</FormLabel>
+            <Input type="text" placeholder="Clave Unidad" value={concepto.claveUnidad}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].claveUnidad = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Descripción"
-              value={concepto.descripcion}
-              onChange={(e) => {
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Descripción</FormLabel>
+            <Input type="text" placeholder="Descripción" value={concepto.descripcion}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].descripcion = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
-            <input
-              type="number"
-              placeholder="Cantidad"
-              value={concepto.cantidad}
-              onChange={(e) => {
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>    
+
+        </Box>
+        
+        <br />
+
+        <Box sx={{ display: 'flex', gap: 2 }}>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Cantidad</FormLabel>
+            <Input type="number" placeholder="Cantidad" value={concepto.cantidad}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].cantidad = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
-            <input
-              type="number"
-              placeholder="Valor Unitario"
-              value={concepto.valorUnitario}
-              onChange={(e) => {
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>
+
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Valor Unitario</FormLabel>
+            <Input type="number" placeholder="Valor Unitario" value={concepto.valorUnitario}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].valorUnitario = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
-            <input
-              type="number"
-              placeholder="Descuento (opcional)"
-              value={concepto.descuento || ""}
-              onChange={(e) => {
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>    
+          
+          <FormControl sx={{ flex: 1 }}>
+            <FormLabel>Descuento (opcional)</FormLabel>
+            <Input type="number" placeholder="Descuento (opcional)" value={concepto.descuento || ""}
+            onChange={(e) => {
                 const nuevosConceptos = [...conceptos];
                 nuevosConceptos[index].descuento = e.target.value;
-                setConceptos(nuevosConceptos);
-              }}
-            />
+                setConceptos(nuevosConceptos);}}/>
+          </FormControl>    
+
+        </Box>
+
           </div>
+
         ))}
-        <button type="button" onClick={agregarConcepto}>
-          Agregar Concepto
-        </button>
-        <br /><br />
-        <button type="submit">Generar XML</button>
+
+        <br />
+
+      <Button endDecorator={<KeyboardArrowRight />} color="success"type="submit">
+        Generar XML
+      </Button>
+      <br />
+
       </form>
 
       {xml && (
         <div>
-          <h3>XML Generado</h3>
+          <br />
+          <Typography level="h4">XML Generado</Typography>
+          <br />
           <textarea rows="15" cols="80" value={xml} readOnly />
         </div>
       )}
     </div>
+
+
+</Card>
+
+</>
   );
 }
 
