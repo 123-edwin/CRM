@@ -1,4 +1,3 @@
-
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import Stack from '@mui/joy/Stack';
@@ -35,7 +34,6 @@ export function Tabla() {
       </Card>
 
     </Stack>
-
 
 
   );
