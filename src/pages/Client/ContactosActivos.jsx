@@ -1,7 +1,6 @@
 import "./ContactosActivos.css";
 
 import Switch from '@mui/joy/Switch';
-
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from '@mui/joy/Button';

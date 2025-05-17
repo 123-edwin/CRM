@@ -1,5 +1,3 @@
-//import * as React from 'react';
-
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
@@ -8,14 +6,19 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Button from '@mui/joy/Button';
 import ButtonGroup from '@mui/joy/ButtonGroup';
-import refreshIcon from '/refresh.svg'; // Import the refresh icon
+import refreshIcon from '/refresh.svg'; 
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Dropdown from '@mui/joy/Dropdown';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
-import {List,ListItem,ListItemAvatar,Avatar,ListItemText,Divider} from "@mui/material";
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemText from '@mui/joy/ListItemText';
+import ListItemAvatar from '@mui/joy/ListItemAvatar';
+import Avatar from '@mui/joy/Avatar';
+import Divider from '@mui/joy/Divider';
 
 export function Miperfil() {
   

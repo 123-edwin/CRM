@@ -1,7 +1,6 @@
-
 import './Client.css';
-import refreshIcon from '/refresh.svg'; // Import the refresh icon
-import { Link } from 'wouter';
+
+import refreshIcon from '/refresh.svg'; 
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
@@ -18,6 +17,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Checkbox from '@mui/joy/Checkbox';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import { Link } from 'wouter';
 
 import {useState} from 'react';
 
