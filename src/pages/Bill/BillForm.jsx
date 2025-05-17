@@ -195,7 +195,7 @@ function BillForm() {
             <FormLabel>Método de pago</FormLabel>
             <Input type="text" placeholder="Método de pago" value={comprobante.metodoPago}
             onChange={(e) =>
-            setComprobante({ ...comprobante, formaPago: e.target.value })}/>
+            setComprobante({ ...comprobante, metodoPago: e.target.value })}/>
           </FormControl>    
           
           <FormControl sx={{ flex: 1 }}>
@@ -289,7 +289,7 @@ function BillForm() {
           
           <FormControl sx={{ flex: 1 }}>
             <FormLabel>Domicilio Fiscal Receptor</FormLabel>
-            <Input type="text" placeholder="Domicilio Fiscal Receptor" value={emisor.regimen}
+            <Input type="text" placeholder="Domicilio Fiscal Receptor" value={receptor.domicilio}
             onChange={(e) =>
             setReceptor({ ...receptor, domicilio: e.target.value })}/>
           </FormControl>    
