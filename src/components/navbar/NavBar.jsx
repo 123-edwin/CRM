@@ -135,16 +135,15 @@ export function NavBar() {
     
     <Link href="/table"><ListItemButton sx={{color: '#ffffff'}}>Tablero</ListItemButton></Link>
     <Link href="/tareass"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Cliente</ListItemButton></Link>
+    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Clientes</ListItemButton></Link>
     <Link href="/factura"><ListItemButton sx={{color: '#ffffff'}}>Facturación</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Ventas</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Gastos</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Contratos</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Proyectos</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Tareas</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Soporte</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Clientes potenciales</ListItemButton></Link>
-    <Link href="/"><ListItemButton sx={{color: '#ffffff'}}>Utilidades</ListItemButton></Link>
+    <Link href=""><ListItemButton sx={{color: '#ffffff'}}>Ventas</ListItemButton></Link>
+    <Link href=""><ListItemButton sx={{color: '#ffffff'}}>Gastos</ListItemButton></Link>
+    <Link href="/contratoss"><ListItemButton sx={{color: '#ffffff'}}>Contratos</ListItemButton></Link>
+    <Link href="/proyectoss"><ListItemButton sx={{color: '#ffffff'}}>Proyectos</ListItemButton></Link>
+    <Link href=""><ListItemButton sx={{color: '#ffffff'}}>Soporte</ListItemButton></Link>
+    <Link href=""><ListItemButton sx={{color: '#ffffff'}}>Clientes potenciales</ListItemButton></Link>
+    <Link href=""><ListItemButton sx={{color: '#ffffff'}}>Utilidades</ListItemButton></Link>
 
   </List>
 </Drawer>

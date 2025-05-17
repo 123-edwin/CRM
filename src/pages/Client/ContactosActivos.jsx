@@ -11,7 +11,6 @@ import Dropdown from '@mui/joy/Dropdown';
 import Menu from '@mui/joy/Menu';
 import MenuButton from '@mui/joy/MenuButton';
 import MenuItem from '@mui/joy/MenuItem';
-
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -26,7 +25,7 @@ export function ContactosActivos() {
             <Typography level="h3">Contactos activos</Typography>
         </Box>
 
-        <Card sx={{width:'70%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
+<Card sx={{width:'70%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
 
 {/*SELECT, BOTON Y ACTUALIZAR*/}
 
@@ -99,7 +98,7 @@ export function ContactosActivos() {
                         </tbody>
 
                     </table>
-        </Card>
+</Card>
 </>
         )
 };

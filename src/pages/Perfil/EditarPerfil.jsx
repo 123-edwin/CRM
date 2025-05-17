@@ -62,17 +62,17 @@ Seleccionar foto de perfil
 
 
 <FormControl>
-    <FormLabel>Nombre</FormLabel>
+    <FormLabel required>Nombre</FormLabel>
     <Input required type="text"></Input>
 </FormControl>
 
 <FormControl>
-    <FormLabel>Apellido</FormLabel>
+    <FormLabel required>Apellido</FormLabel>
     <Input required type="text"></Input>
 </FormControl>
 
 <FormControl>
-    <FormLabel>Correo electrónico</FormLabel>
+    <FormLabel required>Correo electrónico</FormLabel>
     <Input required type="text"></Input>
 </FormControl>
 
