@@ -1,13 +1,10 @@
-import "./Client.css";
-
-import refreshIcon from "/refresh.svg";
 import Typography from "@mui/joy/Typography";
+import Sheet from "@mui/joy/Sheet";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import Sheet from "@mui/joy/Sheet";
-import Button from "@mui/joy/Button";
 import ButtonGroup from "@mui/joy/ButtonGroup";
-import Box from "@mui/joy/Box";
 import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
@@ -17,22 +14,25 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import Checkbox from "@mui/joy/Checkbox";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
+import refreshIcon from "/refresh.svg";
+import Card from "@mui/joy/Card";
+import { IconButton } from "@mui/joy";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"; // de @mui/icons-material
 import { Link } from "wouter";
 
 import { useState } from "react";
 
-export function Client() {
+export function Gasto() {
   const [open, setOpen] = useState(false);
-
   return (
     <>
       {/*TITULO*/}
 
       <Typography level="h2" sx={{ mt: 2 }}>
-        Clientes
+        Gastos
       </Typography>
 
-      {/*RECUADRO DEL TIEMPO*/}
+      {/*RECUADRO*/}
 
       <Sheet
         sx={{
@@ -45,104 +45,101 @@ export function Client() {
           "& > div": { flex: 1 },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            1
-          </Typography>
+        <div>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}
           >
-            Total de clientes
+            Total
           </Typography>
-        </Box>
+          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
+        </div>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            1
-          </Typography>
+        <div>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#239d02" }}
+            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
           >
-            Clientes activos
+            Facturable
           </Typography>
-        </Box>
+          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
+        </div>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
+        <div>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#b40202" }}
+            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}
           >
-            Clientes desactivados
+            No facturable
           </Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Link
-            to="/contactos"
-            style={{ display: "flex", alignItems: "center", gap: 3 }}
-          >
-            <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-              0
-            </Typography>
-            <Typography
-              level="body-xs"
-              sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#0378ac" }}
-            >
-              Contactos activos
-            </Typography>
-          </Link>
-        </Box>
+          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
+        </div>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
+        <div>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#b40202" }}
+            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }}
           >
-            Contactos inactivos
+            Por facturar
           </Typography>
-        </Box>
+          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
+        </div>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
+        <div>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
           >
-            Conectados actualmente
+            Facturado
           </Typography>
-        </Box>
+          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
+        </div>
       </Sheet>
 
       {/*BOTONES*/}
 
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
-        <Link href="/form">
+        <Link href="/gastosreg">
           <Button onClick={function () {}} variant="outlined">
-            + Nuevo Cliente
+            + Registrar gastos
           </Button>
         </Link>
 
-        <Link href="/importacion">
+        <Link href="/importgastos">
           <Button onClick={function () {}} variant="outlined">
-            Importación De Clientes
+            Import expenses
           </Button>
+        </Link>
+
+        <Link href="/exportarr">
+          <IconButton
+            variant="outlined"
+            color="neutral"
+            sx={{
+              borderRadius: "12px", // para esquinas redondeadas
+              width: 48,
+              height: 48,
+            }}
+          >
+            <PictureAsPdfIcon sx={{ color: "#0f82fe " }} />{" "}
+            {/* rojo tipo PDF */}
+          </IconButton>
         </Link>
       </Box>
 
       {/*TABLA DE CLIENTES*/}
+      <Card
+        sx={{
+          width: "99%",
+          mx: "auto",
+          p: 2,
+          borderRadius: "md",
+          boxShadow: "md",
+          overflowX: "auto",
+          mt: 3,
+        }}
+      >
 
-      <section className="table-section">
-        <div className="table-container">
-          <div className="table-options">
             <Box
               sx={{
                 display: "flex",
@@ -164,9 +161,8 @@ export function Client() {
                   <MenuButton
                     variant="outlined"
                     color="neutral"
-                    sx={{ width: 100, height: 48, borderRadius: "50%" }}
+                    sx={{ width: 100, height: 48, borderRadius: "sm"  }}
                   >
-                    {" "}
                     <p>Exportar</p>
                   </MenuButton>
 
@@ -291,63 +287,34 @@ export function Client() {
                 </Button>
               </ButtonGroup>
             </Box>
-          </div>
+       
 
-          <div className="only-table">
+          
             <table className="custom-table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Empresa</th>
-                  <th>Contacto principal</th>
-                  <th>Email principal</th>
-                  <th>Teléfono</th>
-                  <th>Activo</th>
-                  <th>Tipo de cliente</th>
-                  <th>Fecha de creación</th>
+                  <th>Categoría</th>
+                  <th>Importe</th>
+                  <th>Nombre</th>
+                  <th>Receipt</th>
+                  <th>Fecha</th>
+                  <th>Proyecto</th>
+                  <th>Cliente</th>
+                  <th>Factura</th>
                   <th>Dominio</th>
-                  <th>Respaldo y renovación de sitio web</th>
-                  <th>Plan de diseño web</th>
-                  <th>Plan de redes sociales</th>
-                  <th>Fecha inicio de redes sociales</th>
-                  <th>Fecha renovación de redes sociales</th>
-                  <th>Servidor ubicación</th>
-                  <th>Fecha inicio servidor</th>
-                  <th>Fecha termino servidor</th>
-                  <th>Dominio ubicación</th>
-                  <th>Fecha inicio dominio</th>
-                  <th>Fecha termino dominio</th>
+                  <th>Referencia #</th>
+                  <th>Modo de pago</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>Empresa Ejemplo</td>
-                  <td>Contacto Ejemplo</td>
-                  <td>email@ejemplo.com</td>
-                  <td>123-456-7890</td>
-                  <td>Sí</td>
-                  <td>Tipo Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>ejemplo.com</td>
-                  <td>Regulador Ejemplo</td>
-                  <td>Para Ejemplo</td>
-                  <td>Pista Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>2024-01-01</td>
-                  <td>Ubicación Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>2024-01-01</td>
-                  <td>dominio.com</td>
-                  <td>2023-01-01</td>
-                  <td>2023-01-01</td>
+                  <td>-</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </section>
+          </Card>
+      
     </>
   );
 }

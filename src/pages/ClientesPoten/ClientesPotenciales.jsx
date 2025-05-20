@@ -14,11 +14,12 @@ import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import { Link } from "wouter";
 
-export function Proyecto() {
+export function ClientesPotenciales() {
+
   return (
     <>
       <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
-        <Typography level="h2">Proyectos</Typography>
+        <Typography level="h2">Clientes potenciales</Typography>
         <Link href="/nuevoproye">
           <Button startDecorator={<Add />} type="button" size="sm">
             Nuevo proyecto
@@ -132,9 +133,8 @@ export function Proyecto() {
               <MenuButton
                 variant="outlined"
                 color="neutral"
-                sx={{ width: 100, height: 48, borderRadius: "50%" }}
+                sx={{ width: 100, height: 48}}
               >
-                {" "}
                 <p>Exportar</p>
               </MenuButton>
 

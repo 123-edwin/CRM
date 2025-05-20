@@ -1,13 +1,12 @@
-
-import Typography from '@mui/joy/Typography';
-import Card from '@mui/joy/Card';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Add from '@mui/icons-material/Add';
-import FormControl from '@mui/joy/FormControl';
-import Input from '@mui/joy/Input';
-import FormLabel from '@mui/joy/FormLabel';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import Typography from "@mui/joy/Typography";
+import Card from "@mui/joy/Card";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Add from "@mui/icons-material/Add";
+import FormControl from "@mui/joy/FormControl";
+import Input from "@mui/joy/Input";
+import FormLabel from "@mui/joy/FormLabel";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 
 import { useState } from "react";
 
@@ -31,7 +30,14 @@ function BillForm() {
   });
   // Estado para manejar un arreglo de conceptos, ahora con descuento (opcional)
   const [conceptos, setConceptos] = useState([
-    { claveProdServ: "", claveUnidad: "", descripcion: "", cantidad: 1, valorUnitario: 0, descuento: 0 },
+    {
+      claveProdServ: "",
+      claveUnidad: "",
+      descripcion: "",
+      cantidad: 1,
+      valorUnitario: 0,
+      descuento: 0,
+    },
   ]);
   const [xml, setXml] = useState("");
 
@@ -39,7 +45,14 @@ function BillForm() {
   const agregarConcepto = () => {
     setConceptos([
       ...conceptos,
-      { claveProdServ: "", claveUnidad: "", descripcion: "", cantidad: 1, valorUnitario: 0, descuento: 0 },
+      {
+        claveProdServ: "",
+        claveUnidad: "",
+        descripcion: "",
+        cantidad: 1,
+        valorUnitario: 0,
+        descuento: 0,
+      },
     ]);
   };
 
@@ -67,7 +80,7 @@ function BillForm() {
     // Variables para calcular totales globales
     let subTotalGlobal = 0; // Suma de los importes originales de cada concepto (sin descuento)
     let discountGlobal = 0; // Suma de los descuentos aplicados en cada concepto
-    let taxBaseGlobal = 0;  // Suma de la base para impuestos de cada concepto (importe - descuento)
+    let taxBaseGlobal = 0; // Suma de la base para impuestos de cada concepto (importe - descuento)
     let conceptosXml = conceptos
       .map((concepto) => {
         const cantidad = Number(concepto.cantidad);
@@ -165,269 +178,381 @@ function BillForm() {
   };
 
   return (
-    
     <>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+        <Typography level="h2" sx={{ mt: 2 }}>
+          Generar CFDI
+        </Typography>
+        {/*TITULO*/}
+      </Box>
 
-<Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-  <Typography level="h2" sx={{mt:2}}>Generar CFDI</Typography>{/*TITULO*/}
-</Box>
-
-<Card sx={{width:'90%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
-
-    <div>
-
-      <form onSubmit={handleSubmit}>
-        
-        <Typography level="h3">Comprobante</Typography>
-
-        <br/>
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Forma de pago</FormLabel>
-            <Input type="text" placeholder="Forma de pago" value={comprobante.formaPago}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, formaPago: e.target.value })}/>
-          </FormControl>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Método de pago</FormLabel>
-            <Input type="text" placeholder="Método de pago" value={comprobante.metodoPago}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, metodoPago: e.target.value })}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Tipo de cambio</FormLabel>
-            <Input type="text" placeholder="Tipo de cambio" value={comprobante.tipoCambio}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, tipoCambio: e.target.value })}/>
-          </FormControl>    
-
-        </Box>
-
-        <br/>
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Tipo de comprobante</FormLabel>
-            <Input type="text" placeholder="Tipo de comprobante" value={comprobante.tipoDeComprobante}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, tipoDeComprobante: e.target.value })}/>
-          </FormControl>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Exportación</FormLabel>
-            <Input type="text" placeholder="Exportación" value={comprobante.exportacion}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, exportacion: e.target.value })}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Lugar de expedición</FormLabel>
-            <Input type="text" placeholder="Lugar de expedición" value={comprobante.lugarExpedicion}
-            onChange={(e) =>
-            setComprobante({ ...comprobante, lugarExpedicion: e.target.value })}/>
-          </FormControl>    
-
-        </Box>
-
-        <br />
-
-        <Typography level="h3">Emisor</Typography>
-
-        <br />
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>RFC Emisor</FormLabel>
-            <Input type="text" placeholder="RFC Emisor" value={emisor.rfc}
-            onChange={(e) =>
-            setEmisor({ ...emisor, rfc: e.target.value })}/>
-          </FormControl>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Nombre emisor</FormLabel>
-            <Input type="text" placeholder="Nombre emisor" value={emisor.nombre}
-            onChange={(e) =>
-            setEmisor({ ...emisor, nombre: e.target.value })}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Régimen Fiscal Emisor</FormLabel>
-            <Input type="text" placeholder="Régimen Fiscal Emisor" value={emisor.regimen}
-            onChange={(e) =>
-            setEmisor({ ...emisor, regimen: e.target.value })}/>
-          </FormControl>    
-
-        </Box>
-
-        <br />
-
-        <Typography level="h3">Receptor</Typography>
-
-        <br />
-
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>RFC Receptor</FormLabel>
-            <Input type="text" placeholder="RFC Receptor" value={receptor.rfc}
-            onChange={(e) =>
-            setReceptor({ ...receptor, rfc: e.target.value })}/>
-          </FormControl>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Nombre emisor</FormLabel>
-            <Input type="text" placeholder="Nombre receptor" value={receptor.nombre}
-            onChange={(e) =>
-            setReceptor({ ...receptor, nombre: e.target.value })}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Domicilio Fiscal Receptor</FormLabel>
-            <Input type="text" placeholder="Domicilio Fiscal Receptor" value={receptor.domicilio}
-            onChange={(e) =>
-            setReceptor({ ...receptor, domicilio: e.target.value })}/>
-          </FormControl>    
-
-        </Box>
-        
-        <br />
-    
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Régimen Fiscal Receptor</FormLabel>
-            <Input type="text" placeholder="Régimen Fiscal Receptor" value={receptor.regimen}
-            onChange={(e) =>
-            setReceptor({ ...receptor, regimen: e.target.value })}/>
-          </FormControl>
-
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Uso CFDI</FormLabel>
-            <Input type="text" placeholder="Uso CFDI" value={receptor.usoCFDI}
-            onChange={(e) =>
-            setReceptor({ ...receptor, usoCFDI: e.target.value })}/>
-          </FormControl>    
-
-        </Box>
-
-        <br />
-        <Box sx={{ display: 'flex', gap: 2 }}>
-
-        <Typography level="h3">Conceptos</Typography>
-
-        <br />
-
-        <Button startDecorator={<Add />}type="button" onClick={agregarConcepto}>Agregar concepto</Button>
-
-        </Box>
-
-        <br /> 
-
-        {conceptos.map((concepto, index) => (
-
-          <div key={index} className="concepto">
-
-            <Typography level="h4">Concepto {index + 1}</Typography>
+      <Card
+        sx={{
+          width: "90%",
+          mx: "auto",
+          p: 2,
+          borderRadius: "md",
+          boxShadow: "md",
+          overflowX: "auto",
+          mt: 3,
+        }}
+      >
+        <div>
+          <form onSubmit={handleSubmit}>
+            <Typography level="h3">Comprobante</Typography>
 
             <br />
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Forma de pago</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Forma de pago"
+                  value={comprobante.formaPago}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      formaPago: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
 
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Clave Producto/Servicio</FormLabel>
-            <Input type="text" placeholder="Clave Producto/Servicio" value={concepto.claveProdServ}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].claveProdServ = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Método de pago</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Método de pago"
+                  value={comprobante.metodoPago}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      metodoPago: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
 
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Clave Unidad</FormLabel>
-            <Input type="text" placeholder="Clave Unidad" value={concepto.claveUnidad}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].claveUnidad = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Descripción</FormLabel>
-            <Input type="text" placeholder="Descripción" value={concepto.descripcion}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].descripcion = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>    
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Tipo de cambio</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Tipo de cambio"
+                  value={comprobante.tipoCambio}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      tipoCambio: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
+            </Box>
 
-        </Box>
-        
-        <br />
+            <br />
 
-        <Box sx={{ display: 'flex', gap: 2 }}>
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Tipo de comprobante</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Tipo de comprobante"
+                  value={comprobante.tipoDeComprobante}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      tipoDeComprobante: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
 
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Cantidad</FormLabel>
-            <Input type="number" placeholder="Cantidad" value={concepto.cantidad}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].cantidad = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Exportación</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Exportación"
+                  value={comprobante.exportacion}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      exportacion: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
 
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Valor Unitario</FormLabel>
-            <Input type="number" placeholder="Valor Unitario" value={concepto.valorUnitario}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].valorUnitario = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>    
-          
-          <FormControl sx={{ flex: 1 }}>
-            <FormLabel>Descuento (opcional)</FormLabel>
-            <Input type="number" placeholder="Descuento (opcional)" value={concepto.descuento || ""}
-            onChange={(e) => {
-                const nuevosConceptos = [...conceptos];
-                nuevosConceptos[index].descuento = e.target.value;
-                setConceptos(nuevosConceptos);}}/>
-          </FormControl>    
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Lugar de expedición</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Lugar de expedición"
+                  value={comprobante.lugarExpedicion}
+                  onChange={(e) =>
+                    setComprobante({
+                      ...comprobante,
+                      lugarExpedicion: e.target.value,
+                    })
+                  }
+                />
+              </FormControl>
+            </Box>
 
-        </Box>
+            <br />
 
-          </div>
+            <Typography level="h3">Emisor</Typography>
 
-        ))}
+            <br />
 
-        <br />
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>RFC Emisor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="RFC Emisor"
+                  value={emisor.rfc}
+                  onChange={(e) =>
+                    setEmisor({ ...emisor, rfc: e.target.value })
+                  }
+                />
+              </FormControl>
 
-      <Button endDecorator={<KeyboardArrowRight />} color="success"type="submit">
-        Generar XML
-      </Button>
-      <br />
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Nombre emisor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Nombre emisor"
+                  value={emisor.nombre}
+                  onChange={(e) =>
+                    setEmisor({ ...emisor, nombre: e.target.value })
+                  }
+                />
+              </FormControl>
 
-      </form>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Régimen Fiscal Emisor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Régimen Fiscal Emisor"
+                  value={emisor.regimen}
+                  onChange={(e) =>
+                    setEmisor({ ...emisor, regimen: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>
 
-      {xml && (
-        <div>
-          <br />
-          <Typography level="h4">XML Generado</Typography>
-          <br />
-          <textarea rows="15" cols="80" value={xml} readOnly />
+            <br />
+
+            <Typography level="h3">Receptor</Typography>
+
+            <br />
+
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>RFC Receptor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="RFC Receptor"
+                  value={receptor.rfc}
+                  onChange={(e) =>
+                    setReceptor({ ...receptor, rfc: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Nombre emisor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Nombre receptor"
+                  value={receptor.nombre}
+                  onChange={(e) =>
+                    setReceptor({ ...receptor, nombre: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Domicilio Fiscal Receptor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Domicilio Fiscal Receptor"
+                  value={receptor.domicilio}
+                  onChange={(e) =>
+                    setReceptor({ ...receptor, domicilio: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>
+
+            <br />
+
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Régimen Fiscal Receptor</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Régimen Fiscal Receptor"
+                  value={receptor.regimen}
+                  onChange={(e) =>
+                    setReceptor({ ...receptor, regimen: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Uso CFDI</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Uso CFDI"
+                  value={receptor.usoCFDI}
+                  onChange={(e) =>
+                    setReceptor({ ...receptor, usoCFDI: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>
+
+            <br />
+            <Box sx={{ display: "flex", gap: 2 }}>
+              <Typography level="h3">Conceptos</Typography>
+
+              <br />
+
+              <Button
+                startDecorator={<Add />}
+                type="button"
+                onClick={agregarConcepto}
+              >
+                Agregar concepto
+              </Button>
+            </Box>
+
+            <br />
+
+            {conceptos.map((concepto, index) => (
+              <div key={index} className="concepto">
+                <Typography level="h4">Concepto {index + 1}</Typography>
+
+                <br />
+
+                <Box sx={{ display: "flex", gap: 2 }}>
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Clave Producto/Servicio</FormLabel>
+                    <Input
+                      type="text"
+                      placeholder="Clave Producto/Servicio"
+                      value={concepto.claveProdServ}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].claveProdServ = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Clave Unidad</FormLabel>
+                    <Input
+                      type="text"
+                      placeholder="Clave Unidad"
+                      value={concepto.claveUnidad}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].claveUnidad = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Descripción</FormLabel>
+                    <Input
+                      type="text"
+                      placeholder="Descripción"
+                      value={concepto.descripcion}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].descripcion = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+                </Box>
+
+                <br />
+
+                <Box sx={{ display: "flex", gap: 2 }}>
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Cantidad</FormLabel>
+                    <Input
+                      type="number"
+                      placeholder="Cantidad"
+                      value={concepto.cantidad}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].cantidad = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Valor Unitario</FormLabel>
+                    <Input
+                      type="number"
+                      placeholder="Valor Unitario"
+                      value={concepto.valorUnitario}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].valorUnitario = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Descuento (opcional)</FormLabel>
+                    <Input
+                      type="number"
+                      placeholder="Descuento (opcional)"
+                      value={concepto.descuento || ""}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].descuento = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }}
+                    />
+                  </FormControl>
+                </Box>
+              </div>
+            ))}
+
+            <br />
+
+            <Button
+              endDecorator={<KeyboardArrowRight />}
+              color="success"
+              type="submit"
+            >
+              Generar XML
+            </Button>
+            <br />
+          </form>
+
+          {xml && (
+            <div>
+              <br />
+              <Typography level="h4">XML Generado</Typography>
+              <br />
+              <textarea rows="15" cols="80" value={xml} readOnly />
+            </div>
+          )}
         </div>
-      )}
-    </div>
-
-
-</Card>
-
-</>
+      </Card>
+    </>
   );
 }
 

@@ -1,30 +1,36 @@
-import Card from '@mui/joy/Card';
-import Typography from '@mui/joy/Typography';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Textarea from '@mui/joy/Textarea';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
-import Checkbox from '@mui/joy/Checkbox';
-import LinearProgress from '@mui/joy/LinearProgress';
-
+import Card from "@mui/joy/Card";
+import Typography from "@mui/joy/Typography";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Input from "@mui/joy/Input";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Textarea from "@mui/joy/Textarea";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Checkbox from "@mui/joy/Checkbox";
+import LinearProgress from "@mui/joy/LinearProgress";
 
 export function NuevoProyecto() {
-
   return (
     <>
-
       {/*AÑADIR PROYECTO*/}
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
         <Typography level="h3">Añadir proyecto</Typography>
       </Box>
 
-      <Card sx={{ width: '50%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
-
+      <Card
+        sx={{
+          width: "50%",
+          mx: "auto",
+          p: 2,
+          borderRadius: "md",
+          boxShadow: "md",
+          overflowX: "auto",
+          mt: 3,
+        }}
+      >
         <FormControl required>
           <FormLabel>Nombre del proyecto</FormLabel>
           <Input required type="text"></Input>
@@ -37,22 +43,45 @@ export function NuevoProyecto() {
 
         <FormControl>
           <FormLabel>Progeso</FormLabel>
-          <LinearProgress determinate variant="outlined" color="neutral" size="sm" thickness={24}
-            sx={{ '--LinearProgress-radius': '20px', '--LinearProgress-thickness': '24px', }}>
-            <Typography level="body-xs" textColor="common.white" sx={{ fontWeight: 'xl', mixBlendMode: 'difference' }}>0% { }</Typography>
+          <LinearProgress
+            determinate
+            variant="outlined"
+            color="neutral"
+            size="sm"
+            thickness={24}
+            sx={{
+              "--LinearProgress-radius": "20px",
+              "--LinearProgress-thickness": "24px",
+            }}
+          >
+            <Typography
+              level="body-xs"
+              textColor="common.white"
+              sx={{ fontWeight: "xl", mixBlendMode: "difference" }}
+            >
+              0% {}
+            </Typography>
           </LinearProgress>
         </FormControl>
 
         {/*BOX1*/}
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, maxWidth: 800, }}>
-
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 2,
+            maxWidth: 800,
+          }}
+        >
           <FormControl required>
             <FormLabel>Tipo de facturación</FormLabel>
             <Select defaultValue="precio-fijo">
               <Option value="1">Precio fijo</Option>
               <Option value="2">Horas del proyecto</Option>
               <Option value="3">Horas de las tareas</Option>
-              <Option value="4" disabled>Base al precio del trabajo por hora</Option>
+              <Option value="4" disabled>
+                Base al precio del trabajo por hora
+              </Option>
             </Select>
           </FormControl>
 
@@ -66,7 +95,6 @@ export function NuevoProyecto() {
               <Option value="5">Finalizado</Option>
             </Select>
           </FormControl>
-
         </Box>
 
         <FormControl>
@@ -75,8 +103,14 @@ export function NuevoProyecto() {
         </FormControl>
 
         {/*BOX2*/}
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, maxWidth: 800, }}>
-
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 2,
+            maxWidth: 800,
+          }}
+        >
           <FormControl>
             <FormLabel>Horas estimadas</FormLabel>
             <Input required type="number"></Input>
@@ -92,13 +126,18 @@ export function NuevoProyecto() {
               <Option value="5">Violeta Castañeda</Option>
             </Select>
           </FormControl>
-
         </Box>
 
         {/*BOX3*/}
 
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 2, maxWidth: 800, }}>
-
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 2,
+            maxWidth: 800,
+          }}
+        >
           <FormControl required>
             <FormLabel>Fecha de inicio</FormLabel>
             <Input required type="date"></Input>
@@ -108,7 +147,6 @@ export function NuevoProyecto() {
             <FormLabel>Fecha de entrega</FormLabel>
             <Input required type="date"></Input>
           </FormControl>
-
         </Box>
 
         <FormControl>
@@ -129,28 +167,45 @@ export function NuevoProyecto() {
           <Textarea minRows={2} />
         </FormControl>
 
-        <Checkbox label="Enviar correo de creación del proyecto" size="md" variant="outlined" />
+        <Checkbox
+          label="Enviar correo de creación del proyecto"
+          size="md"
+          variant="outlined"
+        />
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 3 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
           <Button>Guardar</Button>
         </Box>
-
       </Card>
 
       {/*AJUSTES DEL PROYECTO*/}
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
         <Typography level="h3">Ajustes del proyecto</Typography>
       </Box>
 
-      <Card sx={{ width: '50%', mx: 'auto', p: 2, borderRadius: 'md', boxShadow: 'md', overflowX: 'auto', mt: 3 }}>
-
+      <Card
+        sx={{
+          width: "50%",
+          mx: "auto",
+          p: 2,
+          borderRadius: "md",
+          boxShadow: "md",
+          overflowX: "auto",
+          mt: 3,
+        }}
+      >
         <FormControl>
           <FormLabel>Send contacts notifications</FormLabel>
           <Select
-            onChange={(event, newValue) => { ({ newValue }); }}
-            placeholder="Selecciona un tipo de cliente">
-            <Option value="one">To all contacts with notifications for projects enabled</Option>
+            onChange={(event, newValue) => {
+              ({ newValue });
+            }}
+            placeholder="Selecciona un tipo de cliente"
+          >
+            <Option value="one">
+              To all contacts with notifications for projects enabled
+            </Option>
             <Option value="two">Specific contacts</Option>
             <Option value="three">Do not send notifications</Option>
           </Select>
@@ -158,7 +213,13 @@ export function NuevoProyecto() {
 
         <FormControl>
           <FormLabel>Pestañas visibles</FormLabel>
-          <Select multiple placeholder="Selecciona cliente" onChange={(event, newValue) => { console.log(newValue); }}>
+          <Select
+            multiple
+            placeholder="Selecciona cliente"
+            onChange={(event, newValue) => {
+              console.log(newValue);
+            }}
+          >
             <Option value="one">Tareas</Option>
             <Option value="two">Tiempos</Option>
             <Option value="three">Hitos</Option>
@@ -167,7 +228,9 @@ export function NuevoProyecto() {
             <Option value="six">Diagrama de Gantt</Option>
             <Option value="seven">Tickets</Option>
             <Option value="eight">Contratos</Option>
-            <Option value="nine" disabled>Ventas</Option>
+            <Option value="nine" disabled>
+              Ventas
+            </Option>
             <Option value="teen">Propuestas</Option>
             <Option value="eleven">Presupuestos</Option>
             <Option value="twelve">Facturas</Option>
@@ -179,86 +242,153 @@ export function NuevoProyecto() {
         {/*CHECKBOX*/}
 
         <Box>
-          <Checkbox label="Permitir al cliente ver tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente Crear tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente Crear tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente Editar tareas (sólo tareas creadas por el contacto)" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente Editar tareas (sólo tareas creadas por el contacto)"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente comentarios sobre las tareas del proyecto" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente comentarios sobre las tareas del proyecto"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver comentarios de las tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver comentarios de las tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente adjuntar archivos a tareas vistas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente adjuntar archivos a tareas vistas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver listas en las tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver listas en las tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente subir archivos adjuntos a las tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente subir archivos adjuntos a las tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver el total del tiempo registrado en tareas" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver el total del tiempo registrado en tareas"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver informe financiero" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver informe financiero"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente subir archivos" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente subir archivos"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente abrir discusiones" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente abrir discusiones"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver hitos" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver hitos"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver gantt" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver gantt"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver hoja de tiempos" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver hoja de tiempos"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver registro de actividad" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver registro de actividad"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Permitir al cliente ver los miembros del equipo" size="md" variant="outlined" />
+          <Checkbox
+            label="Permitir al cliente ver los miembros del equipo"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
         <Box>
-          <Checkbox label="Ocultar tareas del proyecto en la tabla de tareas (admin área)" size="md" variant="outlined" />
+          <Checkbox
+            label="Ocultar tareas del proyecto en la tabla de tareas (admin área)"
+            size="md"
+            variant="outlined"
+          />
         </Box>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 3 }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
           <Button>Guardar</Button>
         </Box>
-
       </Card>
-
-
-
     </>
   );
 }
-
