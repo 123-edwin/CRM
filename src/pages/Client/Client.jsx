@@ -164,9 +164,8 @@ export function Client() {
                   <MenuButton
                     variant="outlined"
                     color="neutral"
-                    sx={{ width: 100, height: 48, borderRadius: "50%" }}
+                    sx={{ width: 100, height: 48, borderRadius: "8px" }} 
                   >
-                    {" "}
                     <p>Exportar</p>
                   </MenuButton>
 

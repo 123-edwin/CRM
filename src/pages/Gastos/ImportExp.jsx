@@ -101,14 +101,31 @@ export function ImportExp() {
           <VisuallyHiddenInput type="file" />
         </Button>
 
-        {/*BOTONES*/}
+        {/*Botones*/}
 
-        <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
-          <Button onClick={function () {}}>Importar</Button>
-
-          <Button onClick={function () {}} variant="outlined">
-            Simular importación
+        <Box
+          sx={{
+            mt: 1,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          {/* Botón a la izquierda */}
+          <Button variant="outlined" color="neutral">
+            Download Sample
           </Button>
+
+          {/* Botones a la derecha */}
+          <Box sx={{ display: "flex", gap: 1, mt: { xs: 1, sm: 0 } }}>
+            <Button variant="solid" color="primary">
+              Importar
+            </Button>
+            <Button onClick={function () {}} variant="outlined">
+              Simular importación
+            </Button>
+          </Box>
         </Box>
       </Card>
     </>

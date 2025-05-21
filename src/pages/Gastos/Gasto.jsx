@@ -5,17 +5,14 @@ import Button from "@mui/joy/Button";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ButtonGroup from "@mui/joy/ButtonGroup";
-import Dropdown from "@mui/joy/Dropdown";
-import Menu from "@mui/joy/Menu";
-import MenuButton from "@mui/joy/MenuButton";
-import MenuItem from "@mui/joy/MenuItem";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Checkbox from "@mui/joy/Checkbox";
-import FormControl from "@mui/joy/FormControl";
-import FormLabel from "@mui/joy/FormLabel";
 import refreshIcon from "/refresh.svg";
 import Card from "@mui/joy/Card";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Input from "@mui/joy/Input";
 import { IconButton } from "@mui/joy";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"; // de @mui/icons-material
 import { Link } from "wouter";
@@ -45,55 +42,65 @@ export function Gasto() {
           "& > div": { flex: 1 },
         }}
       >
-        <div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+            $0.00
+          </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#bb8a00" }}
           >
             Total
           </Typography>
-          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
-        </div>
+        </Box>
 
-        <div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+            $0.00
+          </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#239d02" }}
           >
             Facturable
           </Typography>
-          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
-        </div>
+        </Box>
 
-        <div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+            $0.00
+          </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#bb8a00" }}
           >
             No facturable
           </Typography>
-          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
-        </div>
+        </Box>
 
-        <div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+            $0.00
+          </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#b40202" }}
           >
             Por facturar
           </Typography>
-          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
-        </div>
+        </Box>
 
-        <div>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+            $0.00
+          </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#239d02" }}
           >
             Facturado
           </Typography>
-          <Typography sx={{ fontWeight: "lg" }}>$0.00</Typography>
-        </div>
+        </Box>
       </Sheet>
 
       {/*BOTONES*/}
@@ -122,7 +129,6 @@ export function Gasto() {
             }}
           >
             <PictureAsPdfIcon sx={{ color: "#0f82fe " }} />{" "}
-            {/* rojo tipo PDF */}
           </IconButton>
         </Link>
       </Box>
@@ -139,182 +145,169 @@ export function Gasto() {
           mt: 3,
         }}
       >
+        {/*SELECT, BOTON Y ACTUALIZAR*/}
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-start",
-                gap: 2,
-                mb: 2,
-              }}
-            >
-              <Select defaultValue="10" sx={{ width: 110 }}>
-                <Option value="10">10</Option>
-                <Option value="25">25</Option>
-                <Option value="50">50</Option>
-                <Option value="100">100</Option>
-                <Option value="todo">Todo</Option>
-              </Select>
+        <Box
+          sx={{ display: "flex", justifyContent: "flex-start", gap: 2, mb: 2 }}
+        >
+          <Select defaultValue="10" sx={{ width: 110 }}>
+            <Option value="10">10</Option>
+            <Option value="25">25</Option>
+            <Option value="50">50</Option>
+            <Option value="100">100</Option>
+            <Option value="todo">Todo</Option>
+          </Select>
 
-              <ButtonGroup>
-                <Dropdown>
-                  <MenuButton
-                    variant="outlined"
-                    color="neutral"
-                    sx={{ width: 100, height: 48, borderRadius: "sm"  }}
+          <ButtonGroup aria-label="outlined primary button group">
+            <Button>Exportar</Button>
+
+            <>
+              <Button
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpen(true)}
+              >
+                {" "}
+                Acciones masivas
+              </Button>
+
+              <Modal open={open} onClose={() => setOpen(false)}>
+                <ModalDialog
+                  aria-labelledby="nested-modal-title"
+                  aria-describedby="nested-modal-description"
+                  sx={(theme) => ({
+                    [theme.breakpoints.only("xs")]: {
+                      top: "unset",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      borderRadius: 0,
+                      transform: "none",
+                      maxWidth: "unset",
+                    },
+                  })}
+                >
+                  <Typography id="nested-modal-title" level="h2">
+                    Acciones masivas
+                  </Typography>
+                  <Typography
+                    id="nested-modal-description"
+                    textColor="text.tertiary"
                   >
-                    <p>Exportar</p>
-                  </MenuButton>
+                    <Checkbox label="Eliminación masiva" />
 
-                  <Menu
-                    variant="outlined"
-                    placement="bottom-start"
-                    disablePortalsize="sm"
+                    <FormControl>
+                      <FormLabel>Importe del contrato</FormLabel>
+                      <Input
+                        required
+                        type="number"
+                        startDecorator="$"
+                        placeholder="0.00"
+                      />
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Categoría del gasto</FormLabel>
+                      <Select placeholder="Nada seleccionado">
+                        <Option value="1">Alarma</Option>
+                        <Option value="2">BNI</Option>
+                        <Option value="3">Café</Option>
+                        <Option value="4">Casetas</Option>
+                        <Option value="5">CFE</Option>
+                        <Option value="6">CIAPACOV</Option>
+                        <Option value="7">Comisiones</Option>
+                        <Option value="8">COPARMEX</Option>
+                        <Option value="9">Coprotec</Option>
+                        <Option value="10">Divi Elegant Themes, Inc</Option>
+                        <Option value="11">Dominios</Option>
+                      </Select>
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Fecha de gastos</FormLabel>
+                      <Input required type="date" />
+                    </FormControl>
+
+                    <FormControl>
+                      <FormLabel>Froma de pago</FormLabel>
+                      <Select placeholder="Nada seleccionado">
+                        <Option value="1">Transferencia bancaria</Option>
+                        <Option value="2">Deposito bancario</Option>
+                        <Option value="3">Tarjeta débito/crédito</Option>
+                        <Option value="4">Efectivo</Option>
+                        <Option value="5">Cheque</Option>
+                        <Option value="6">Stripe iDEAL V2</Option>
+                        <Option value="7">Authorize.net Accept.js </Option>
+                        <Option value="8">Instamojo</Option>
+                        <Option value="9">Mollie</Option>
+                        <Option value="10">Braintree</Option>
+                        <Option value="11">Paypal Smart Checkout</Option>
+                        <Option value="12">Paypal</Option>
+                        <Option value="13">PayU Money</Option>
+                        <Option value="14">Stripe Checkout</Option>
+                        <Option value="15">Stripe iDeal</Option>
+                        <Option value="16">2Checkout</Option>
+                      </Select>
+                    </FormControl>
+                  </Typography>
+
+                  <Box
                     sx={{
-                      "--ListItemDecorator-size": "24px",
-                      "--ListItem-minHeight": "40px",
-                      "--ListDivider-gap": "4px",
-                      minWidth: 100,
+                      mt: 1,
+                      display: "flex",
+                      gap: 1,
+                      flexDirection: { xs: "column", sm: "row-reverse" },
                     }}
                   >
-                    <MenuItem>Excel</MenuItem>
-                    <MenuItem>CSV</MenuItem>
-                    <MenuItem>PDF</MenuItem>
-                    <MenuItem>Imprimir</MenuItem>
-                  </Menu>
-                </Dropdown>
-
-                <>
-                  <Button
-                    variant="outlined"
-                    color="neutral"
-                    onClick={() => setOpen(true)}
-                  >
-                    {" "}
-                    Acciones masivas
-                  </Button>
-
-                  <Modal open={open} onClose={() => setOpen(false)}>
-                    <ModalDialog
-                      aria-labelledby="nested-modal-title"
-                      aria-describedby="nested-modal-description"
-                      sx={(theme) => ({
-                        [theme.breakpoints.only("xs")]: {
-                          top: "unset",
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          borderRadius: 0,
-                          transform: "none",
-                          maxWidth: "unset",
-                        },
-                      })}
+                    <Button
+                      variant="solid"
+                      color="primary"
+                      onClick={() => setOpen(false)}
                     >
-                      <Typography id="nested-modal-title" level="h2">
-                        Acciones masivas
-                      </Typography>
-                      <Typography
-                        id="nested-modal-description"
-                        textColor="text.tertiary"
-                      >
-                        <Checkbox label="Eliminación masiva" />
+                      Confirmar
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="neutral"
+                      onClick={() => setOpen(false)}
+                    >
+                      Cancelar
+                    </Button>
+                  </Box>
+                </ModalDialog>
+              </Modal>
+            </>
 
-                        <FormControl>
-                          <FormLabel>Tipo de cliente</FormLabel>
-                          <Select
-                            multiple
-                            placeholder="Selecciona cliente"
-                            onChange={(event, newValue) => {
-                              console.log(newValue);
-                            }}
-                          >
-                            <Option value="one">Audiovisual</Option>
-                            <Option value="two">Correos corporativos</Option>
-                            <Option value="three">Diseño gráfico</Option>
-                            <Option value="four">Diseño web</Option>
-                            <Option value="five">
-                              Diseño web-Plan comienza
-                            </Option>
-                            <Option value="six">
-                              Diseño web-Plan corporativo
-                            </Option>
-                            <Option value="seven">Diseño web-Plan crece</Option>
-                            <Option value="eight">Dominio</Option>
-                            <Option value="nine">eCommerce</Option>
-                            <Option value="teen">Google Ads</Option>
-                            <Option value="eleven">Redes sociales</Option>
-                            <Option value="twelve">Servidor</Option>
-                            <Option value="thirteen">Sesión de fotos</Option>
-                            <Option value="fourteen">Shopify</Option>
-                            <Option value="fifteen">Software</Option>
-                          </Select>
-                        </FormControl>
-                      </Typography>
+            <Button>
+              <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
+            </Button>
+          </ButtonGroup>
+        </Box>
 
-                      <Box
-                        sx={{
-                          mt: 1,
-                          display: "flex",
-                          gap: 1,
-                          flexDirection: { xs: "column", sm: "row-reverse" },
-                        }}
-                      >
-                        <Button
-                          variant="solid"
-                          color="primary"
-                          onClick={() => setOpen(false)}
-                        >
-                          Confirmar
-                        </Button>
-                        <Button
-                          variant="outlined"
-                          color="neutral"
-                          onClick={() => setOpen(false)}
-                        >
-                          Cancelar
-                        </Button>
-                      </Box>
-                    </ModalDialog>
-                  </Modal>
-                </>
+        <table className="custom-table">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Importe</th>
+              <th>Nombre</th>
+              <th>Receipt</th>
+              <th>Fecha</th>
+              <th>Proyecto</th>
+              <th>Cliente</th>
+              <th>Factura</th>
+              <th>Dominio</th>
+              <th>Referencia #</th>
+              <th>Modo de pago</th>
+            </tr>
+          </thead>
 
-                <Button>
-                  <img
-                    src={refreshIcon}
-                    alt="Refresh"
-                    className="refresh-icon"
-                  />
-                </Button>
-              </ButtonGroup>
-            </Box>
-       
-
-          
-            <table className="custom-table">
-              <thead>
-                <tr>
-                  <th>Categoría</th>
-                  <th>Importe</th>
-                  <th>Nombre</th>
-                  <th>Receipt</th>
-                  <th>Fecha</th>
-                  <th>Proyecto</th>
-                  <th>Cliente</th>
-                  <th>Factura</th>
-                  <th>Dominio</th>
-                  <th>Referencia #</th>
-                  <th>Modo de pago</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>-</td>
-                </tr>
-              </tbody>
-            </table>
-          </Card>
-      
+          <tbody>
+            <tr>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
     </>
   );
 }

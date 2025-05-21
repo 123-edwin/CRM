@@ -8,9 +8,9 @@ import Add from "@mui/icons-material/Add";
 export function Tarea() {
   return (
     <>
-      <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 1 }}>
+      <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
         <Typography level="h2">Tareas</Typography>
-        <Button startDecorator={<Add />} type="button" size="sm">
+        <Button startDecorator={<Add />} type="button" variant="outlined" size="sm">
           Nueva tarea
         </Button>
       </Box>

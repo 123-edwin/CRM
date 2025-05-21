@@ -15,7 +15,6 @@ import ModalClose from "@mui/joy/ModalClose";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
 import Add from "@mui/icons-material/Add";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import { Link } from "wouter";
 
 import { useState } from "react";
@@ -91,12 +90,7 @@ export function NavBar() {
             </Menu>
           </Dropdown>
 
-          {/* Botón de tareas */}
-          <Link href="/tareaper">
-            <IconButton color="neutral">
-              <CheckBoxIcon sx={{ fontSize: 45 }} />
-            </IconButton>
-          </Link>
+
         </Box>
 
         {/* Buscador, notificaciones y perfil */}
@@ -140,6 +134,9 @@ export function NavBar() {
             <Menu placement="bottom-end" size="sm" sx={{ minWidth: 180 }}>
               <Link href="/perfil">
                 <MenuItem>Mi perfil</MenuItem>
+              </Link>
+              <Link href="/tareaper">
+                <MenuItem>Mis tareas</MenuItem>
               </Link>
               <MenuItem>Mis tiempos</MenuItem>
               <Link href="/editarp">

@@ -8,10 +8,6 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import refreshIcon from "/refresh.svg"; // Import the refresh icon
-import Dropdown from "@mui/joy/Dropdown";
-import MenuItem from "@mui/joy/MenuItem";
-import Menu from "@mui/joy/Menu";
-import MenuButton from "@mui/joy/MenuButton";
 import { Link } from "wouter";
 
 export function Proyecto() {
@@ -20,7 +16,7 @@ export function Proyecto() {
       <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
         <Typography level="h2">Proyectos</Typography>
         <Link href="/nuevoproye">
-          <Button startDecorator={<Add />} type="button" size="sm">
+          <Button startDecorator={<Add />} type="button" variant="outlined" size="sm">
             Nuevo proyecto
           </Button>
         </Link>
@@ -47,7 +43,6 @@ export function Proyecto() {
             level="body-xs"
             sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
           >
-            {" "}
             No iniciado
           </Typography>
         </Box>
@@ -128,33 +123,8 @@ export function Proyecto() {
           </Select>
 
           <ButtonGroup>
-            <Dropdown>
-              <MenuButton
-                variant="outlined"
-                color="neutral"
-                sx={{ width: 100, height: 48, borderRadius: "50%" }}
-              >
-                {" "}
-                <p>Exportar</p>
-              </MenuButton>
+            <Button>Exportar</Button>
 
-              <Menu
-                variant="outlined"
-                placement="bottom-start"
-                disablePortalsize="sm"
-                sx={{
-                  "--ListItemDecorator-size": "24px",
-                  "--ListItem-minHeight": "40px",
-                  "--ListDivider-gap": "4px",
-                  minWidth: 100,
-                }}
-              >
-                <MenuItem>Excel</MenuItem>
-                <MenuItem>CSV</MenuItem>
-                <MenuItem>PDF</MenuItem>
-                <MenuItem>Imprimir</MenuItem>
-              </Menu>
-            </Dropdown>
             <Button>
               <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
             </Button>
