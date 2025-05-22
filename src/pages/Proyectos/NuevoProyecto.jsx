@@ -42,7 +42,7 @@ export function NuevoProyecto() {
         </FormControl>
 
         <FormControl>
-          <FormLabel>Progeso</FormLabel>
+          <FormLabel>Progreso</FormLabel>
           <LinearProgress
             determinate
             variant="outlined"

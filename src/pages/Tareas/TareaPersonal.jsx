@@ -37,7 +37,7 @@ export function TareaPersonal() {
           sx={{
             width: "350px",
             minWidth: 200,
-            height: "480px",
+            height: "400px",
             p: 2,
             borderRadius: "md",
             boxShadow: "md",
@@ -52,11 +52,11 @@ export function TareaPersonal() {
             }}
           >
             <Typography level="h3" sx={{ color: "#fff" }}>
-              TO DO LIST PERSONAL
+              TO DO LIST 
             </Typography>
           </Box>
 
-          <Box sx={{ backgroundColor: "#cce7f6", p: 2 }}>
+          <Box sx={{ backgroundColor: "#cce7f6", }}>
             <List>
               {/* BOTÓN NUEVA TAREA */}
               <Button

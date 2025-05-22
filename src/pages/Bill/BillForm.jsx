@@ -180,7 +180,7 @@ function BillForm() {
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-        <Typography level="h2" sx={{ mt: 2 }}>
+        <Typography level="h1" sx={{ mt: 2 }}>
           Generar CFDI
         </Typography>
         {/*TITULO*/}
@@ -188,7 +188,7 @@ function BillForm() {
 
       <Card
         sx={{
-          width: "90%",
+          width: "95%",
           mx: "auto",
           p: 2,
           borderRadius: "md",

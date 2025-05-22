@@ -28,7 +28,7 @@ export function ImportExp() {
 
       <Card
         sx={{
-          width: "86%",
+          width: "50%",
           mx: "auto",
           p: 2,
           borderRadius: "md",

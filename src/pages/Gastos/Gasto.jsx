@@ -25,7 +25,7 @@ export function Gasto() {
     <>
       {/*TITULO*/}
 
-      <Typography level="h2" sx={{ mt: 2 }}>
+      <Typography level="h1" sx={{ mt: 2, ml:1 }}>
         Gastos
       </Typography>
 

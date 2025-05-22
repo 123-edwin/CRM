@@ -17,98 +17,50 @@ import { useState } from "react";
 
 export function ClientesPotenciales() {
   const [open, setOpen] = useState(false);
+  const [openCard, setOpenCard] = useState(false);
   return (
     <>
+
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
         <Typography level="h2">Clientes potenciales</Typography>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center", // Centra los Cards horizontalmente
-          gap: 3,
-          mt: 4,
-          px: 2,
-          flexWrap: "wrap", // Permite que se acomoden si no caben en una sola línea
-        }}
-      >
+      <Box sx={{display: "flex", justifyContent: "center", // Centra los Cards horizontalmente
+          gap: 3,mt: 4,px: 2,flexWrap: "wrap", // Permite que se acomoden si no caben en una sola línea
+        }}>
+
+
         {/* Tarjeta 1 - Pendiente */}
-        <Card
-          sx={{
-            width: "750px",
-            minWidth: 200,
-            height: "600px",
-            p: 2,
-            borderRadius: "md",
-            boxShadow: "md",
-          }}
-        >
-          <Box
-            sx={{
-              backgroundColor: "#42a5f5",
-              p: 1,
-              borderRadius: "8px 8px 0 0",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography level="h3" sx={{ color: "#fff" }}>
-              Pendiente - 3 activos
-            </Typography>
+        <Card sx={{width: "750px",minWidth: 200,height: "600px",p: 2,borderRadius: "md",boxShadow: "md",}}>
+
+          <Box sx={{backgroundColor: "#42a5f5",p: 1,borderRadius: "8px 8px 0 0",display: "flex",justifyContent: "space-between",
+              alignItems: "center",}}>
+
+            <Typography level="h3" sx={{ color: "#fff" }}>Pendiente - 3 activos</Typography>
 
             <>
-              <Button
-                variant="outlined"
-                color="neutral"
-                onClick={() => setOpen(true)}
-                sx={{ color: "#fff" }}
-                startDecorator={<Add />}
-                size="sm"
-              ></Button>
-              <Modal
-                aria-labelledby="modal-title"
-                aria-describedby="modal-desc"
-                open={open}
-                onClose={() => setOpen(false)}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Sheet
-                  variant="outlined"
-                  sx={{
-                    maxWidth: 1100,
-                    borderRadius: "md",
-                    p: 3,
-                    boxShadow: "lg",
-                  }}
-                >
+              <Button variant="outlined"color="neutral"onClick={() => setOpen(true)}
+                sx={{ width: 48, height: 48, borderRadius: "50%" }}size="sm">
+                <Add sx={{ color: "#fff" }} />
+              </Button>
+
+              <Modal aria-labelledby="modal-title"aria-describedby="modal-desc"open={open}onClose={() => setOpen(false)}
+                sx={{display: "flex",justifyContent: "center",alignItems: "center",}}>
+
+                <Sheet variant="outlined" sx={{maxWidth: 1100,borderRadius: "md",p: 3,boxShadow: "lg",}}>
+
                   <ModalClose variant="plain" sx={{ m: 1 }} />
-                  <Typography
-                    component="h2"
-                    id="modal-title"
-                    level="h4"
-                    textColor="inherit"
-                    sx={{ fontWeight: "lg", mb: 1 }}
-                  >
+
+                  <Typography component="h2"id="modal-title"level="h4"textColor="inherit" sx={{ fontWeight: "lg", mb: 1 }}>
                     Añadir cliente potencial
                   </Typography>
+
                   {/*BOX 1*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl required>
                       <FormLabel>Fuente</FormLabel>
-                      <Select defaultValue="BNI">
+                      <Select>
                         <Option value="1">BNI</Option>
                         <Option value="2">Correo electronico</Option>
                         <Option value="3">Email</Option>
@@ -121,7 +73,7 @@ export function ClientesPotenciales() {
 
                     <FormControl>
                       <FormLabel>Asignado</FormLabel>
-                      <Select defaultValue="Juan Perez">
+                      <Select>
                         <Option value="1">Juan Perez</Option>
                         <Option value="2">Ernesto Cruz</Option>
                         <Option value="3">Aria Ortiz</Option>
@@ -129,17 +81,12 @@ export function ClientesPotenciales() {
                         <Option value="5">Margarita Rios</Option>
                       </Select>
                     </FormControl>
+
                   </Box>
 
                   {/*BOX 2*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl required>
                       <FormLabel>Nombre</FormLabel>
                       <Input required type="text"></Input>
@@ -150,15 +97,10 @@ export function ClientesPotenciales() {
                       <Input required type="text"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 3*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl>
                       <FormLabel>Posición</FormLabel>
                       <Input required type="text"></Input>
@@ -169,15 +111,10 @@ export function ClientesPotenciales() {
                       <Input required type="text"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 4*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl>
                       <FormLabel>Dirección de correo</FormLabel>
                       <Input required type="text"></Input>
@@ -188,15 +125,10 @@ export function ClientesPotenciales() {
                       <Input required type="text"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 5*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl>
                       <FormLabel>Website</FormLabel>
                       <Input required type="text"></Input>
@@ -207,15 +139,10 @@ export function ClientesPotenciales() {
                       <Input required type="text"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 6*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl>
                       <FormLabel>Teléfono</FormLabel>
                       <Input required type="number"></Input>
@@ -226,15 +153,10 @@ export function ClientesPotenciales() {
                       <Input required type="number"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 7*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
                     <FormControl>
                       <FormLabel>Lead value</FormLabel>
                       <Input
@@ -250,41 +172,185 @@ export function ClientesPotenciales() {
                       <Input required type="text"></Input>
                     </FormControl>
                   </Box>
+
                   {/*BOX 8*/}
-                  <Box
-                    sx={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(2, 1fr)",
-                      gap: 4,
-                      maxWidth: 800,
-                    }}
-                  >
-                  <FormControl>
-                    <FormLabel>Descripción</FormLabel>
-                    <Textarea minRows={2} />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Fecha contactado</FormLabel>
-                    <Input required type="date"></Input>
-                  </FormControl>
+                  <Box sx={{display: "grid",gridTemplateColumns: "repeat(2, 1fr)",gap: 4,maxWidth: 800,}}>
+
+                    <FormControl>
+                      <FormLabel>Descripción</FormLabel>
+                      <Textarea minRows={2} />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Fecha contactado</FormLabel>
+                      <Input required type="date"></Input>
+                    </FormControl>
                   </Box>
+
                   <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
                     <Button>Guardar</Button>
                   </Box>
+
                 </Sheet>
               </Modal>
             </>
           </Box>
 
-          <Card>
-            <Typography>#552 - Adenir Calderas - OXXO</Typography>
-            <Typography level="body-sm">
-              efren.calderas@oxxo.com - 3121206121
-            </Typography>
-            <Typography level="body-sm">
-              Recomendación - Contacto hace 2 meses
-            </Typography>
-          </Card>
+          <>
+            <Card
+              variant="outlined"
+              color="neutral"
+              onClick={() => setOpenCard(true)}
+            >
+              <Typography>#552 - Adenir Calderas - OXXO</Typography>
+              <Typography level="body-sm">
+                efren.calderas@oxxo.com - 3121206121
+              </Typography>
+              <Typography level="body-sm">
+                Recomendación - Contacto hace 2 meses
+              </Typography>
+            </Card>
+
+            <Modal
+              aria-labelledby="modal-title"
+              aria-describedby="modal-desc"
+              open={openCard}
+              onClose={() => setOpenCard(false)}
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Sheet
+                variant="outlined"
+                sx={{
+                  maxWidth: 900,
+                  borderRadius: "md",
+                  p: 3,
+                  boxShadow: "lg",
+                }}
+              >
+                <ModalClose
+                  onClick={() => setOpenCard(false)}
+                  variant="plain"
+                  sx={{ m: 1 }}
+                />
+                <Typography
+                  component="h2"
+                  id="modal-title"
+                  level="h4"
+                  textColor="inherit"
+                  sx={{ fontWeight: "lg", mb: 2 }}
+                >
+                  #552 - Adenir Calderas - OXXO
+                </Typography>
+
+                <Box
+                  sx={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(2, 1fr)",
+                    gap: 4,
+                  }}
+                >
+                  {/* Columna izquierda */}
+                  <div>
+                    <Typography level="title-sm" sx={{ mb: 1 }}>
+                      Informaciones del contacto
+                    </Typography>
+                    <p>
+                      <strong>Nombre:</strong> Adenir Calderas
+                    </p>
+                    <p>
+                      <strong>Posición:</strong> Director
+                    </p>
+                    <p>
+                      <strong>Dirección de correo:</strong>{" "}
+                      <a
+                        href="mailto:efren.calderas@oxxo.com"
+                        style={{ color: "#3b82f6" }}
+                      >
+                        efren.calderas@oxxo.com
+                      </a>
+                    </p>
+                    <p>
+                      <strong>Website:</strong> -
+                    </p>
+                    <p>
+                      <strong>Teléfono:</strong>{" "}
+                      <a href="tel:3121206121" style={{ color: "#3b82f6" }}>
+                        3121206121
+                      </a>
+                    </p>
+                    <p>
+                      <strong>Lead value:</strong> -
+                    </p>
+                    <p>
+                      <strong>Empresa:</strong> OXXO
+                    </p>
+                    <p>
+                      <strong>Dirección:</strong> Residencial Esmeralda Nte.
+                    </p>
+                    <p>
+                      <strong>Localidad:</strong> Colima
+                    </p>
+                    <p>
+                      <strong>Departamento:</strong> -
+                    </p>
+                    <p>
+                      <strong>País:</strong> Mexico
+                    </p>
+                    <p>
+                      <strong>Código postal:</strong> 28017
+                    </p>
+                    <p>
+                      <strong>Descripción:</strong> -
+                    </p>
+                  </div>
+
+                  {/* Columna derecha */}
+                  <div>
+                    <Typography level="title-sm" sx={{ mb: 1 }}>
+                      Informaciones generales
+                    </Typography>
+                    <p>
+                      <strong>Estado del contacto:</strong>{" "}
+                      <span
+                        style={{
+                          backgroundColor: "#e0f2ff",
+                          color: "#007fff",
+                          padding: "2px 8px",
+                          borderRadius: "12px",
+                          fontSize: "0.875rem",
+                          fontWeight: "500",
+                        }}
+                      >
+                        Pendiente
+                      </span>
+                    </p>
+                    <p>
+                      <strong>Fuente:</strong> Recomendación
+                    </p>
+                    <p>
+                      <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                    </p>
+                    <p>
+                      <strong>Etiquetas:</strong> -
+                    </p>
+                    <p>
+                      <strong>Creado:</strong> hace 2 meses
+                    </p>
+                    <p>
+                      <strong>Último contacto:</strong> hace 2 meses
+                    </p>
+                    <p>
+                      <strong>Público:</strong> Sí
+                    </p>
+                  </div>
+                </Box>
+              </Sheet>
+            </Modal>
+          </>
+
           <Card>
             <Typography>
               #540 - Sergio Verduzco Villanueva - Fraccionamiento industrial 311
@@ -331,15 +397,16 @@ export function ClientesPotenciales() {
             <Typography level="h3" sx={{ color: "#fff" }}>
               Customer - 3 activos
             </Typography>
-             <>
+            <>
               <Button
                 variant="outlined"
                 color="neutral"
                 onClick={() => setOpen(true)}
-                sx={{ color: "#fff" }}
-                startDecorator={<Add />}
+                sx={{ width: 48, height: 48, borderRadius: "50%" }}
                 size="sm"
-              ></Button>
+              >
+                <Add sx={{ color: "#fff" }} />
+              </Button>
               <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-desc"
@@ -532,14 +599,14 @@ export function ClientesPotenciales() {
                       maxWidth: 800,
                     }}
                   >
-                  <FormControl>
-                    <FormLabel>Descripción</FormLabel>
-                    <Textarea minRows={2} />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Fecha contactado</FormLabel>
-                    <Input required type="date"></Input>
-                  </FormControl>
+                    <FormControl>
+                      <FormLabel>Descripción</FormLabel>
+                      <Textarea minRows={2} />
+                    </FormControl>
+                    <FormControl>
+                      <FormLabel>Fecha contactado</FormLabel>
+                      <Input required type="date"></Input>
+                    </FormControl>
                   </Box>
                   <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
                     <Button>Guardar</Button>

@@ -14,7 +14,7 @@ export function Contrato() {
   return (
     <>
       <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
-        <Typography level="h2">Contratos</Typography>
+        <Typography level="h1" sx={{ ml: 1 }}>Contratos</Typography>
         <Link href="/nuevocontra">
           <Button startDecorator={<Add />} type="button" variant="outlined" size="sm">
             Nuevo contrato
