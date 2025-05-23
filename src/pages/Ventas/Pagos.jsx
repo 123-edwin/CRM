@@ -1,0 +1,82 @@
+import Typography from "@mui/joy/Typography";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Card from "@mui/joy/Card";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import ButtonGroup from "@mui/joy/ButtonGroup";
+import refreshIcon from "/refresh.svg"; // Import the refresh icon
+
+export function Pagos() {
+  return (
+    <>
+      <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
+        <Typography level="h1" sx={{ ml: 1 }}>
+          Pagos
+        </Typography>
+      </Box>
+
+      {/*TABLA*/}
+
+      <Card
+        sx={{
+          width: "99%",
+          mx: "auto",
+          p: 2,
+          borderRadius: "md",
+          boxShadow: "md",
+          overflowX: "auto",
+          mt: 3,
+        }}
+      >
+        {/*SELECT, BOTON Y ACTUALIZAR*/}
+
+        <Box
+          sx={{ display: "flex", justifyContent: "flex-start", gap: 2, mb: 2 }}
+        >
+          <Select defaultValue="10" sx={{ width: 110 }}>
+            <Option value="10">10</Option>
+            <Option value="25">25</Option>
+            <Option value="50">50</Option>
+            <Option value="100">100</Option>
+            <Option value="todo">Todo</Option>
+          </Select>
+
+          <ButtonGroup>
+            <Button>Exportar</Button>
+
+            <Button>
+              <img src={refreshIcon} alt="Refresh" className="refresh-icon" />
+            </Button>
+          </ButtonGroup>
+        </Box>
+
+        <table className="custom-table">
+          <thead>
+            <tr>
+              <th>Pago n°</th>
+              <th>Factura n°</th>
+              <th>Modo de pago</th>
+              <th>ID de la transacción</th>
+              <th>Cliente</th>
+              <th>Importe</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
+    </>
+  );
+}

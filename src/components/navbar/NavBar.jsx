@@ -15,33 +15,30 @@ import ModalClose from "@mui/joy/ModalClose";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
 import Add from "@mui/icons-material/Add";
+import Collapse from "@mui/material/Collapse";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "wouter";
 
 import { useState } from "react";
 
 export function NavBar() {
-  const color = "primary";
   const [open, setOpen] = useState(false);
-
+  const [ventasOpen, setVentasOpen] = useState(false);
   return (
     <>
       <Sheet
         variant="solid"
-        color={color}
         invertedColors
-        sx={[
-          {
-            display: "flex",
-            alignItems: "center",
-            flexGrow: 1,
-            p: 2,
-            minWidth: "min-content",
-          },
-          color !== "warning" &&
-            ((theme) => ({
-              background: `linear-gradient(to top, ${theme.vars.palette[color][600]}, ${theme.vars.palette[color][500]})`,
-            })),
-        ]}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexGrow: 1,
+          p: 2,
+          minWidth: "min-content",
+          background:
+            "linear-gradient(to top,rgb(53, 91, 125),rgb(22, 52, 76))", // azul degradado
+          color: "white", // asegúrate de que el texto contraste
+        }}
       >
         {/* Botón del Drawer */}
         <IconButton
@@ -89,8 +86,6 @@ export function NavBar() {
               <MenuItem>Evento</MenuItem>
             </Menu>
           </Dropdown>
-
-
         </Box>
 
         {/* Buscador, notificaciones y perfil */}
@@ -155,7 +150,8 @@ export function NavBar() {
         onClose={() => setOpen(false)}
         sx={{
           "& .MuiDrawer-content": {
-            backgroundColor: "#0d47a1", // azul fuerte width: 300
+            width: 350,
+            backgroundColor: "#576bff ",
           },
         }}
       >
@@ -193,27 +189,62 @@ export function NavBar() {
           component="nav"
           sx={{
             flex: "none",
-            fontSize: "xl",
-            "& > div": { justifyContent: "center", color: "white" },
+            fontSize: "x",
+            "& > div": { justifyContent: "center" },
           }}
         >
           <Link href="/table">
-            <ListItemButton sx={{ color: "#ffffff" }}>Tablero</ListItemButton>
-          </Link>
-          <Link href="/tareass">
-            <ListItemButton sx={{ color: "#ffffff" }}>Tareas</ListItemButton>
+            <ListItemButton sx={{ color: "#000000" }}>Tablero</ListItemButton>
           </Link>
           <Link href="/">
-            <ListItemButton sx={{ color: "#ffffff" }}>Clientes</ListItemButton>
+            <ListItemButton sx={{ color: "#000000" }}>Clientes</ListItemButton>
           </Link>
-          <Link href="/factura">
-            <ListItemButton sx={{ color: "#ffffff" }}>
-              Facturación
+
+          <Link href="/tareass">
+            <ListItemButton sx={{ color: "#000000" }}>Tareas</ListItemButton>
+          </Link>
+          <Link href="/">
+            <ListItemButton
+              onClick={() => setVentasOpen(!ventasOpen)}
+              sx={{ color: "#ffffff", justifyContent: "space-between" }}
+            >
+              <span>Ventas</span>
+              <ExpandMoreIcon
+                sx={{
+                  transform: ventasOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.3s ease",
+                }}
+              />
             </ListItemButton>
           </Link>
-          <Link href="">
-            <ListItemButton sx={{ color: "#ffffff" }}>Ventas</ListItemButton>
-          </Link>
+          <Collapse in={ventasOpen}>
+            <List sx={{ pl: 2 }}>
+              <Link href="/prop">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Propuestas
+                </ListItemButton>
+              </Link>
+              <Link href="/pres">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Presupuestos
+                </ListItemButton>
+              </Link>
+              <Link href="/fact">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Facturas
+                </ListItemButton>
+              </Link>
+              <Link href="/pag">
+                <ListItemButton sx={{ color: "#ffffff" }}>Pagos</ListItemButton>
+              </Link>
+              <Link href="/notascred">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Notas de crédito
+                </ListItemButton>
+              </Link>
+            </List>
+          </Collapse>
+
           <Link href="/gastoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Gastos</ListItemButton>
           </Link>

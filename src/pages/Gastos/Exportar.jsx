@@ -28,8 +28,8 @@ export function Exportar() {
         }}
       >
         <FormControl required>
-          <FormLabel>Seleccionar el tipo de gastos</FormLabel>
-          <Select defaultValue="Facturas">
+          <FormLabel>Seleccionar el tipo de</FormLabel>
+          <Select>
             <Option value="1">Facturas</Option>
             <Option value="2">Presupuestos</Option>
             <Option value="3">Pagos</Option>

@@ -1,14 +1,25 @@
 import { Route } from "wouter"; // Importar solo Route
 
-import { Tabla } from "@p/Tablero/Tabla";
-import { Tarea } from "@p/Tareas/Tarea";
+import { Miperfil } from "@p/Perfil/Miperfil";
+import { EditarPerfil } from "@p/Perfil/EditarPerfil";
+import { TareaPersonal } from "@p/Tareas/TareaPersonal";
+
+import { Tabla } from "@p/Tablero/Tabla"; //tablero
 
 import { Client } from "@p/Client/Client";
 import { ContactosActivos } from "@p/Client/ContactosActivos";
 import { MultiSectionForm } from "@p/Client/MultiSectionForm";
 import { ImportacionCliente } from "@p/Client/ImportacionCliente";
 
-import BillForm from "@p/Bill/BillForm";
+import { Tarea } from "@p/Tareas/Tarea";
+
+import { Propuestas } from "@p/Ventas/Propuestas";
+import { Nuevaprop } from "@p/Ventas/Nuevaprop";
+import { Presupuestos } from "@p/Ventas/Presupuestos";
+import { Facturas } from "@p/Ventas/Facturas";
+import BillForm from "@p/Bill/BillForm"; //Facturación
+import { Pagos } from "@p/Ventas/Pagos";
+import { Notascredito } from "@p/Ventas/Notascredito";
 
 import { Gasto } from "@p/Gastos/Gasto";
 import { RegistrarGastos } from "@p/Gastos/RegistrarGastos";
@@ -22,11 +33,6 @@ import { Proyecto } from "@p/Proyectos/Proyecto";
 import { NuevoProyecto } from "@p/Proyectos/NuevoProyecto";
 
 import { ClientesPotenciales } from "@p/ClientesPoten/ClientesPotenciales";
-
-import { Miperfil } from "@p/Perfil/Miperfil";
-import { EditarPerfil } from "@p/Perfil/EditarPerfil";
-
-import { TareaPersonal } from "@p/Tareas/TareaPersonal";
 
 export function Rutas() {
   return (
@@ -50,6 +56,13 @@ export function Rutas() {
       <Route path="/importgastos" component={ImportExp} />
       <Route path="/exportarr" component={Exportar} />
       <Route path="/clientpoten" component={ClientesPotenciales} />
+
+      <Route path="/prop" component={Propuestas} />
+      <Route path="/nuevapropuesta" component={Nuevaprop} />
+      <Route path="/pres" component={Presupuestos} />
+      <Route path="/fact" component={Facturas} />
+      <Route path="/pag" component={Pagos} />
+      <Route path="/notascred" component={Notascredito} />
     </>
   );
 }
