@@ -17,7 +17,7 @@ export function Propuestas() {
 <>
       <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
         <Typography level="h1" sx={{ ml: 1 }}>Propuestas</Typography>
-        <Link href="/">
+        <Link href="/nuevapropuesta">
           <Button startDecorator={<Add />} type="button" variant="outlined" size="sm">
             Nueva propuesta
           </Button>
@@ -43,7 +43,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}//sin color,gris
           >
             Borrador
           </Typography>
@@ -55,7 +55,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#0378ac", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#0378ac", fontSize: "0.9rem" }}//azul
           >
             Enviada
           </Typography>
@@ -67,7 +67,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#e67001 ", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#e67001 ", fontSize: "0.9rem" }}//naranja
           >
             Abierta
           </Typography>
@@ -79,7 +79,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#bb8a00", fontSize: "0.9rem" }}//amarillo ambar
           >
             En estudio
           </Typography>
@@ -91,7 +91,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }}//rojo
           >
             Rechazada
           </Typography>
@@ -102,7 +102,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}//verde
           >
            Aceptada
           </Typography>

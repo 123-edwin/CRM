@@ -151,7 +151,12 @@ export function NuevoProyecto() {
 
         <FormControl>
           <FormLabel>Etiquetas</FormLabel>
-          <Select>
+          <Select
+            multiple
+            onChange={(event, newValue) => {
+              console.log(newValue);
+            }}
+          >
             <Option value="1">Diseño de logo</Option>
             <Option value="2">Diseño gráfico</Option>
             <Option value="3">Diseño web</Option>

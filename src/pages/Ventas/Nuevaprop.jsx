@@ -16,7 +16,7 @@ export function Nuevaprop() {
       {/*TITULO*/}
 
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-        <Typography level="h3">Nuevo presupuesto</Typography>
+        <Typography level="h3">Nueva propuesta</Typography>
       </Box>
 
       <Card
@@ -288,7 +288,7 @@ export function Nuevaprop() {
               <Input required type="number" sx={{ width: "100%" }} />
             </FormControl>
             <FormControl sx={{ minWidth: 0 }}>
-              <FormLabel>Moneda</FormLabel>
+              <FormLabel>Precio</FormLabel>
               <Input
                 required
                 type="number"

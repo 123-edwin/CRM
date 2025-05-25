@@ -260,18 +260,23 @@ export function Tarea() {
                 </FormControl>
               </Box>
               {/*form*/}
-              <FormControl>
-                <FormLabel>Etiqueta</FormLabel>
-                <Select>
-                  <Option value="1">Diseño de logo</Option>
-                  <Option value="2">Diseño gráfico</Option>
-                  <Option value="3">Diseño web</Option>
-                  <Option value="4">Paln SEM</Option>
-                  <Option value="5">Redes sociales</Option>
-                  <Option value="6">Sesión fotografica</Option>
-                  <Option value="7">Video</Option>
-                </Select>
-              </FormControl>
+               <FormControl>
+          <FormLabel>Etiquetas</FormLabel>
+          <Select
+            multiple
+            onChange={(event, newValue) => {
+              console.log(newValue);
+            }}
+          >
+            <Option value="1">Diseño de logo</Option>
+            <Option value="2">Diseño gráfico</Option>
+            <Option value="3">Diseño web</Option>
+            <Option value="4">Plan SEM</Option>
+            <Option value="5">Redes sociales</Option>
+            <Option value="6">Seseión fotográfica</Option>
+            <Option value="7">Video</Option>
+          </Select>
+        </FormControl>
 
               {/*BOX 6*/}
               <Box

@@ -14,17 +14,24 @@ import { Link } from "wouter";
 
 export function Presupuestos() {
   return (
-<>
+    <>
       <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
-        <Typography level="h1" sx={{ ml: 1 }}>Presupuestos</Typography>
-        <Link href="/nuevapropuesta">
-          <Button startDecorator={<Add />} type="button" variant="outlined" size="sm">
+        <Typography level="h1" sx={{ ml: 1 }}>
+          Presupuestos
+        </Typography>
+        <Link href="/">
+          <Button
+            startDecorator={<Add />}
+            type="button"
+            variant="outlined"
+            size="sm"
+          >
             Nuevo presupuesto
           </Button>
         </Link>
       </Box>
 
-      {/*RECUADRO DEL TIEMPO*/}
+      {/*RECUADRO*/}
 
       <Sheet
         sx={{
@@ -43,7 +50,7 @@ export function Presupuestos() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", fontSize: "0.9rem" }} //sin color
           >
             Borrador
           </Typography>
@@ -55,7 +62,7 @@ export function Presupuestos() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#0378ac", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#0378ac", fontSize: "0.9rem" }} //azul
           >
             Enviado
           </Typography>
@@ -67,19 +74,21 @@ export function Presupuestos() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#e67001 ", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#e67001 ", fontSize: "0.9rem" }} //naranja
           >
             Expirado
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
+          <Typography
+            sx={{ fontWeight: "lg", fontSize: "0.9rem" }} //rojo
+          >
             0 / 0
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }}
+            sx={{ fontWeight: "lg", color: "#b40202", fontSize: "0.9rem" }} //verde
           >
             Rechazado
           </Typography>
@@ -93,7 +102,7 @@ export function Presupuestos() {
             level="body-xs"
             sx={{ fontWeight: "lg", color: "#239d02", fontSize: "0.9rem" }}
           >
-           Aceptado
+            Aceptado
           </Typography>
         </Box>
       </Sheet>
@@ -132,18 +141,18 @@ export function Presupuestos() {
             </Button>
           </ButtonGroup>
           <Link href="/exportarr">
-          <IconButton
-            variant="outlined"
-            color="neutral"
-            sx={{
-              borderRadius: "12px", // para esquinas redondeadas
-              width: 48,
-              height: 48,
-            }}
-          >
-            <PictureAsPdfIcon sx={{ color: "#0f82fe " }} />{" "}
-          </IconButton>
-        </Link>
+            <IconButton
+              variant="outlined"
+              color="neutral"
+              sx={{
+                borderRadius: "12px", // para esquinas redondeadas
+                width: 48,
+                height: 48,
+              }}
+            >
+              <PictureAsPdfIcon sx={{ color: "#0f82fe " }} />{" "}
+            </IconButton>
+          </Link>
         </Box>
 
         <table className="custom-table">
@@ -178,7 +187,6 @@ export function Presupuestos() {
           </tbody>
         </table>
       </Card>
-
-</>
+    </>
   );
 }

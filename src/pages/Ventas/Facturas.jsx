@@ -91,7 +91,7 @@ export function Facturas() {
   </Typography>
   <Typography
     level="body-xs"
-    sx={{ fontWeight: "lg", fontSize: "0.9rem" }} 
+    sx={{ fontWeight: "lg", fontSize: "0.9rem" }} //sin color, gris
   >
     Borrador
   </Typography>

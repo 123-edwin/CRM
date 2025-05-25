@@ -29,10 +29,15 @@ import { Exportar } from "@p/Gastos/Exportar";
 import { Contrato } from "@p/Contratos/Contrato";
 import { NuevoContrato } from "@p/Contratos/NuevoContrato";
 
+import { Soporte } from "@p/Soport/Soporte";
+import { NuevoTicket } from "@p/Soport/NuevoTicket";
+
 import { Proyecto } from "@p/Proyectos/Proyecto";
 import { NuevoProyecto } from "@p/Proyectos/NuevoProyecto";
 
 import { ClientesPotenciales } from "@p/ClientesPoten/ClientesPotenciales";
+
+import { Calendario } from "@p/Utilidades/Calendario";
 
 export function Rutas() {
   return (
@@ -63,6 +68,11 @@ export function Rutas() {
       <Route path="/fact" component={Facturas} />
       <Route path="/pag" component={Pagos} />
       <Route path="/notascred" component={Notascredito} />
+
+      <Route path="/sop" component={Soporte} />
+      <Route path="/nuevotick" component={NuevoTicket} />
+
+      <Route path="/calen" component={Calendario} />
     </>
   );
 }

@@ -24,6 +24,7 @@ import { useState } from "react";
 export function NavBar() {
   const [open, setOpen] = useState(false);
   const [ventasOpen, setVentasOpen] = useState(false);
+  const [utilidadesOpen, setUtilidadesOpen] = useState(false);
   return (
     <>
       <Sheet
@@ -254,7 +255,7 @@ export function NavBar() {
           <Link href="/proyectoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Proyectos</ListItemButton>
           </Link>
-          <Link href="">
+          <Link href="/sop">
             <ListItemButton sx={{ color: "#ffffff" }}>Soporte</ListItemButton>
           </Link>
           <Link href="/clientpoten">
@@ -262,11 +263,39 @@ export function NavBar() {
               Clientes potenciales
             </ListItemButton>
           </Link>
-          <Link href="">
-            <ListItemButton sx={{ color: "#ffffff" }}>
-              Utilidades
+          <Link href="/">
+            <ListItemButton
+              onClick={() => setUtilidadesOpen(!utilidadesOpen)}
+              sx={{ color: "#ffffff", justifyContent: "space-between" }}
+            >
+              <span>Utilidades</span>
+              <ExpandMoreIcon
+                sx={{
+                  transform: utilidadesOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.3s ease",
+                }}
+              />
             </ListItemButton>
           </Link>
+          <Collapse in={utilidadesOpen}>
+            <List sx={{ pl: 2 }}>
+              <Link href="/">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Multimedia
+                </ListItemButton>
+              </Link>
+              <Link href="/exportarr">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Exportador en masa
+                </ListItemButton>
+              </Link>
+              <Link href="/calen">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Calendario
+                </ListItemButton>
+              </Link>
+            </List>
+          </Collapse>
         </List>
       </Drawer>
     </>
