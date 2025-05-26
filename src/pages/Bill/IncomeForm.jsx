@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import {saveAs} from 'file-saver';
 import Typography from '@mui/joy/Typography';
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
@@ -61,7 +62,7 @@ function IncomeForm({ tipo }) {
     );
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Variables para calcular totales globales
@@ -162,6 +163,36 @@ function IncomeForm({ tipo }) {
 </cfdi:Comprobante>`;
 
     setXml(xmlGenerated);
+
+    // Aquí podrías enviar el XML a tu backend para timbrar o guardar
+    try {
+      // Enviar el XML generado al backend para timbrar
+      const resp = await fetch('http://localhost:8080/bill/income', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ xml: xmlGenerated }),
+      });
+
+      if (!resp.ok) {throw new Error(`HTTP ${resp.status}: ${resp.statusText}`)};
+      const {xmlTimbrado, pdfBase64} = await resp.json();
+
+      //descargar el CFDI timbrado
+      const blobXml = new Blob([xmlTimbrado], { type: 'text/xml;charset=utf-8' });
+      saveAs(blobXml, 'factura_timbrada.xml');
+      //descargar el PDF
+      const binary = atob(pdfBase64);
+      const bytes  = Uint8Array.from(binary, c => c.charCodeAt(0));
+      const blobPdf= new Blob([bytes], { type: 'application/pdf' });
+      saveAs(blobPdf, 'factura.pdf');
+
+
+
+    } catch (err) {
+      console.error('Error al enviar el XML al backend:', err);
+      alert('Error al enviar el XML al backend: ' + err.message);
+    };
   };
 
   return (
