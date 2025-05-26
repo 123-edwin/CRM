@@ -20,6 +20,9 @@ import { useState } from "react";
 
 export function Tarea() {
   const [open, setOpen] = useState(false);
+  const [openCard1, setOpenCard1] = useState(false);
+  const [openCard2, setOpenCard2] = useState(false);
+  const [openCard5, setOpenCard5] = useState(false);
   const [repeticion, setRepeticion] = useState("");
   const VisuallyHiddenInput = styled("input")`
     clip: rect(0 0 0 0);
@@ -260,23 +263,23 @@ export function Tarea() {
                 </FormControl>
               </Box>
               {/*form*/}
-               <FormControl>
-          <FormLabel>Etiquetas</FormLabel>
-          <Select
-            multiple
-            onChange={(event, newValue) => {
-              console.log(newValue);
-            }}
-          >
-            <Option value="1">Diseño de logo</Option>
-            <Option value="2">Diseño gráfico</Option>
-            <Option value="3">Diseño web</Option>
-            <Option value="4">Plan SEM</Option>
-            <Option value="5">Redes sociales</Option>
-            <Option value="6">Seseión fotográfica</Option>
-            <Option value="7">Video</Option>
-          </Select>
-        </FormControl>
+              <FormControl>
+                <FormLabel>Etiquetas</FormLabel>
+                <Select
+                  multiple
+                  onChange={(event, newValue) => {
+                    console.log(newValue);
+                  }}
+                >
+                  <Option value="1">Diseño de logo</Option>
+                  <Option value="2">Diseño gráfico</Option>
+                  <Option value="3">Diseño web</Option>
+                  <Option value="4">Plan SEM</Option>
+                  <Option value="5">Redes sociales</Option>
+                  <Option value="6">Seseión fotográfica</Option>
+                  <Option value="7">Video</Option>
+                </Select>
+              </FormControl>
 
               {/*BOX 6*/}
               <Box
@@ -391,7 +394,7 @@ export function Tarea() {
           overflowX: "auto",
         }}
       >
-        {/* Tarjeta 1 */}
+        {/*Por iniciar */}
         <Card
           sx={{
             width: "350px",
@@ -426,14 +429,116 @@ export function Tarea() {
           </Box>
 
           <Box sx={{ backgroundColor: "#dfdfdf", p: 2, height: "100%" }}>
-            <Card>
-              <Typography level="body-sm">#0000 - Lorem ipsum </Typography>
-              <Typography level="body-xs">Estado: Por iniciar</Typography>
-              <Typography level="body-xs">Prioridad: Alto</Typography>
-              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
-              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
-            </Card>
+            {/* Tarjeta 1 */}
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard1(true)}
+              >
+                <Typography level="body-sm">#0000 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: Por iniciar</Typography>
+                <Typography level="body-xs">Prioridad: Alto</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
+
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard1}
+                onClose={() => setOpenCard1(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard1(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0000 - Lorem ipsum
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      display: "grid",
+
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#c2c2c2",
+                            color: "#484848",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Por iniciar
+                        </span>
+                      </p>
+
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Alto
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
+                  </Box>
+                </Sheet>
+              </Modal>
+            </>
+
             <br></br>
+
+            {/* Tarjeta 2 */}
             <Card>
               <Typography level="body-sm">#0001 - Lorem ipsum </Typography>
               <Typography level="body-xs">Estado: Por iniciar</Typography>
@@ -444,7 +549,6 @@ export function Tarea() {
           </Box>
         </Card>
 
-        {/* Tarjeta 2 */}
         <Card
           sx={{
             width: "350px",
@@ -478,6 +582,8 @@ export function Tarea() {
             </Box>
           </Box>
 
+          {/* En progreso*/}
+
           <Box
             sx={{
               backgroundColor: "#cde3ff",
@@ -487,13 +593,112 @@ export function Tarea() {
               maxHeight: "750px", // ajusta según el alto total del Card
             }}
           >
-            <Card>
-              <Typography level="body-sm">#0002 - Lorem ipsum </Typography>
-              <Typography level="body-xs">Estado: En progreso</Typography>
-              <Typography level="body-xs">Prioridad: Alto</Typography>
-              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
-              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
-            </Card>
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard2(true)}
+              >
+                <Typography level="body-sm">#0002 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: En progreso</Typography>
+                <Typography level="body-xs">Prioridad: Alto</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
+
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard2}
+                onClose={() => setOpenCard2(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard2(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0001 - Lorem ipsum
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      display: "grid",
+
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#e0f2ff",
+                            color: "#007fff",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          En progreso
+                        </span>
+                      </p>
+
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Medio
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
+                  </Box>
+                </Sheet>
+              </Modal>
+            </>
+
             <br />
             <Card>
               <Typography level="body-sm">#0003 - Lorem ipsum </Typography>
@@ -513,7 +718,7 @@ export function Tarea() {
           </Box>
         </Card>
 
-        {/* Tarjeta 3 */}
+        {/* Testear */}
         <Card
           sx={{
             width: "350px",
@@ -552,7 +757,7 @@ export function Tarea() {
           </Box>
         </Card>
 
-        {/* Tarjeta 4 */}
+        {/* Espera de respuesta*/}
         <Card
           sx={{
             width: "350px",
@@ -590,7 +795,7 @@ export function Tarea() {
           </Box>
         </Card>
 
-        {/* Tarjeta 5 */}
+        {/* Completo */}
         <Card
           sx={{
             width: "350px",
@@ -632,13 +837,112 @@ export function Tarea() {
               maxHeight: "750px", // ajusta según el alto total del Card
             }}
           >
-            <Card>
-              <Typography level="body-sm">#0005 - Lorem ipsum </Typography>
-              <Typography level="body-xs">Estado: Completo</Typography>
-              <Typography level="body-xs">Prioridad: Medio</Typography>
-              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
-              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
-            </Card>
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard5(true)}
+              >
+                <Typography level="body-sm">#0005 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: Completo</Typography>
+                <Typography level="body-xs">Prioridad: Medio</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
+
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard5}
+                onClose={() => setOpenCard5(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard2(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0005 - Lorem ipsum
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      display: "grid",
+
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#fffec5",
+                            color: "#949200",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Completo
+                        </span>
+                      </p>
+
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Medio
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
+                  </Box>
+                </Sheet>
+              </Modal>
+            </>
+
             <br />
             <Card>
               <Typography level="body-sm">#0006 - Lorem ipsum </Typography>
