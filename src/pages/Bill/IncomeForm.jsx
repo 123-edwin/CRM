@@ -11,7 +11,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 
 import { useState } from "react";
 
-function BillForm({ tipo }) {
+function IncomeForm({ tipo }) {
   // Estados para datos generales
   const [emisor, setEmisor] = useState({ rfc: "", nombre: "", regimen: "" });
   const [receptor, setReceptor] = useState({
@@ -405,7 +405,6 @@ function BillForm({ tipo }) {
             ))}
 
             <br />
-
             <Button endDecorator={<KeyboardArrowRight />} color="success" type="submit">
               Generar XML
             </Button>
@@ -430,7 +429,7 @@ function BillForm({ tipo }) {
   );
 }
 
-BillForm.propTypes = {
-  tipo: PropTypes.oneOf(['I', 'P']).isRequired,
+IncomeForm.propTypes = {
+  tipo: PropTypes.oneOf(['I']).isRequired,
 };
-export default BillForm;
+export default IncomeForm;

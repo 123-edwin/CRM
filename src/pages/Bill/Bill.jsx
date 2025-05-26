@@ -1,5 +1,6 @@
 import { useState } from "react"
-import BillForm from "@p/Bill/BillForm";
+import IncomeForm from "@p/Bill/IncomeForm";
+import PaymentForm from "@p/Bill/PaymentForm";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
@@ -20,13 +21,12 @@ export function Bill() {
         </section>
 
             {activeTab === "I" && (
-                <BillForm tipo='I' />
+                <IncomeForm tipo='I' />
             )}
 
             {activeTab === "P" && (
                 <div>
-                    <h1>Tipo 2</h1>
-                    {/* Aquí puedes agregar el contenido específico para Tipo 2 */}
+                    <PaymentForm tipo='P' />
                 </div>
             )}
         </>
