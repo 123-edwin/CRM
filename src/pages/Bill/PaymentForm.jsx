@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { saveAs } from 'file-saver';
 import Typography from '@mui/joy/Typography';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -54,7 +55,7 @@ function PaymentForm({ tipo }) {
         );
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const fechaFormateada = formatDate(new Date());
 
@@ -139,6 +140,35 @@ function PaymentForm({ tipo }) {
 </cfdi:Comprobante>`;
 
         setXml(xmlPago);
+
+        try {
+            // Enviar el XML generado al backend para timbrar
+            const resp = await fetch('http://localhost:8080/bill/payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ xml: xmlPago }),
+            });
+
+            if (!resp.ok) { throw new Error(`HTTP ${resp.status}: ${resp.statusText}`) };
+            const { xml, pdfBase64 } = await resp.json();
+
+            //descargar el CFDI timbrado
+            const blobXml = new Blob([xml], { type: 'text/xml;charset=utf-8' });
+            saveAs(blobXml, 'factura_timbrada.xml');
+            //descargar el PDF
+            const binary = atob(pdfBase64);
+            const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+            const blobPdf = new Blob([bytes], { type: 'application/pdf' });
+            saveAs(blobPdf, 'factura.pdf');
+
+
+
+        } catch (err) {
+            console.error('Error al enviar el XML al backend:', err);
+            alert('Error al enviar el XML al backend: ' + err.message);
+        };
     };
 
     return (
@@ -151,7 +181,7 @@ function PaymentForm({ tipo }) {
                 <form onSubmit={handleSubmit}>
 
                     <Typography level="h3">Datos del Emisor</Typography>
-                    <Box sx={{ display: 'flex', gap: 2, margin: 2}}>
+                    <Box sx={{ display: 'flex', gap: 2, margin: 2 }}>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Forma de pago</FormLabel>
                             <Input type="text" placeholder="Forma de pago" value={complemento.formaPago}
@@ -168,74 +198,74 @@ function PaymentForm({ tipo }) {
 
                     <Typography level="h3">Datos del Emisor</Typography>
                     <Box sx={{ display: 'flex', gap: 2, margin: 2 }}>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>RFC Emisor</FormLabel>
-                                <Input value={emisor.rfc} onChange={e => setEmisor({ ...emisor, rfc: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Nombre Emisor</FormLabel>
-                                <Input value={emisor.nombre} onChange={e => setEmisor({ ...emisor, nombre: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Régimen Fiscal Emisor</FormLabel>
-                                <Input value={emisor.regimen} onChange={e => setEmisor({ ...emisor, regimen: e.target.value })} />
-                            </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>RFC Emisor</FormLabel>
+                            <Input value={emisor.rfc} onChange={e => setEmisor({ ...emisor, rfc: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Nombre Emisor</FormLabel>
+                            <Input value={emisor.nombre} onChange={e => setEmisor({ ...emisor, nombre: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Régimen Fiscal Emisor</FormLabel>
+                            <Input value={emisor.regimen} onChange={e => setEmisor({ ...emisor, regimen: e.target.value })} />
+                        </FormControl>
                     </Box>
 
                     <Typography level="h3">Datos del Receptor</Typography>
                     <Box sx={{ display: 'flex', gap: 2, margin: 2 }}>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>RFC Receptor</FormLabel>
-                                <Input value={receptor.rfc} onChange={e => setReceptor({ ...receptor, rfc: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Nombre Receptor</FormLabel>
-                                <Input value={receptor.nombre} onChange={e => setReceptor({ ...receptor, nombre: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Domicilio Receptor</FormLabel>
-                                <Input value={receptor.domicilio} onChange={e => setReceptor({ ...receptor, domicilio: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Régimen Fiscal Receptor</FormLabel>
-                                <Input value={receptor.regimen} onChange={e => setReceptor({ ...receptor, regimen: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Uso CFDI</FormLabel>
-                                <Input value={receptor.usoCFDI} onChange={e => setReceptor({ ...receptor, usoCFDI: e.target.value })} />
-                            </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>RFC Receptor</FormLabel>
+                            <Input value={receptor.rfc} onChange={e => setReceptor({ ...receptor, rfc: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Nombre Receptor</FormLabel>
+                            <Input value={receptor.nombre} onChange={e => setReceptor({ ...receptor, nombre: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Domicilio Receptor</FormLabel>
+                            <Input value={receptor.domicilio} onChange={e => setReceptor({ ...receptor, domicilio: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Régimen Fiscal Receptor</FormLabel>
+                            <Input value={receptor.regimen} onChange={e => setReceptor({ ...receptor, regimen: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Uso CFDI</FormLabel>
+                            <Input value={receptor.usoCFDI} onChange={e => setReceptor({ ...receptor, usoCFDI: e.target.value })} />
+                        </FormControl>
                     </Box>
 
                     <Typography level="h3">Datos del Complemento de Pago</Typography>
-                    <Box sx={{ display: 'flex', gap: 2, margin : 2, flexWrap: 'wrap' }}>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Moneda</FormLabel>
-                                <Input value={complemento.moneda} onChange={e => setComplemento({ ...complemento, moneda: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Monto Total Pagos</FormLabel>
-                                <Input type="number" value={complemento.montoTotalPagos}
-                                    onChange={e => setComplemento({ ...complemento, montoTotalPagos: parseFloat(e.target.value) || 0 })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>ID Documento</FormLabel>
-                                <Input value={complemento.idDocumento} onChange={e => setComplemento({ ...complemento, idDocumento: e.target.value })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Equivalencia DR</FormLabel>
-                                <Input type="number" value={complemento.equivalenciaDR}
-                                    onChange={e => setComplemento({ ...complemento, equivalenciaDR: parseFloat(e.target.value) || 0 })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Número de Parcialidad</FormLabel>
-                                <Input type="number" value={complemento.numParcialidad}
-                                    onChange={e => setComplemento({ ...complemento, numParcialidad: parseInt(e.target.value) || 0 })} />
-                            </FormControl>
-                            <FormControl sx={{ flex: 1 }}>
-                                <FormLabel>Saldo Anterior</FormLabel>
-                                <Input type="number" value={complemento.saldoAnt}
-                                    onChange={e => setComplemento({ ...complemento, saldoAnt: parseFloat(e.target.value) || 0 })} />
-                            </FormControl>
+                    <Box sx={{ display: 'flex', gap: 2, margin: 2, flexWrap: 'wrap' }}>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Moneda</FormLabel>
+                            <Input value={complemento.moneda} onChange={e => setComplemento({ ...complemento, moneda: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Monto Total Pagos</FormLabel>
+                            <Input type="number" value={complemento.montoTotalPagos}
+                                onChange={e => setComplemento({ ...complemento, montoTotalPagos: parseFloat(e.target.value) || 0 })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>ID Documento</FormLabel>
+                            <Input value={complemento.idDocumento} onChange={e => setComplemento({ ...complemento, idDocumento: e.target.value })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Equivalencia DR</FormLabel>
+                            <Input type="number" value={complemento.equivalenciaDR}
+                                onChange={e => setComplemento({ ...complemento, equivalenciaDR: parseFloat(e.target.value) || 0 })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Número de Parcialidad</FormLabel>
+                            <Input type="number" value={complemento.numParcialidad}
+                                onChange={e => setComplemento({ ...complemento, numParcialidad: parseInt(e.target.value) || 0 })} />
+                        </FormControl>
+                        <FormControl sx={{ flex: 1 }}>
+                            <FormLabel>Saldo Anterior</FormLabel>
+                            <Input type="number" value={complemento.saldoAnt}
+                                onChange={e => setComplemento({ ...complemento, saldoAnt: parseFloat(e.target.value) || 0 })} />
+                        </FormControl>
                     </Box>
 
                     <br />
