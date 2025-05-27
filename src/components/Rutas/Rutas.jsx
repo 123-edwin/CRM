@@ -1,4 +1,4 @@
-import { Route } from 'wouter'; // Importar solo Route
+import { Route } from 'wouter'; 
 import { Client } from '@p/Client/Client';
 import { MultiSectionForm } from '@p/Client/MultiSectionForm';
 import { ImportacionCliente } from '@p/Client/ImportacionCliente';
