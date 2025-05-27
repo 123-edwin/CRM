@@ -1,219 +1,982 @@
-import Card from '@mui/joy/Card';
-import Typography from '@mui/joy/Typography';
-import Box from '@mui/joy/Box';
-import { List, ListItem, ListItemText, Divider } from "@mui/material";
+import Card from "@mui/joy/Card";
+import Typography from "@mui/joy/Typography";
+import Box from "@mui/joy/Box";
+import Button from "@mui/joy/Button";
+import Add from "@mui/icons-material/Add";
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import Sheet from "@mui/joy/Sheet";
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Input from "@mui/joy/Input";
+import Textarea from "@mui/joy/Textarea";
+import Checkbox from "@mui/joy/Checkbox";
+import SvgIcon from "@mui/joy/SvgIcon";
+import { styled } from "@mui/joy";
 
-import * as React from 'react';
-import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Input from '@mui/joy/Input';
-import Modal from '@mui/joy/Modal';
-import ModalDialog from '@mui/joy/ModalDialog';
-import DialogTitle from '@mui/joy/DialogTitle';
-import Stack from '@mui/joy/Stack';
-import Add from '@mui/icons-material/Add';
-import Chip from '@mui/joy/Chip'; 
+import { useState } from "react";
 
 export function Tarea() {
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [openCard1, setOpenCard1] = useState(false);
+  const [openCard2, setOpenCard2] = useState(false);
+  const [openCard5, setOpenCard5] = useState(false);
+  const [repeticion, setRepeticion] = useState("");
+  const VisuallyHiddenInput = styled("input")`
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    white-space: nowrap;
+    width: 1px;
+  `;
   return (
     <>
-      <Box sx={{ display: 'flex', gap: 3, mt: 4, px: 2, flexWrap: 'nowrap', overflowX: 'auto' }}>
+      <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
+        <Typography level="h1" sx={{ ml: 1 }}>
+          Tareas
+        </Typography>
+        <>
+          <Button
+            startDecorator={<Add />}
+            type="button"
+            variant="outlined"
+            onClick={() => setOpen(true)}
+            size="sm"
+          >
+            Nueva tarea
+          </Button>
+          <Modal
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            open={open}
+            onClose={() => setOpen(false)}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Sheet
+              variant="outlined"
+              sx={{
+                maxWidth: 1100,
+                maxHeight: "90vh", // Limita la altura del modal al 90% de la ventana
+                overflowY: "auto", // Habilita el scroll vertical
+                borderRadius: "md",
+                p: 3,
+                boxShadow: "lg",
+              }}
+            >
+              <ModalClose variant="plain" sx={{ m: 1 }} />
+              <Typography
+                component="h2"
+                id="modal-title"
+                level="h4"
+                textColor="inherit"
+                sx={{ fontWeight: "lg", mb: 1 }}
+              >
+                Añadir tarea
+              </Typography>
+              {/*BOX 1*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  gap: 4,
+                  maxWidth: 700,
+                }}
+              >
+                <Checkbox label="Público" />
+                <Checkbox label="Facturable" />
+                <Button
+                  component="label"
+                  role={undefined}
+                  tabIndex={-1}
+                  variant="outlined"
+                  color="neutral"
+                  startDecorator={
+                    <SvgIcon>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                        />
+                      </svg>
+                    </SvgIcon>
+                  }
+                >
+                  Upload a file
+                  <VisuallyHiddenInput type="file" />
+                </Button>
+              </Box>
+              {/*BOX 2*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl required>
+                  <FormLabel>Tema</FormLabel>
+                  <Input required type="text"></Input>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Descripción</FormLabel>
+                  <Textarea minRows={2} />
+                </FormControl>
+              </Box>
+              {/*BOX 3*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl required>
+                  <FormLabel>Categoría</FormLabel>
+                  <Select>
+                    <Option value="1">Por iniciar</Option>
+                    <Option value="2">En progreso</Option>
+                    <Option value="3">Testear</Option>
+                    <Option value="4">Espera de respuesta</Option>
+                    <Option value="5">Completo</Option>
+                  </Select>
+                </FormControl>
 
-        {/* ESTADOS DE LAS TAREAS */}
+                <FormControl>
+                  <FormLabel>Precio por hora</FormLabel>
+                  <Input
+                    required
+                    type="number"
+                    startDecorator="$"
+                    placeholder="0.00"
+                  />
+                </FormControl>
+              </Box>
+              {/*BOX 4*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl>
+                  <FormLabel>Prioridad</FormLabel>
+                  <Select defaultValue="Bajo">
+                    <Option value="1">Bajo</Option>
+                    <Option value="2">Medio</Option>
+                    <Option value="3">Alto</Option>
+                    <Option value="4">Urgente</Option>
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Repetir cada</FormLabel>
+                  <Select
+                    value={repeticion}
+                    onChange={(e, newValue) => setRepeticion(newValue)}
+                  >
+                    <Option value="1">Semanal</Option>
+                    <Option value="2">2 semanas</Option>
+                    <Option value="3">1 mes</Option>
+                    <Option value="4">2 meses</Option>
+                    <Option value="5">3 meses</Option>
+                    <Option value="6">6 meses</Option>
+                    <Option value="7">1 año</Option>
+                    <Option value="8">Personalizado</Option>
+                  </Select>
+                </FormControl>
 
-        <Card sx={{ width: '350px', minWidth: 200, height: '480px', p: 2, borderRadius: 'md', boxShadow: 'md' }}>{/* AQUI EMPIEZA EL CARD DEL TO DO */}
+                {repeticion === "8" && (
+                  <Box
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(2, 1fr)",
+                      gap: 2,
+                      mt: 2,
+                    }}
+                  >
+                    <FormControl>
+                      <Input type="number" placeholder="Ej. 3" />
+                    </FormControl>
 
-          {/* TITULO DE TO DO */}
-          
-          <Box sx={{ backgroundColor: '#42a5f5', p: 1, borderRadius: '8px 8px 0 0' }}>
-            <Typography level="h3" sx={{ color: '#fff' }}>TO DO LIST</Typography>
+                    <FormControl>
+                      <Select defaultValue="Día(s)" placeholder="Ej. Días(s)">
+                        <Option value="dias">Día(s)</Option>
+                        <Option value="semanas">Semana(s)</Option>
+                        <Option value="meses">Mese(s)</Option>
+                        <Option value="años">Año(s)</Option>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                )}
+              </Box>
+              {/*form*/}
+              <FormControl>
+                <FormLabel>Relacionado con</FormLabel>
+                <Select>
+                  <Option value="1">Proyecto</Option>
+                  <Option value="2">Factura</Option>
+                  <Option value="3">Cliente</Option>
+                  <Option value="4">Presupuesto</Option>
+                  <Option value="5">Contrato</Option>
+                  <Option value="6">Ticket</Option>
+                  <Option value="7">Gastos</Option>
+                  <Option value="8">Clientes potenciales</Option>
+                  <Option value="9">Propuesta</Option>
+                </Select>
+              </FormControl>
+              {/*BOX 5*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl>
+                  <FormLabel>Comercial</FormLabel>
+                  <Input required type="text" />
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Seguidores</FormLabel>
+                  <Input required type="text" />
+                </FormControl>
+              </Box>
+              {/*form*/}
+              <FormControl>
+                <FormLabel>Etiquetas</FormLabel>
+                <Select
+                  multiple
+                  onChange={(event, newValue) => {
+                    console.log(newValue);
+                  }}
+                >
+                  <Option value="1">Diseño de logo</Option>
+                  <Option value="2">Diseño gráfico</Option>
+                  <Option value="3">Diseño web</Option>
+                  <Option value="4">Plan SEM</Option>
+                  <Option value="5">Redes sociales</Option>
+                  <Option value="6">Seseión fotográfica</Option>
+                  <Option value="7">Video</Option>
+                </Select>
+              </FormControl>
+
+              {/*BOX 6*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl required>
+                  <FormLabel>Tipo de tarea</FormLabel>
+                  <Select>
+                    <Option value="1">Diaria</Option>
+                    <Option value="2">Adicional</Option>
+                    <Option value="3">Pro evento</Option>
+                  </Select>
+                </FormControl>
+                <FormControl required>
+                  <FormLabel>Finalidad</FormLabel>
+                  <Select>
+                    <Option value="1">Publicación</Option>
+                    <Option value="2">Diseño gráfico</Option>
+                    <Option value="3">Diseño web</Option>
+                    <Option value="4">Paln SEM</Option>
+                    <Option value="5">Redes sociales</Option>
+                    <Option value="6">Sesión fotografica</Option>
+                    <Option value="7">Video</Option>
+                    <Option value="8">Diseño de logo</Option>
+                    <Option value="9">Diseño gráfico</Option>
+                    <Option value="10">Diseño web</Option>
+                    <Option value="11">Plan SEM</Option>
+                    <Option value="12">Redes sociales</Option>
+                    <Option value="13">Sesión fotografica</Option>
+                    <Option value="14">Video</Option>
+                  </Select>
+                </FormControl>
+              </Box>
+              {/*BOX 7*/}
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 4,
+                  maxWidth: 800,
+                }}
+              >
+                <FormControl>
+                  <FormLabel>Contorl de cambio</FormLabel>
+                  <Select>
+                    <Option value="1">Publicación</Option>
+                    <Option value="2">Historia</Option>
+                    <Option value="3">Portada</Option>
+                    <Option value="4">Perfil</Option>
+                    <Option value="5">Logo</Option>
+                    <Option value="6">Icono</Option>
+                    <Option value="7">Campaña Facebooks Ads</Option>
+                    <Option value="8">Blog</Option>
+                    <Option value="9">Manual de identidad</Option>
+                    <Option value="10">Díptico</Option>
+                    <Option value="11">Tríptico</Option>
+                    <Option value="12">Volante</Option>
+                    <Option value="13">Impresión</Option>
+                    <Option value="14">Brochure</Option>
+                    <Option value="15">Firma electrónica</Option>
+                    <Option value="16">Tarjeta de presentación</Option>
+                    <Option value="17">Etiqueta</Option>
+                    <Option value="18">Horario</Option>
+                    <Option value="19">Nota</Option>
+                    <Option value="20">Proyecto cofepris</Option>
+                    <Option value="21">Calcomanía</Option>
+                    <Option value="22">Pantalla</Option>
+                    <Option value="23">Lona</Option>
+                    <Option value="24">Espectacular</Option>
+                    <Option value="25">Edición y retoque de fotos</Option>
+                    <Option value="26">Camioneta/Carro</Option>
+                    <Option value="27">Reel</Option>
+                    <Option value="28">Grabación de video</Option>
+                    <Option value="29">Sesión fotografica</Option>
+                    <Option value="30">Edición de video</Option>
+                    <Option value="31">Scouting</Option>
+                    <Option value="32">GIF</Option>
+                    <Option value="33">Diseño web (comienza)</Option>
+                    <Option value="34">Diseño web (crece)</Option>
+                    <Option value="35">Diseño web (corporativo)</Option>
+                    <Option value="36">Shopify</Option>
+                    <Option value="37">Banner</Option>
+                    <Option value="38">Productos promocionales</Option>
+                  </Select>
+                </FormControl>
+                <FormControl>
+                  <FormLabel>Creador</FormLabel>
+                  <Input required type="text" />
+                </FormControl>
+              </Box>
+
+              <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
+                <Button>Guardar</Button>
+              </Box>
+            </Sheet>
+          </Modal>
+        </>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          gap: 3,
+          mt: 3,
+          px: 2,
+          flexWrap: "nowrap",
+          overflowX: "auto",
+        }}
+      >
+        {/*Por iniciar */}
+        <Card
+          sx={{
+            width: "350px",
+            minWidth: 200,
+            height: "600px",
+            p: 2,
+            borderRadius: "md",
+            boxShadow: "md",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#5d5d5d",
+              p: 1,
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                Por iniciar
+              </Typography>
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                2
+              </Typography>
+            </Box>
           </Box>
 
-          <Box sx={{ backgroundColor: '#cce7f6', p: 2 }}>{/* BOX PARA AGRUPAR LAS TAREAS */}
+          <Box sx={{ backgroundColor: "#dfdfdf", p: 2, height: "100%" }}>
+            {/* Tarjeta 1 */}
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard1(true)}
+              >
+                <Typography level="body-sm">#0000 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: Por iniciar</Typography>
+                <Typography level="body-xs">Prioridad: Alto</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
 
-            <List>
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard1}
+                onClose={() => setOpenCard1(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard1(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0000 - Lorem ipsum
+                  </Typography>
 
-              {/* BOTON NUEVA TAREA */}
-              <React.Fragment>
-                <Button variant="plain" color="neutral" startDecorator={<Add />} onClick={() => setOpen(true)}>
-                  Nueva tarea
-                </Button>
+                  <Box
+                    sx={{
+                      display: "grid",
 
-                <Modal open={open} onClose={() => setOpen(false)}>
-                  <ModalDialog>
-                    <DialogTitle>Agregar tarea</DialogTitle>
-                    <form onSubmit={(event) => { event.preventDefault(); setOpen(false); }}>
-                      <Stack spacing={2}>
-                        <FormControl>
-                          <FormLabel>Título de la tarea</FormLabel>
-                          <Input autoFocus required />
-                        </FormControl>
-                        <FormControl>
-                          <FormLabel>Descripción</FormLabel>
-                          <Input required />
-                        </FormControl>
-                        <FormControl>
-                          <FormLabel>Fecha</FormLabel>
-                          <Input type="date" />
-                        </FormControl>
-                        <Box sx={{ display: 'flex', gap: 2 }}>
-                          <Button variant="solid" color="primary">Guardar</Button>
-                          <Button variant="outlined" color="neutral">Cerrar</Button>
-                        </Box>
-                      </Stack>
-                    </form>
-                  </ModalDialog>
-                </Modal>
-              </React.Fragment>
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#c2c2c2",
+                            color: "#484848",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Por iniciar
+                        </span>
+                      </p>
 
-             <Divider component="li" />
-
-             <ListItem 
-             secondaryAction={
-             <Box sx={{ backgroundColor: '#7e57c2', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography sx={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>6</Typography>
-             </Box>}>
-             <ListItemText primary={<strong>Todas mis tareas</strong>} />
-             </ListItem>
-             
-             <Divider component="li" />
-
-            <ListItem
-             secondaryAction={
-            <Box sx={{ backgroundColor: '#4caf50', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography sx={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>2</Typography>
-            </Box>}>
-            <ListItemText primary="Completadas" />
-            </ListItem>
-
-            <Divider component="li" />
-            
-            <ListItem
-            secondaryAction={
-            <Box sx={{ backgroundColor: '#3f51b5', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography sx={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>2</Typography>
-            </Box>}>
-            <ListItemText primary="En proceso" />
-            </ListItem>
-            
-            <Divider component="li" />
-            
-            <ListItem
-            secondaryAction={
-            <Box sx={{ backgroundColor: '#f44336', width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography sx={{ color: '#fff', fontSize: 14, fontWeight: 'bold' }}>2</Typography>
-            </Box>}>
-            <ListItemText primary="Pendiente" />
-            </ListItem>
-            
-            <Divider component="li" />
-
-            <ListItem alignItems="flex-start">
-              <ListItemText primary="Basura" />
-            </ListItem>
-
-            </List>
-
-          </Box>{/* BOX PARA AGRUPAR LAS TAREAS */}
-
-        </Card>{/* AQUI TERMINA EL CARD DEL TO DO */}
-
-
-        {/* TODAS MIS TAREAS */}
-
-        <Card sx={{ width: '1300px', minWidth: 400, p: 2, borderRadius: 'md', boxShadow: 'md' }}>
-
-          <Typography level="h3" sx={{ mt: 1 }}>Todas mis tareas</Typography>
-
-          <Divider />
-
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum</strong>
-                    <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Alto
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
                   </Box>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</p>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">10/02/2025</Typography>}/>
-          </ListItem>
+                </Sheet>
+              </Modal>
+            </>
 
-          <Divider />
+            <br></br>
 
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum</strong>
-                    <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
-                  </Box>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">17/02/2025</Typography>}/>
-          </ListItem>
-
-          <Divider />
-
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum</strong>
-                    <Chip size="sm" color="success" variant="soft">Completada</Chip>
-                  </Box>
-                  <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">25/02/2025</Typography>}/>
-          </ListItem>
-
-          <Divider />
-          
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum</strong>
-                    <Chip size="sm" color="success" variant="soft">Completada</Chip>
-                  </Box>
-                  <s>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</s>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">26/02/2025</Typography>}/>
-          </ListItem>
-
-          <Divider />
-
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum </strong>
-                    <Chip size="sm" color="primary" variant="soft">En proceso</Chip>
-                  </Box>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum,</p>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">27/02/2025</Typography>}/>
-          </ListItem>
-
-          <Divider />
-
-          <ListItem alignItems="flex-start">
-            <ListItemText
-              primary={<Typography variant="body1">
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <strong>Lorem ipsum </strong>
-                    <Chip size="sm" color="danger" variant="soft">Pendiente</Chip>
-                  </Box>
-                  <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum.</p>
-                </Typography>}
-              secondary={<Typography variant="body2" color="text.secondary">28/02/2025</Typography>}/>
-          </ListItem>
-
+            {/* Tarjeta 2 */}
+            <Card>
+              <Typography level="body-sm">#0001 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: Por iniciar</Typography>
+              <Typography level="body-xs">Prioridad: Alto</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+          </Box>
         </Card>
 
+        <Card
+          sx={{
+            width: "350px",
+            minWidth: 200,
+            height: "600px",
+            p: 2,
+            borderRadius: "md",
+            boxShadow: "md",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#0049a2",
+              p: 1,
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                En progreso
+              </Typography>
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                3
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* En progreso*/}
+
+          <Box
+            sx={{
+              backgroundColor: "#cde3ff",
+              p: 2,
+              flex: 1,
+              overflowY: "auto",
+              maxHeight: "750px", // ajusta según el alto total del Card
+            }}
+          >
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard2(true)}
+              >
+                <Typography level="body-sm">#0002 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: En progreso</Typography>
+                <Typography level="body-xs">Prioridad: Alto</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
+
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard2}
+                onClose={() => setOpenCard2(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard2(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0001 - Lorem ipsum
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      display: "grid",
+
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#e0f2ff",
+                            color: "#007fff",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          En progreso
+                        </span>
+                      </p>
+
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Medio
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
+                  </Box>
+                </Sheet>
+              </Modal>
+            </>
+
+            <br />
+            <Card>
+              <Typography level="body-sm">#0003 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: En progreso</Typography>
+              <Typography level="body-xs">Prioridad: Alto</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+            <br />
+            <Card>
+              <Typography level="body-sm">#0004 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: En progreso</Typography>
+              <Typography level="body-xs">Prioridad: Alto</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+          </Box>
+        </Card>
+
+        {/* Testear */}
+        <Card
+          sx={{
+            width: "350px",
+            minWidth: 200,
+            height: "600px",
+            p: 2,
+            borderRadius: "md",
+            boxShadow: "md",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#009578",
+              p: 1,
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                Testear
+              </Typography>
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                0
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box sx={{ backgroundColor: "#bffff2", p: 2, height: "100%" }}>
+            <Typography level="body-sm">No hay tareas</Typography>
+          </Box>
+        </Card>
+
+        {/* Espera de respuesta*/}
+        <Card
+          sx={{
+            width: "350px",
+            minWidth: 200,
+            height: "600px",
+            p: 2,
+            borderRadius: "md",
+            boxShadow: "md",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#489200 ",
+              p: 1,
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography level="h4" sx={{ color: "#fff" }}>
+                Espera de respuesta
+              </Typography>
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                0
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ backgroundColor: "#d5ffab", p: 2, height: "100%" }}>
+            <Typography level="body-sm">No hay tareas</Typography>
+          </Box>
+        </Card>
+
+        {/* Completo */}
+        <Card
+          sx={{
+            width: "350px",
+            minWidth: 200,
+            height: "600px",
+            p: 2,
+            borderRadius: "md",
+            boxShadow: "md",
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#ccbf00",
+              p: 1,
+              borderRadius: "8px 8px 0 0",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                Completo
+              </Typography>
+              <Typography level="h3" sx={{ color: "#fff" }}>
+                5
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              backgroundColor: "#cde3ff",
+              p: 2,
+              flex: 1,
+              overflowY: "auto",
+              maxHeight: "750px", // ajusta según el alto total del Card
+            }}
+          >
+            <>
+              <Card
+                variant="outlined"
+                color="neutral"
+                onClick={() => setOpenCard5(true)}
+              >
+                <Typography level="body-sm">#0005 - Lorem ipsum </Typography>
+                <Typography level="body-xs">Estado: Completo</Typography>
+                <Typography level="body-xs">Prioridad: Medio</Typography>
+                <Typography level="body-xs">
+                  Fecha inicio: 01/02/2025
+                </Typography>
+                <Typography level="body-xs">
+                  Fecha termino: 05/02/2025
+                </Typography>
+              </Card>
+
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={openCard5}
+                onClose={() => setOpenCard5(false)}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 900,
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    onClick={() => setOpenCard2(false)}
+                    variant="plain"
+                    sx={{ m: 1 }}
+                  />
+                  <Typography
+                    component="h2"
+                    id="modal-title"
+                    level="h4"
+                    textColor="inherit"
+                    sx={{ fontWeight: "lg", mb: 2 }}
+                  >
+                    #0005 - Lorem ipsum
+                  </Typography>
+
+                  <Box
+                    sx={{
+                      display: "grid",
+
+                      gap: 4,
+                    }}
+                  >
+                    <div>
+                      <Typography level="title-sm" sx={{ mb: 1 }}>
+                        Información de la tarea
+                      </Typography>
+                      <p>
+                        <strong>Estado:</strong>{" "}
+                        <span
+                          style={{
+                            backgroundColor: "#fffec5",
+                            color: "#949200",
+                            padding: "2px 8px",
+                            borderRadius: "12px",
+                            fontSize: "0.875rem",
+                            fontWeight: "500",
+                          }}
+                        >
+                          Completo
+                        </span>
+                      </p>
+
+                      <p>
+                        <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
+                      </p>
+                      <p>
+                        <strong>Etiquetas:</strong> -
+                      </p>
+                      <p>
+                        <strong>Prioridad:</strong> Medio
+                      </p>
+                      <p>
+                        <strong>Control de cambios:</strong> -
+                      </p>
+                      <p>
+                        <strong>Finalidad:</strong> -
+                      </p>
+                      <p>
+                        <strong>Tipo de tarea:</strong> -
+                      </p>
+                      <p>
+                        <strong>Creador:</strong> -
+                      </p>
+                    </div>
+                  </Box>
+                </Sheet>
+              </Modal>
+            </>
+
+            <br />
+            <Card>
+              <Typography level="body-sm">#0006 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: Completo</Typography>
+              <Typography level="body-xs">Prioridad: Medio</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+            <br />
+            <Card>
+              <Typography level="body-sm">#0007 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: Completo</Typography>
+              <Typography level="body-xs">Prioridad: Medio</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+            <br />
+            <Card>
+              <Typography level="body-sm">#0008 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: Completo</Typography>
+              <Typography level="body-xs">Prioridad: Medio</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+            <br />
+            <Card>
+              <Typography level="body-sm">#0009 - Lorem ipsum </Typography>
+              <Typography level="body-xs">Estado: Completo</Typography>
+              <Typography level="body-xs">Prioridad: Medio</Typography>
+              <Typography level="body-xs">Fecha inicio: 01/02/2025</Typography>
+              <Typography level="body-xs">Fecha termino: 05/02/2025</Typography>
+            </Card>
+          </Box>
+        </Card>
       </Box>
     </>
   );
