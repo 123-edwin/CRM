@@ -176,10 +176,10 @@ function IncomeForm({ tipo }) {
       });
 
       if (!resp.ok) {throw new Error(`HTTP ${resp.status}: ${resp.statusText}`)};
-      const {xmlTimbrado, pdfBase64} = await resp.json();
+      const {xml, pdfBase64} = await resp.json();
 
       //descargar el CFDI timbrado
-      const blobXml = new Blob([xmlTimbrado], { type: 'text/xml;charset=utf-8' });
+      const blobXml = new Blob([xml], { type: 'text/xml;charset=utf-8' });
       saveAs(blobXml, 'factura_timbrada.xml');
       //descargar el PDF
       const binary = atob(pdfBase64);
