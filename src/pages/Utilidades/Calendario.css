@@ -1,0 +1,47 @@
+.calendario-contenedor {
+  max-width: 740px;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: #fefefe;
+  font-family: sans-serif;
+}
+
+.calendario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.calendario-header button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+  gap: 2px;
+}
+
+.calendario-dia {
+  font-weight: bold;
+  background-color: #eaeaea;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.calendario-celda {
+  min-height: 80px;
+  text-align: center;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -67,7 +67,7 @@ export function Propuestas() {
           </Typography>
           <Typography
             level="body-xs"
-            sx={{ fontWeight: "lg", color: "#e67001 ", fontSize: "0.9rem" }}//naranja
+            sx={{ fontWeight: "lg", color: "#e67001", fontSize: "0.9rem" }}//naranja
           >
             Abierta
           </Typography>

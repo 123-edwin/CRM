@@ -37,7 +37,7 @@ export function NavBar() {
           p: 2,
           minWidth: "min-content",
           background:
-            "linear-gradient(to top,rgb(53, 91, 125),rgb(22, 52, 76))", // azul degradado
+            "linear-gradient(to top,rgb(53, 91, 125),hsl(207, 55.10%, 19.20%))", // azul degradado
           color: "white", // asegúrate de que el texto contraste
         }}
       >
@@ -152,7 +152,9 @@ export function NavBar() {
         sx={{
           "& .MuiDrawer-content": {
             width: 350,
-            backgroundColor: "#576bff ",
+            background:
+            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))"
+            //backgroundColor: "#576bff ",
           },
         }}
       >
@@ -195,14 +197,14 @@ export function NavBar() {
           }}
         >
           <Link href="/table">
-            <ListItemButton sx={{ color: "#000000" }}>Tablero</ListItemButton>
+            <ListItemButton sx={{ color: "#ffffff" }}>Tablero</ListItemButton>
           </Link>
           <Link href="/">
-            <ListItemButton sx={{ color: "#000000" }}>Clientes</ListItemButton>
+            <ListItemButton sx={{ color: "#ffffff" }}>Clientes</ListItemButton>
           </Link>
 
           <Link href="/tareass">
-            <ListItemButton sx={{ color: "#000000" }}>Tareas</ListItemButton>
+            <ListItemButton sx={{ color: "#ffffff" }}>Tareas</ListItemButton>
           </Link>
           <Link href="/">
             <ListItemButton
