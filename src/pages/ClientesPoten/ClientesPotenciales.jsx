@@ -48,7 +48,7 @@ export function ClientesPotenciales() {
         >
           <Box
             sx={{
-              backgroundColor: "#42a5f5",
+              backgroundColor: "#4673aa ",
               p: 1,
               borderRadius: "8px 8px 0 0",
               display: "flex",

@@ -46,7 +46,7 @@ export function TareaPersonal() {
           {/* TITULO DE TO DO */}
           <Box
             sx={{
-              backgroundColor: "#42a5f5",
+              backgroundColor: "#387fc0 ",
               p: 1,
               borderRadius: "8px 8px 0 0",
             }}
@@ -56,7 +56,7 @@ export function TareaPersonal() {
             </Typography>
           </Box>
 
-          <Box sx={{ backgroundColor: "#cce7f6", }}>
+          <Box sx={{ backgroundColor: "#d7edff", }}>
             <List>
               {/* BOTÓN NUEVA TAREA */}
               <Button
