@@ -95,29 +95,18 @@ export function ContactosActivos() {
 
           <tbody>
             <tr>
-              <td>Juan</td>
-              <td>Perez</td>
-              <td>JuanPerez@gmail.com</td>
-              <td>JL Marketing</td>
-              <td>312 159 7894</td>
-              <td>Jefe</td>
-              <td></td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
               <td>
                 <Switch defaultChecked />
               </td>
             </tr>
-            <tr>
-              <td>José</td>
-              <td>Ortiz</td>
-              <td>JoseOrtizz@gmail.com</td>
-              <td>JL Marketing</td>
-              <td>312 357 4569</td>
-              <td>Administrador</td>
-              <td></td>
-              <td>
-                <Switch defaultChecked />
-              </td>
-            </tr>
+            
           </tbody>
         </table>
       </Card>

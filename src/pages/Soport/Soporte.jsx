@@ -289,25 +289,40 @@ export function Soporte() {
               <td>-</td>
               <td>María Luisa Gonzalez Andre (Centro Albatros)</td>
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="Abierto"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid",
+                    borderColor: "#b40202",
                     color: "#b40202",
-                    fontSize: "0.75rem",
-                    border: "1px solid #b40202",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
                   }}
                 >
-                  Abierto
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
               <td>Medio</td>
               <td>Sin respuesta, todavía</td>
-              <td><td>12/02/2023 12:31:04</td></td>
+              <td>
+                <td>12/02/2023 12:31:04</td>
+              </td>
             </tr>
             <tr>
               <td>2</td>
@@ -317,50 +332,77 @@ export function Soporte() {
               <td>-</td>
               <td>Monserrat Vargas (Alva Papeleria SA de CV)</td>
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="Abierto"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid",
+                    borderColor: "#b40202",
                     color: "#b40202",
-                    fontSize: "0.75rem",
-                    border: "1px solid #b40202",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
                   }}
                 >
-                  Abierto
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
               <td>Medio</td>
               <td>Sin respuesta, todavía</td>
               <td>15/02/2023 12:31:04</td>
             </tr>
-              <tr>
+            <tr>
               <td>3</td>
               <td>Lorem ipsum</td>
               <td>-</td>
               <td>Ticket</td>
               <td>-</td>
               <td>Monserrat Vargas (Alva Papeleria SA de CV)</td>
+
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="En progreso"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid rgb(2, 180, 2)",
                     color: "#239d02",
-                    fontSize: "0.75rem",
-                   border: "1px solid rgb(2, 180, 2)",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
                   }}
                 >
-                  En progreso
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
+
               <td>Medio</td>
               <td>18/09/2024 12:04:12</td>
               <td>17/02/2023 12:31:04</td>
@@ -373,27 +415,39 @@ export function Soporte() {
               <td>-</td>
               <td>ROBERTO NAHUM AMAYA ZAMORA (Tara)</td>
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="Contestado"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid rgb(2, 91, 180)",
                     color: "#0378ac",
-                    fontSize: "0.75rem",
-                   border: "1px solid rgb(2, 91, 180)",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
                   }}
                 >
-                  Contestado
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
               <td>Alto</td>
               <td>18/02/2023 17:08:42</td>
               <td>20/02/2023 12:31:04</td>
             </tr>
-             <tr>
+            <tr>
               <td>5</td>
               <td>Lorem ipsum</td>
               <td>-</td>
@@ -401,21 +455,32 @@ export function Soporte() {
               <td>-</td>
               <td>Hugo Alejandro castillo (Central HACSA )</td>
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="Cerrado"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
-                    
-                    fontSize: "0.75rem",
-                   border: "1px solid rgb(60, 68, 75)",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid rgb(60, 68, 75)",
                   }}
                 >
-                  Cerrado
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
               <td>Bajo</td>
               <td>20/02/2023 17:08:42</td>
@@ -427,23 +492,34 @@ export function Soporte() {
               <td>-</td>
               <td>Ticket</td>
               <td>-</td>
-              <td>Gina Paola Calixto Pedraza (Hemoterapia)	</td>
+              <td>Gina Paola Calixto Pedraza (Hemoterapia) </td>
               <td>
-                <Typography
-                  level="body-xs"
+                <Select
+                  defaultValue="Cerrado"
+                  size="sm"
                   sx={{
-                    fontWeight: "lg",
-                    
-                    fontSize: "0.75rem",
-                   border: "1px solid rgb(60, 68, 75)",
-                    borderRadius: "6px",
-                    px: 1,
-                    py: 0.3,
-                    display: "inline-block",
+                    "--Select-radius": "6px",
+                    "--Select-paddingInline": "0.5rem",
+                    "--Select-decoratorChildHeight": "1.5rem",
+                    border: "1px solid rgb(60, 68, 75)",
                   }}
                 >
-                  Cerrado
-                </Typography>
+                  <Option value="Abierto" sx={{ color: "#b40202" }}>
+                    Abierto
+                  </Option>
+                  <Option value="En progreso" sx={{ color: "#239d02" }}>
+                    En progreso
+                  </Option>
+                  <Option value="Contestado" sx={{ color: "#0378ac" }}>
+                    Contestado
+                  </Option>
+                  <Option value="En espera" sx={{ color: "#bb8a00" }}>
+                    En espera
+                  </Option>
+                  <Option value="Cerrado" sx={{ color: "#3c444b" }}>
+                    Cerrado
+                  </Option>
+                </Select>
               </td>
               <td>Bajo</td>
               <td>25/02/2023 13:08:42</td>

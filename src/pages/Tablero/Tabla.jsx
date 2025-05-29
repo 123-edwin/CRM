@@ -219,12 +219,78 @@ export function Tabla() {
         );
 
       case "Recordatorios":
-        return <Typography>Mis recordatorios</Typography>;
+        return (
+          <>
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
+              <Button onClick={function () {}} variant="outlined">
+                Ver más
+              </Button>
+            </Box>
+
+            <Card
+              sx={{
+                width: "99%",
+                mx: "auto",
+                p: 2,
+                borderRadius: "md",
+                boxShadow: "md",
+                overflowX: "auto",
+                mt: 3,
+              }}
+            >
+              {/* SELECT, BOTÓN Y ACTUALIZAR */}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  gap: 2,
+                  mb: 2,
+                }}
+              >
+                <Select defaultValue="10" sx={{ width: 110 }}>
+                  <Option value="10">10</Option>
+                  <Option value="25">25</Option>
+                  <Option value="50">50</Option>
+                  <Option value="100">100</Option>
+                  <Option value="todo">Todo</Option>
+                </Select>
+
+                <ButtonGroup>
+                  <Button>Exportar</Button>
+                  <Button>
+                    <img
+                      src={refreshIcon}
+                      alt="Refresh"
+                      className="refresh-icon"
+                    />
+                  </Button>
+                </ButtonGroup>
+              </Box>
+
+              <table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>Relacionado con</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </Card>
+          </>
+        );
 
       case "Tickets":
         return (
           <>
-           <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
               <Link href="/sop">
                 <Button onClick={function () {}} variant="outlined">
                   Ir a soporte

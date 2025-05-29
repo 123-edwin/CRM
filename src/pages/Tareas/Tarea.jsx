@@ -493,22 +493,38 @@ export function Tarea() {
                       <Typography level="title-sm" sx={{ mb: 1 }}>
                         Información de la tarea
                       </Typography>
-                      <p>
+
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
                         <strong>Estado:</strong>{" "}
-                        <span
-                          style={{
-                            backgroundColor: "#c2c2c2",
-                            color: "#484848",
-                            padding: "2px 8px",
-                            borderRadius: "12px",
-                            fontSize: "0.875rem",
-                            fontWeight: "500",
+                        <Select
+                          defaultValue="Por iniciar"
+                          size="sm"
+                          sx={{
+                            "--Select-radius": "6px",
+                            "--Select-paddingInline": "0.5rem",
+                            "--Select-decoratorChildHeight": "1.5rem",
+                            border: "1px solid rgb(60, 68, 75)",
                           }}
                         >
-                          Por iniciar
-                        </span>
-                      </p>
-
+                          <Option value="Por iniciar" sx={{ color: "#484848" }}>
+                            Por iniciar
+                          </Option>
+                          <Option value="En progreso" sx={{ color: "#0049a2" }}>
+                            En progreso
+                          </Option>
+                          <Option value="Testear" sx={{ color: "#009578" }}>
+                            Testear
+                          </Option>
+                          <Option value="En espera" sx={{ color: "#489200" }}>
+                            En espera
+                          </Option>
+                          <Option value="Completo" sx={{ color: "#bb8a00" }}>
+                            Completo
+                          </Option>
+                        </Select>{" "}
+                      </Box>
                       <p>
                         <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
                       </p>
@@ -561,7 +577,7 @@ export function Tarea() {
         >
           <Box
             sx={{
-              backgroundColor: "#0049a2",
+              backgroundColor: "#0049a2", //color de en progreso
               p: 1,
               borderRadius: "8px 8px 0 0",
             }}
@@ -656,21 +672,38 @@ export function Tarea() {
                       <Typography level="title-sm" sx={{ mb: 1 }}>
                         Información de la tarea
                       </Typography>
-                      <p>
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
                         <strong>Estado:</strong>{" "}
-                        <span
-                          style={{
-                            backgroundColor: "#e0f2ff",
-                            color: "#007fff",
-                            padding: "2px 8px",
-                            borderRadius: "12px",
-                            fontSize: "0.875rem",
-                            fontWeight: "500",
+                        <Select
+                          defaultValue="En progreso"
+                          size="sm"
+                          sx={{
+                            "--Select-radius": "6px",
+                            "--Select-paddingInline": "0.5rem",
+                            "--Select-decoratorChildHeight": "1.5rem",
+                            border: "1px solid rgb(0, 69, 129)",
+                            color: "#0049a2",
                           }}
                         >
-                          En progreso
-                        </span>
-                      </p>
+                          <Option value="Por iniciar" sx={{ color: "#484848" }}>
+                            Por iniciar
+                          </Option>
+                          <Option value="En progreso" sx={{ color: "#0049a2" }}>
+                            En progreso
+                          </Option>
+                          <Option value="Testear" sx={{ color: "#009578" }}>
+                            Testear
+                          </Option>
+                          <Option value="En espera" sx={{ color: "#489200" }}>
+                            En espera
+                          </Option>
+                          <Option value="Completo" sx={{ color: "#bb8a00" }}>
+                            Completo
+                          </Option>
+                        </Select>{" "}
+                      </Box>
 
                       <p>
                         <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez
@@ -731,7 +764,7 @@ export function Tarea() {
         >
           <Box
             sx={{
-              backgroundColor: "#009578",
+              backgroundColor: "#009578", //color de testear
               p: 1,
               borderRadius: "8px 8px 0 0",
             }}
@@ -770,7 +803,7 @@ export function Tarea() {
         >
           <Box
             sx={{
-              backgroundColor: "#489200 ",
+              backgroundColor: "#489200 ", //color de espera
               p: 1,
               borderRadius: "8px 8px 0 0",
             }}
@@ -900,21 +933,39 @@ export function Tarea() {
                       <Typography level="title-sm" sx={{ mb: 1 }}>
                         Información de la tarea
                       </Typography>
-                      <p>
+                     
+ <Box
+                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                      >
                         <strong>Estado:</strong>{" "}
-                        <span
-                          style={{
-                            backgroundColor: "#fffec5",
-                            color: "#949200",
-                            padding: "2px 8px",
-                            borderRadius: "12px",
-                            fontSize: "0.875rem",
-                            fontWeight: "500",
+                        <Select
+                          defaultValue="Completo"
+                          size="sm"
+                          sx={{
+                            "--Select-radius": "6px",
+                            "--Select-paddingInline": "0.5rem",
+                            "--Select-decoratorChildHeight": "1.5rem",
+                            border: "1px solid rgb(193, 209, 15)",
+                            color:"#bb8a00"
                           }}
                         >
-                          Completo
-                        </span>
-                      </p>
+                          <Option value="Por iniciar" sx={{ color: "#484848" }}>
+                            Por iniciar
+                          </Option>
+                          <Option value="En progreso" sx={{ color: "#0049a2" }}>
+                            En progreso
+                          </Option>
+                          <Option value="Testear" sx={{ color: "#009578" }}>
+                            Testear
+                          </Option>
+                          <Option value="En espera" sx={{ color: "#489200" }}>
+                            En espera
+                          </Option>
+                          <Option value="Completo" sx={{ color: "#bb8a00" }}>
+                            Completo
+                          </Option>
+                        </Select>{" "}
+                      </Box>
 
                       <p>
                         <strong>Asignado:</strong> Juan Pablo Liñan Rodriguez

@@ -136,18 +136,18 @@ export function ClientesPotenciales() {
                       </Select>
                     </FormControl>
                   </Box>
-  <FormControl>
-                <FormLabel>Etiqueta</FormLabel>
-                <Select>
-                  <Option value="1">Diseño de logo</Option>
-                  <Option value="2">Diseño gráfico</Option>
-                  <Option value="3">Diseño web</Option>
-                  <Option value="4">Paln SEM</Option>
-                  <Option value="5">Redes sociales</Option>
-                  <Option value="6">Sesión fotografica</Option>
-                  <Option value="7">Video</Option>
-                </Select>
-              </FormControl>
+                  <FormControl>
+                    <FormLabel>Etiqueta</FormLabel>
+                    <Select>
+                      <Option value="1">Diseño de logo</Option>
+                      <Option value="2">Diseño gráfico</Option>
+                      <Option value="3">Diseño web</Option>
+                      <Option value="4">Paln SEM</Option>
+                      <Option value="5">Redes sociales</Option>
+                      <Option value="6">Sesión fotografica</Option>
+                      <Option value="7">Video</Option>
+                    </Select>
+                  </FormControl>
 
                   {/*BOX 2*/}
                   <Box
@@ -418,21 +418,27 @@ export function ClientesPotenciales() {
                     <Typography level="title-sm" sx={{ mb: 1 }}>
                       Informaciones generales
                     </Typography>
-                    <p>
-                      <strong>Estado del contacto:</strong>{" "}
-                      <span
-                        style={{
-                          backgroundColor: "#e0f2ff",
-                          color: "#007fff",
-                          padding: "2px 8px",
-                          borderRadius: "12px",
-                          fontSize: "0.875rem",
-                          fontWeight: "500",
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <Typography fontWeight="lg">
+                        Estado del contacto:
+                      </Typography>
+                      <Select
+                        defaultValue="pendiente"
+                        size="sm"
+                        variant="soft"
+                        color="primary"
+                        sx={{
+                          borderRadius: "md", // también puedes usar un valor numérico como 6
+                          fontSize: "sm",
+                          px: 1.5,
+                          py: 0.5,
+                          minWidth: 120,
                         }}
                       >
-                        Pendiente
-                      </span>
-                    </p>
+                        <Option value="pendiente">Pendiente</Option>
+                        <Option value="customer">Customer</Option>
+                      </Select>
+                    </Box>
                     <p>
                       <strong>Fuente:</strong> Recomendación
                     </p>
@@ -832,21 +838,26 @@ export function ClientesPotenciales() {
                     <Typography level="title-sm" sx={{ mb: 1 }}>
                       Informaciones generales
                     </Typography>
-                    <p>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <strong>Estado del contacto:</strong>{" "}
-                      <span
-                        style={{
-                          backgroundColor: "#e6f4ea",
-                          color: "#2e7d32",
-                          padding: "2px 8px",
-                          borderRadius: "12px",
-                          fontSize: "0.875rem",
-                          fontWeight: "500",
+                      <Select
+                        defaultValue="customer" // ahora el valor por defecto es Customer
+                        size="sm"
+                        variant="soft"
+                        color="success" // success aplica el color verde
+                        sx={{
+                          borderRadius: "md",
+                          fontSize: "sm",
+                          px: 1.5,
+                          py: 0.5,
+                          minWidth: 120,
                         }}
                       >
-                        Customer
-                      </span>
-                    </p>
+                        <Option value="customer">Customer</Option>
+                        <Option value="pendiente">Pendiente</Option>
+                      </Select>
+                    </Box>
+                    
                     <p>
                       <strong>Fuente:</strong> Recomendación
                     </p>
