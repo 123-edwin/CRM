@@ -20,15 +20,35 @@ import FormLabel from "@mui/joy/FormLabel";
 import { Link } from "wouter";
 
 import { useState } from "react";
+import { useEffect } from "react";
 
 export function Client() {
   const [open, setOpen] = useState(false);
+
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    const fetchClientes = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/clients/get");
+        if (!res.ok) {
+          throw new Error(`Error HTTP: ${res.status}`);
+        }
+        const data = await res.json();
+        setClientes(data);
+      } catch (error) {
+        console.error("Error al obtener clientes:", error);
+      }
+    };
+
+    fetchClientes();
+  }, []);
 
   return (
     <>
       {/*TITULO*/}
 
-      <Typography level="h1" sx={{ mt: 2, ml:1 }}>
+      <Typography level="h1" sx={{ mt: 2, ml: 1 }}>
         Clientes
       </Typography>
 
@@ -164,7 +184,7 @@ export function Client() {
                   <MenuButton
                     variant="outlined"
                     color="neutral"
-                    sx={{ width: 100, height: 48, borderRadius: "8px" }} 
+                    sx={{ width: 100, height: 48, borderRadius: "8px" }}
                   >
                     <p>Exportar</p>
                   </MenuButton>
@@ -318,30 +338,31 @@ export function Client() {
                   <th>Fecha termino dominio</th>
                 </tr>
               </thead>
-
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Empresa Ejemplo</td>
-                  <td>Contacto Ejemplo</td>
-                  <td>email@ejemplo.com</td>
-                  <td>123-456-7890</td>
-                  <td>Sí</td>
-                  <td>Tipo Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>ejemplo.com</td>
-                  <td>Regulador Ejemplo</td>
-                  <td>Para Ejemplo</td>
-                  <td>Pista Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>2024-01-01</td>
-                  <td>Ubicación Ejemplo</td>
-                  <td>2023-01-01</td>
-                  <td>2024-01-01</td>
-                  <td>dominio.com</td>
-                  <td>2023-01-01</td>
-                  <td>2023-01-01</td>
-                </tr>
+                {clientes.map((cliente, index) => (
+                  <tr key={cliente.id || index}>
+                    <td>{index + 1}</td>
+                    <td>{cliente.empresa}</td>
+                    <td>{cliente.contacto_principal}</td>
+                    <td>{cliente.email_principal}</td>
+                    <td>{cliente.telefono}</td>
+                    <td>{cliente.activo ? "Sí" : "No"}</td>
+                    <td>{cliente.tipo_cliente}</td>
+                    <td>{cliente.fecha_creacion}</td>
+                    <td>{cliente.dominio}</td>
+                    <td>{cliente.respaldo_renovacion_sitio_web}</td>
+                    <td>{cliente.plan_diseno_web}</td>
+                    <td>{cliente.plan_redes_sociales}</td>
+                    <td>{cliente.fecha_inicio_redes}</td>
+                    <td>{cliente.fecha_renovacion_redes}</td>
+                    <td>{cliente.servidor_ubicacion}</td>
+                    <td>{cliente.fecha_inicio_servidor}</td>
+                    <td>{cliente.fecha_termino_servidor}</td>
+                    <td>{cliente.dominio_ubicacion}</td>
+                    <td>{cliente.fecha_inicio_dominio}</td>
+                    <td>{cliente.fecha_termino_dominio}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
