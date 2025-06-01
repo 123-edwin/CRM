@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {saveAs} from 'file-saver';
+import { saveAs } from 'file-saver';
 import Typography from '@mui/joy/Typography';
 import Card from '@mui/joy/Card';
 import Box from '@mui/joy/Box';
@@ -32,7 +32,7 @@ function IncomeForm({ tipo }) {
   });
   // Estado para manejar un arreglo de conceptos, ahora con descuento (opcional)
   const [conceptos, setConceptos] = useState([
-    { claveProdServ: "", claveUnidad: "", descripcion: "", cantidad: 1, valorUnitario: 0, descuento: 0 },
+    { claveProdServ: "", claveUnidad: "", unidad: "", descripcion: "", cantidad: 1, valorUnitario: 0, descuento: 0 },
   ]);
   const [xml, setXml] = useState("");
 
@@ -87,7 +87,7 @@ function IncomeForm({ tipo }) {
             ClaveProdServ="${concepto.claveProdServ}" 
             Cantidad="${cantidad}" 
             ClaveUnidad="${concepto.claveUnidad}" 
-            Unidad="Pieza"
+            Unidad="${concepto.unidad}"
             Descripcion="${concepto.descripcion}" 
             ValorUnitario="${valorUnitario.toFixed(2)}" 
             Importe="${importeOriginal.toFixed(2)}"
@@ -175,16 +175,23 @@ function IncomeForm({ tipo }) {
         body: JSON.stringify({ xml: xmlGenerated }),
       });
 
-      if (!resp.ok) {throw new Error(`HTTP ${resp.status}: ${resp.statusText}`)};
-      const {xml, pdfBase64} = await resp.json();
+      if (!resp.ok) {
+        const errorData = await resp.json();
+        const { error, details } = errorData;
+
+        console.error('Error del servidor:', error, details);
+        alert(`Error del servidor:\n${error}\n\nDetalles:\n${JSON.stringify(details, null, 2)}`);
+        return;
+      }
+      const { xml, pdfBase64 } = await resp.json();
 
       //descargar el CFDI timbrado
       const blobXml = new Blob([xml], { type: 'text/xml;charset=utf-8' });
       saveAs(blobXml, 'factura_timbrada.xml');
       //descargar el PDF
       const binary = atob(pdfBase64);
-      const bytes  = Uint8Array.from(binary, c => c.charCodeAt(0));
-      const blobPdf= new Blob([bytes], { type: 'application/pdf' });
+      const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+      const blobPdf = new Blob([bytes], { type: 'application/pdf' });
       saveAs(blobPdf, 'factura.pdf');
 
 
@@ -379,6 +386,16 @@ function IncomeForm({ tipo }) {
                       onChange={(e) => {
                         const nuevosConceptos = [...conceptos];
                         nuevosConceptos[index].claveUnidad = e.target.value;
+                        setConceptos(nuevosConceptos);
+                      }} />
+                  </FormControl>
+
+                  <FormControl sx={{ flex: 1 }}>
+                    <FormLabel>Unidad</FormLabel>
+                    <Input type="text" placeholder="Unidad" value={concepto.unidad}
+                      onChange={(e) => {
+                        const nuevosConceptos = [...conceptos];
+                        nuevosConceptos[index].unidad = e.target.value;
                         setConceptos(nuevosConceptos);
                       }} />
                   </FormControl>
