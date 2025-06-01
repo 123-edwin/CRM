@@ -14,8 +14,5 @@ export default defineConfig({
       '@c': path.resolve(__dirname, './src/components'),
       '@p': path.resolve(__dirname, './src/pages')
     }
-  },
-  build: {
-    outDir: 'dist'
   }
 });
