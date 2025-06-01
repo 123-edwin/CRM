@@ -14,5 +14,13 @@ export default defineConfig({
       '@c': path.resolve(__dirname, './src/components'),
       '@p': path.resolve(__dirname, './src/pages')
     }
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        '404': 'index.html'
+      }
+    }
   }
-})
+});
