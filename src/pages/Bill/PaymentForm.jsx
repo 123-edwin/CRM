@@ -151,7 +151,14 @@ function PaymentForm({ tipo }) {
                 body: JSON.stringify({ xml: xmlPago }),
             });
 
-            if (!resp.ok) { throw new Error(`HTTP ${resp.status}: ${resp.statusText}`) };
+            if (!resp.ok) {
+                const errorData = await resp.json();
+                const { error, details } = errorData;
+
+                console.error('Error del servidor:', error, details);
+                alert(`Error del servidor:\n${error}\n\nDetalles:\n${JSON.stringify(details, null, 2)}`);
+                return;
+            }
             const { xml, pdfBase64 } = await resp.json();
 
             //descargar el CFDI timbrado
@@ -245,7 +252,7 @@ function PaymentForm({ tipo }) {
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Monto Total Pagos</FormLabel>
                             <Input type="number" value={complemento.montoTotalPagos}
-                                onChange={e => setComplemento({ ...complemento, montoTotalPagos: parseFloat(e.target.value) || 0 })} />
+                                onChange={e => setComplemento({ ...complemento, montoTotalPagos: parseFloat(e.target.value) })} />
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>ID Documento</FormLabel>
@@ -254,17 +261,17 @@ function PaymentForm({ tipo }) {
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Equivalencia DR</FormLabel>
                             <Input type="number" value={complemento.equivalenciaDR}
-                                onChange={e => setComplemento({ ...complemento, equivalenciaDR: parseFloat(e.target.value) || 0 })} />
+                                onChange={e => setComplemento({ ...complemento, equivalenciaDR: parseFloat(e.target.value) })} />
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Número de Parcialidad</FormLabel>
                             <Input type="number" value={complemento.numParcialidad}
-                                onChange={e => setComplemento({ ...complemento, numParcialidad: parseInt(e.target.value) || 0 })} />
+                                onChange={e => setComplemento({ ...complemento, numParcialidad: parseInt(e.target.value) })} />
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Saldo Anterior</FormLabel>
                             <Input type="number" value={complemento.saldoAnt}
-                                onChange={e => setComplemento({ ...complemento, saldoAnt: parseFloat(e.target.value) || 0 })} />
+                                onChange={e => setComplemento({ ...complemento, saldoAnt: parseFloat(e.target.value) })} />
                         </FormControl>
                     </Box>
 
