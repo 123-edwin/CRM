@@ -12,6 +12,7 @@ import { MultiSectionForm } from "@p/Client/MultiSectionForm";
 import { ImportacionCliente } from "@p/Client/ImportacionCliente";
 
 import { Tarea } from "@p/Tareas/Tarea";
+import { TareaSemanal } from "@p/Tareas/TareaSemanal";
 
 import { Propuestas } from "@p/Ventas/Propuestas";
 import { Nuevaprop } from "@p/Ventas/Nuevaprop";
@@ -68,6 +69,7 @@ export function Rutas() {
       <Route path="/sop" component={Soporte} />
       <Route path="/nuevotick" component={NuevoTicket} />
       <Route path="/calen" component={Calendario} />
+      <Route path="/tareasem" component={TareaSemanal} />
     </>
   );
 }

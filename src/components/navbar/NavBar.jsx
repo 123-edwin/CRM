@@ -75,16 +75,16 @@ export function NavBar() {
               <MenuItem>Factura</MenuItem>
               <MenuItem>Presupuesto</MenuItem>
               <MenuItem>Propuesta</MenuItem>
-              <MenuItem>Nota de crédito</MenuItem>
+              {/*<MenuItem>Nota de crédito</MenuItem>*/}
               <MenuItem>Cliente</MenuItem>
               <MenuItem>Proyecto</MenuItem>
               <MenuItem>Tarea</MenuItem>
               <MenuItem>Gastos</MenuItem>
-              <MenuItem>Contrato</MenuItem>
+              {/*<MenuItem>Contrato</MenuItem>
               <MenuItem>Artículo</MenuItem>
               <MenuItem>Ticket</MenuItem>
               <MenuItem>Miembro del equipo</MenuItem>
-              <MenuItem>Evento</MenuItem>
+              <MenuItem>Evento</MenuItem>*/}
             </Menu>
           </Dropdown>
         </Box>
@@ -134,7 +134,6 @@ export function NavBar() {
               <Link href="/tareaper">
                 <MenuItem>Mis tareas</MenuItem>
               </Link>
-              <MenuItem>Mis tiempos</MenuItem>
               <Link href="/editarp">
                 <MenuItem>Editar perfil</MenuItem>
               </Link>
@@ -251,12 +250,12 @@ export function NavBar() {
           <Link href="/gastoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Gastos</ListItemButton>
           </Link>
-          <Link href="/contratoss">
+          {/*<Link href="/contratoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Contratos</ListItemButton>
           </Link>
           <Link href="/proyectoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Proyectos</ListItemButton>
-          </Link>
+          </Link>*/}
           <Link href="/sop">
             <ListItemButton sx={{ color: "#ffffff" }}>Soporte</ListItemButton>
           </Link>
@@ -282,9 +281,9 @@ export function NavBar() {
           <Collapse in={utilidadesOpen}>
             <List sx={{ pl: 2 }}>
               <Link href="/">
-                <ListItemButton sx={{ color: "#ffffff" }}>
+                {/*<ListItemButton sx={{ color: "#ffffff" }}>
                   Multimedia
-                </ListItemButton>
+                </ListItemButton>*/}
               </Link>
               <Link href="/exportarr">
                 <ListItemButton sx={{ color: "#ffffff" }}>
