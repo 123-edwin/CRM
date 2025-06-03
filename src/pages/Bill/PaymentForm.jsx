@@ -9,6 +9,8 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Input from "@mui/joy/Input";
 import FormLabel from "@mui/joy/FormLabel";
 import FormControl from "@mui/joy/FormControl";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
 
 function PaymentForm({ tipo }) {
     const [emisor, setEmisor] = useState({ rfc: "", nombre: "", regimen: "" });
@@ -242,13 +244,31 @@ function PaymentForm({ tipo }) {
                             />
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
-                            <FormLabel>Régimen Fiscal Emisor</FormLabel>
-                            <Input
-                                value={emisor.regimen}
-                                onChange={(e) =>
-                                    setEmisor({ ...emisor, regimen: e.target.value })
-                                }
-                            />
+                            <FormLabel>Regimen Fiscal Emisor</FormLabel>
+                            <Select name="regimenEmisor" id="regimenEmisor" color="primary" placeholder="Regimen Fiscal Emisor"
+                                sx={{ width: 300, height: 35 }}
+                                size="md"
+                                variant="outlined" value={emisor.regimen} onChange={(_, value) => { setEmisor({ ...emisor, regimen: value }) }}>
+                                <Option value="601">General de Ley Personas Morales</Option>
+                                <Option value="603">Personas Morales con Fines no Lucrativos</Option>
+                                <Option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</Option>
+                                <Option value="606">Arrendamiento</Option>
+                                <Option value="607">Régimen de Enajenación o Adquisición de Bienes</Option>
+                                <Option value="608">Demás ingresos</Option>
+                                <Option value="610">Residentes en el Extranjero sin Establecimiento Permanente en México</Option>
+                                <Option value="611">Ingresos por Dividendos (socios y accionistas)</Option>
+                                <Option value="612">Personas Físicas con Actividades Empresariales y Profesionales</Option>
+                                <Option value="614">Ingresos por intereses</Option>
+                                <Option value="615">Régimen de los ingresos por obtención de premios</Option>
+                                <Option value="616">Sin obligaciones fiscales</Option>
+                                <Option value="620">Sociedades Cooperativas de Producción que optan por diferir sus ingresos</Option>
+                                <Option value="621">Incorporación Fiscal</Option>
+                                <Option value="622">Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</Option>
+                                <Option value="623">Opcional para Grupos de Sociedades</Option>
+                                <Option value="624">Coordinados</Option>
+                                <Option value="625">Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</Option>
+                                <Option value="626">Régimen Simplificado de Confianza</Option>
+                            </Select>
                         </FormControl>
                     </Box>
 
@@ -283,13 +303,31 @@ function PaymentForm({ tipo }) {
                             />
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
-                            <FormLabel>Régimen Fiscal Receptor</FormLabel>
-                            <Input
-                                value={receptor.regimen}
-                                onChange={(e) =>
-                                    setReceptor({ ...receptor, regimen: e.target.value })
-                                }
-                            />
+                            <FormLabel>Regimen Fiscal Receptor</FormLabel>
+                            <Select name="regimenReceptor" id="regimenReceptor" color="primary" placeholder="Regimen Fiscal Receptor"
+                                sx={{ width: 300, height: 35 }}
+                                size="md"
+                                variant="outlined" value={receptor.regimen} onChange={(_, value) => { setReceptor({ ...receptor, regimen: value }) }}>
+                                <Option value="601">General de Ley Personas Morales</Option>
+                                <Option value="603">Personas Morales con Fines no Lucrativos</Option>
+                                <Option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</Option>
+                                <Option value="606">Arrendamiento</Option>
+                                <Option value="607">Régimen de Enajenación o Adquisición de Bienes</Option>
+                                <Option value="608">Demás ingresos</Option>
+                                <Option value="610">Residentes en el Extranjero sin Establecimiento Permanente en México</Option>
+                                <Option value="611">Ingresos por Dividendos (socios y accionistas)</Option>
+                                <Option value="612">Personas Físicas con Actividades Empresariales y Profesionales</Option>
+                                <Option value="614">Ingresos por intereses</Option>
+                                <Option value="615">Régimen de los ingresos por obtención de premios</Option>
+                                <Option value="616">Sin obligaciones fiscales</Option>
+                                <Option value="620">Sociedades Cooperativas de Producción que optan por diferir sus ingresos</Option>
+                                <Option value="621">Incorporación Fiscal</Option>
+                                <Option value="622">Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</Option>
+                                <Option value="623">Opcional para Grupos de Sociedades</Option>
+                                <Option value="624">Coordinados</Option>
+                                <Option value="625">Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</Option>
+                                <Option value="626">Régimen Simplificado de Confianza</Option>
+                            </Select>
                         </FormControl>
                     </Box>
 
@@ -327,17 +365,16 @@ function PaymentForm({ tipo }) {
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Forma de pago</FormLabel>
-                            <Input
-                                type="text"
-                                placeholder="Forma de pago"
-                                value={complemento.formaPago}
-                                onChange={(e) =>
-                                    setComplemento({
-                                        ...complemento,
-                                        formaPago: e.target.value,
-                                    })
-                                }
-                            />
+                            <Select name="formaPago" id="formaPago" color="primary" placeholder="Forma de pago"
+                                sx={{ width: 300, height: 35 }}
+                                size="md"
+                                variant="outlined" value={complemento.formaPago} onChange={(_, value) => { setComplemento({ ...complemento, formaPago: value }) }}>
+                                <Option value="01">Efectivo</Option>
+                                <Option value="02">Cheque Nominativo</Option>
+                                <Option value="03">Transferencia Electrónica de Fondos</Option>
+                                <Option value="04">Tarjeta de Crédito</Option>
+                                <Option value="28">Tarjeta de Débito</Option>
+                            </Select>
                         </FormControl>
                         <FormControl sx={{ flex: 1 }}>
                             <FormLabel>Número de Parcialidad</FormLabel>
