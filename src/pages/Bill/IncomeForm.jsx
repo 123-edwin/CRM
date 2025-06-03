@@ -21,11 +21,11 @@ function IncomeForm({ tipo }) {
     rfc: "",
     nombre: "",
     domicilio: "",
-    regimen: "",
+    regimen: null,
     usoCFDI: "",
   });
   const [comprobante, setComprobante] = useState({
-    formaPago: "",
+    formaPago: null,
     metodoPago: "",
     tipoDeComprobante: tipo,
     lugarExpedicion: "",
@@ -263,7 +263,7 @@ function IncomeForm({ tipo }) {
           p: 10,
           borderRadius: "md",
           boxShadow: "md",
-          overflowX: "auto",
+          //overflowX: "auto",
 
         }}
       >
@@ -321,6 +321,7 @@ function IncomeForm({ tipo }) {
           {/* Sección Emisor */}
           <Typography level="h3">Emisor</Typography>
           <br />
+
           <Box sx={{ display: "flex", gap: 2 }}>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>RFC Emisor</FormLabel>
@@ -362,8 +363,8 @@ function IncomeForm({ tipo }) {
               </Select>
             </FormControl>
 
-
           </Box>
+
           <br />
 
           {/* Sección Receptor */}
@@ -404,7 +405,9 @@ function IncomeForm({ tipo }) {
               />
             </FormControl>
           </Box>
+
           <br />
+
           <Box sx={{ display: "flex", gap: 2 }}>
 
             <FormControl sx={{ flex: 1 }}>
@@ -469,6 +472,7 @@ function IncomeForm({ tipo }) {
             </FormControl>
 
           </Box>
+
           <br />
 
           {/* Sección Conceptos */}
