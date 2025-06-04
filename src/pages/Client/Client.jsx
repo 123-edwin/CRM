@@ -18,6 +18,7 @@ import Checkbox from "@mui/joy/Checkbox";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import { Link } from "wouter";
+import { getClients } from "@s/clientServices";
 
 import { useState } from "react";
 import { useEffect } from "react";
@@ -30,12 +31,8 @@ export function Client() {
   useEffect(() => {
     const fetchClientes = async () => {
       try {
-        const res = await fetch("http://localhost:8080/clients/get");
-        if (!res.ok) {
-          throw new Error(`Error HTTP: ${res.status}`);
-        }
-        const data = await res.json();
-        setClientes(data);
+        const fetchData = await getClients();
+        setClientes(fetchData);
       } catch (error) {
         console.error("Error al obtener clientes:", error);
       }
