@@ -72,14 +72,26 @@ export function NavBar() {
                 minWidth: 200,
               }}
             >
-              <MenuItem>Factura</MenuItem>
+              <Link href="/fact">
+                <MenuItem>Factura</MenuItem>
+              </Link>
+              <Link href="/pres">
               <MenuItem>Presupuesto</MenuItem>
+              </Link>
+              <Link href="/prop">
               <MenuItem>Propuesta</MenuItem>
+              </Link>
               {/*<MenuItem>Nota de crédito</MenuItem>*/}
+              <Link href="/">
               <MenuItem>Cliente</MenuItem>
-              <MenuItem>Proyecto</MenuItem>
+              </Link>
+              {/*<MenuItem>Proyecto</MenuItem>*/}
+              <Link href="/tareass">
               <MenuItem>Tarea</MenuItem>
+              </Link>
+              <Link href="/gastoss">
               <MenuItem>Gastos</MenuItem>
+              </Link>
               {/*<MenuItem>Contrato</MenuItem>
               <MenuItem>Artículo</MenuItem>
               <MenuItem>Ticket</MenuItem>
@@ -152,7 +164,7 @@ export function NavBar() {
           "& .MuiDrawer-content": {
             width: 350,
             background:
-            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))"
+              "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))",
             //backgroundColor: "#576bff ",
           },
         }}
