@@ -11,6 +11,7 @@ import FormLabel from "@mui/joy/FormLabel";
 import FormControl from "@mui/joy/FormControl";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import Checkbox from "@mui/joy/Checkbox";
 
 function PaymentForm({ tipo }) {
     const [emisor, setEmisor] = useState({ rfc: "", nombre: "", regimen: "" });
@@ -32,6 +33,11 @@ function PaymentForm({ tipo }) {
         saldoAnt: 0,
     });
     const [xml, setXml] = useState("");
+
+    //Estados para email
+    const [sendEmail, setSendEmail] = useState(false);
+    //Direccion de correo electrónico
+    const emailDirection = "erios8@ucol.mx"
 
     // Estados calculados en tiempo real: base, impuesto y restante
     const [baseIVA16, setBaseIVA16] = useState(0);
@@ -170,7 +176,7 @@ function PaymentForm({ tipo }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ xml: xmlPago }),
+                body: JSON.stringify({ xml: xmlPago, sendEmail: sendEmail, emailDirection: emailDirection }),
             });
 
             if (!resp.ok) {
@@ -409,6 +415,14 @@ function PaymentForm({ tipo }) {
                         <Typography>Base (IVA 16%): {baseIVA16.toFixed(2)}</Typography>
                         <Typography>IVA (16%): {impIVA16.toFixed(2)}</Typography>
                         <Typography>Restante: {restante.toFixed(2)}</Typography>
+
+                        <Checkbox
+                            color="danger"
+                            label="Enviar al correo"
+                            variant="soft"
+                            checked={sendEmail}
+                            onChange={(e) => setSendEmail(e.target.checked)}
+                        />
                     </Box>
 
                     <Button endDecorator={<KeyboardArrowRight />} color="success" type="submit">

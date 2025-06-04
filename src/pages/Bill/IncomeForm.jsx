@@ -11,6 +11,8 @@ import FormLabel from "@mui/joy/FormLabel";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import Checkbox from "@mui/joy/Checkbox";
+
 
 import { useState, useEffect } from "react";
 
@@ -43,6 +45,11 @@ function IncomeForm({ tipo }) {
       descuento: 0,
     },
   ]);
+
+  //Estados para email
+  const [sendEmail, setSendEmail] = useState(false);
+  //Direccion de correo electrónico
+  const emailDirection = "erios8@ucol.mx"
 
   // Estados para los totales: subtotal, descuento, IVA y total
   const [subTotalGlobal, setSubTotalGlobal] = useState(0);
@@ -212,7 +219,7 @@ function IncomeForm({ tipo }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ xml: xmlGenerated }),
+        body: JSON.stringify({ xml: xmlGenerated, sendEmail: sendEmail, emailDirection: emailDirection }),
       });
 
       if (!resp.ok) {
@@ -284,6 +291,7 @@ function IncomeForm({ tipo }) {
                 <Option value="03">Transferencia Electrónica de Fondos</Option>
                 <Option value="04">Tarjeta de Crédito</Option>
                 <Option value="28">Tarjeta de Débito</Option>
+                <Option value="99">Por definir</Option>
               </Select>
             </FormControl>
 
@@ -323,6 +331,19 @@ function IncomeForm({ tipo }) {
           <br />
 
           <Box sx={{ display: "flex", gap: 2 }}>
+
+            <FormControl sx={{ flex: 1 }}>
+              <FormLabel>Nombre emisor</FormLabel>
+              <Input
+                type="text"
+                placeholder="Nombre receptor"
+                value={emisor.nombre}
+                onChange={(e) =>
+                  setEmisor({ ...emisor, nombre: e.target.value })
+                }
+              />
+            </FormControl>
+
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>RFC Emisor</FormLabel>
               <Input
@@ -600,6 +621,14 @@ function IncomeForm({ tipo }) {
             <Typography>Descuento: {discountGlobal.toFixed(2)}</Typography>
             <Typography>IVA (16%): {ivaGlobal.toFixed(2)}</Typography>
             <Typography>Total: {totalGlobal.toFixed(2)}</Typography>
+
+            <Checkbox
+              color="danger"
+              label="Enviar al correo"
+              variant="soft"
+              checked={sendEmail}
+              onChange={(e) => setSendEmail(e.target.checked)}
+            />
           </Box>
 
           <Button endDecorator={<KeyboardArrowRight />} color="success" type="submit">
