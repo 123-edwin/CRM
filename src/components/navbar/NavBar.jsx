@@ -76,21 +76,21 @@ export function NavBar() {
                 <MenuItem>Factura</MenuItem>
               </Link>
               <Link href="/pres">
-              <MenuItem>Presupuesto</MenuItem>
+                <MenuItem>Presupuesto</MenuItem>
               </Link>
               <Link href="/prop">
-              <MenuItem>Propuesta</MenuItem>
+                <MenuItem>Propuesta</MenuItem>
               </Link>
               {/*<MenuItem>Nota de crédito</MenuItem>*/}
               <Link href="/">
-              <MenuItem>Cliente</MenuItem>
+                <MenuItem>Cliente</MenuItem>
               </Link>
               {/*<MenuItem>Proyecto</MenuItem>*/}
               <Link href="/tareass">
-              <MenuItem>Tarea</MenuItem>
+                <MenuItem>Tarea</MenuItem>
               </Link>
               <Link href="/gastoss">
-              <MenuItem>Gastos</MenuItem>
+                <MenuItem>Gastos</MenuItem>
               </Link>
               {/*<MenuItem>Contrato</MenuItem>
               <MenuItem>Artículo</MenuItem>
@@ -305,6 +305,11 @@ export function NavBar() {
               <Link href="/calen">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Calendario
+                </ListItemButton>
+              </Link>
+              <Link href="/colab">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Colaboradores
                 </ListItemButton>
               </Link>
             </List>
