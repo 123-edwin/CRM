@@ -248,9 +248,9 @@ export function NavBar() {
                   Facturas
                 </ListItemButton>
               </Link>
-              <Link href="/pag">
+              {/*<Link href="/pag">
                 <ListItemButton sx={{ color: "#ffffff" }}>Pagos</ListItemButton>
-              </Link>
+              </Link>*/}
               <Link href="/notascred">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Notas de crédito
@@ -259,18 +259,18 @@ export function NavBar() {
             </List>
           </Collapse>
 
-          <Link href="/gastoss">
+          {/*<Link href="/gastoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Gastos</ListItemButton>
           </Link>
-          {/*<Link href="/contratoss">
+          <Link href="/contratoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Contratos</ListItemButton>
           </Link>
           <Link href="/proyectoss">
             <ListItemButton sx={{ color: "#ffffff" }}>Proyectos</ListItemButton>
-          </Link>*/}
+          </Link>
           <Link href="/sop">
             <ListItemButton sx={{ color: "#ffffff" }}>Soporte</ListItemButton>
-          </Link>
+          </Link>*/}
           <Link href="/clientpoten">
             <ListItemButton sx={{ color: "#ffffff" }}>
               Clientes potenciales
@@ -292,16 +292,16 @@ export function NavBar() {
           </Link>
           <Collapse in={utilidadesOpen}>
             <List sx={{ pl: 2 }}>
-              <Link href="/">
-                {/*<ListItemButton sx={{ color: "#ffffff" }}>
+              {/*<Link href="/">
+                <ListItemButton sx={{ color: "#ffffff" }}>
                   Multimedia
-                </ListItemButton>*/}
+                </ListItemButton>
               </Link>
               <Link href="/exportarr">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Exportador en masa
                 </ListItemButton>
-              </Link>
+              </Link>*/}
               <Link href="/calen">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Calendario

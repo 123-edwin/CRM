@@ -15,7 +15,7 @@ import { Tarea } from "@p/Tareas/Tarea";
 import { TareaSemanal } from "@p/Tareas/TareaSemanal";
 
 import { Propuestas } from "@p/Ventas/Propuestas";
-import { Nuevaprop } from "@p/Ventas/Nuevaprop";
+
 import { Presupuestos } from "@p/Ventas/Presupuestos";
 import { Facturas } from "@p/Ventas/Facturas";
 import {Bill} from "@p/Bill/Bill"; // Facturación
@@ -63,7 +63,7 @@ export function Rutas() {
       <Route path="/exportarr" component={Exportar} />
       <Route path="/clientpoten" component={ClientesPotenciales} />
       <Route path="/prop" component={Propuestas} />
-      <Route path="/nuevapropuesta" component={Nuevaprop} />
+     
       <Route path="/pres" component={Presupuestos} />
       <Route path="/fact" component={Facturas} />
       <Route path="/pag" component={Pagos} />

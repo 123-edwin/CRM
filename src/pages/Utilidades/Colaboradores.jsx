@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Typography from "@mui/joy/Typography";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -10,13 +10,34 @@ import Input from "@mui/joy/Input";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+
+import { getEmployees } from "@s/employeesServices";
+
 export function Colaboradores() {
   const [openModal, setOpenModal] = useState(false);
   const [modoEdicion, setModoEdicion] = useState(false);
   const [indexEdicion, setIndexEdicion] = useState(null);
 
   const [colaboradores, setColaboradores] = useState([]);
+
+  useEffect(() => {
+    const fetchColab = async () => {
+      try {
+        const fetchData = await getEmployees();
+        setColaboradores(fetchData);
+      } catch (error) {
+        console.error("Error obteniendo empleados", error);
+      }
+    };
+    fetchColab();
+  }, []);
+
   const [nuevoColab, setNuevoColab] = useState({
+    id: null,
     nombre: "",
     area: "",
     nacimiento: "",
@@ -30,6 +51,7 @@ export function Colaboradores() {
   const abrirModalAgregar = () => {
     setModoEdicion(false);
     setNuevoColab({
+      id: null,
       nombre: "",
       area: "",
       nacimiento: "",
@@ -42,42 +64,60 @@ export function Colaboradores() {
     setOpenModal(true);
   };
 
-  const abrirModalEditar = (colab, index) => {
-    setModoEdicion(true);
-    setIndexEdicion(index);
-    setNuevoColab(colab);
-    setOpenModal(true);
+  const abrirModalEditar = async (colab, index) => {
+    try {
+      const resp = await fetch(
+        `http://localhost:8080/employees/getColaborator/${colab.id}`
+      );
+      if (!resp.ok) throw new Error("Error al obtener colaborador");
+
+      const data = await resp.json();
+
+      setNuevoColab({
+        id: data.id,
+        nombre: data.nombre,
+        area: data.area_trabajo,
+        nacimiento: data.fecha_nacimiento,
+        curp: data.curp,
+        rfc: data.rfc,
+        domicilio: data.domicilio,
+        telefono: data.telefono,
+        correo: data.correo_personal,
+      });
+
+      setModoEdicion(true);
+      setIndexEdicion(index);
+      setOpenModal(true);
+    } catch (error) {
+      console.error("Error al cargar datos del colaborador:", error);
+      alert("No se pudo cargar el colaborador para editar.");
+    }
   };
 
   const handleGuardar = async () => {
-    if (modoEdicion) {
-      const actualizados = [...colaboradores];
-      actualizados[indexEdicion] = nuevoColab;
-      setColaboradores(actualizados);
-    } else {
-      setColaboradores([...colaboradores, nuevoColab]);
-    }
+    const url = modoEdicion
+      ? `http://localhost:8080/employees/updateColaborator/${nuevoColab.id}`
+      : "http://localhost:8080/employees/createColaborator";
+
+    const method = modoEdicion ? "PUT" : "POST";
 
     try {
-      const resp = await fetch(
-        "http://localhost:8080/employees/createColaborator",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nombre: nuevoColab.nombre,
-            area_trabajo: nuevoColab.area, // igual al backend
-            fecha_nacimiento: nuevoColab.nacimiento, // igual al backend
-            curp: nuevoColab.curp,
-            rfc: nuevoColab.rfc,
-            domicilio: nuevoColab.domicilio,
-            telefono: nuevoColab.telefono,
-            correo_personal: nuevoColab.correo, // igual al backend
-          }),
-        }
-      );
+      const resp = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre: nuevoColab.nombre,
+          area_trabajo: nuevoColab.area,
+          fecha_nacimiento: nuevoColab.nacimiento,
+          curp: nuevoColab.curp,
+          rfc: nuevoColab.rfc,
+          domicilio: nuevoColab.domicilio,
+          telefono: nuevoColab.telefono,
+          correo_personal: nuevoColab.correo,
+        }),
+      });
 
       if (!resp.ok) {
         throw new Error(
@@ -86,16 +126,32 @@ export function Colaboradores() {
       }
 
       const data = await resp.json();
-      console.log("Colaborador creado:", data);
+      const nuevo = {
+        id: data.employee.id,
+        nombre: data.employee.nombre,
+        area: data.employee.area_trabajo,
+        nacimiento: data.employee.fecha_nacimiento,
+        curp: data.employee.curp,
+        rfc: data.employee.rfc,
+        domicilio: data.employee.domicilio,
+        telefono: data.employee.telefono,
+        correo: data.employee.correo_personal,
+      };
 
-      // Aquí puedes hacer algo más con la respuesta, por ejemplo, actualizar la UI o mostrar un mensaje
+      if (modoEdicion) {
+        const actualizados = [...colaboradores];
+        actualizados[indexEdicion] = nuevo;
+        setColaboradores(actualizados);
+      } else {
+        setColaboradores([...colaboradores, nuevo]);
+      }
     } catch (error) {
-      console.error("Error al crear colaborador:", error);
-      alert("No se pudo crear el colaborador.");
+      console.error("Error al guardar colaborador:", error);
+      alert("No se pudo guardar el colaborador.");
     }
 
-    // Limpiar y cerrar
     setNuevoColab({
+      id: null,
       nombre: "",
       area: "",
       nacimiento: "",
@@ -110,15 +166,41 @@ export function Colaboradores() {
     setIndexEdicion(null);
   };
 
-  const handleEliminar = (index) => {
-    const nuevos = [...colaboradores];
-    nuevos.splice(index, 1);
-    setColaboradores(nuevos);
+  const handleEliminar = async (index) => {
+    const colaborador = colaboradores[index];
+
+    const confirmar = window.confirm(
+      `¿Seguro que deseas eliminar a ${colaborador.nombre}?`
+    );
+    if (!confirmar) return;
+
+    try {
+      const resp = await fetch(
+        `http://localhost:8080/employees/deleteColaborator/${colaborador.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!resp.ok) {
+        throw new Error("Error al eliminar colaborador");
+      }
+
+      const data = await resp.json();
+      console.log("Colaborador eliminado:", data);
+
+      // Eliminar de la UI
+      const nuevos = [...colaboradores];
+      nuevos.splice(index, 1);
+      setColaboradores(nuevos);
+    } catch (error) {
+      console.error("Error al eliminar colaborador:", error);
+      alert("No se pudo eliminar el colaborador.");
+    }
   };
 
   return (
     <>
-      {/* Título y Botón en la misma línea */}
       <Box
         sx={{
           display: "flex",
@@ -126,7 +208,7 @@ export function Colaboradores() {
           alignItems: "center",
           mt: 2,
           mb: 3,
-          px: 2, // padding horizontal opcional
+          px: 2,
         }}
       >
         <Typography level="h1">Colaboradores</Typography>
@@ -135,7 +217,6 @@ export function Colaboradores() {
         </Button>
       </Box>
 
-      {/* Tabla */}
       <Card
         sx={{
           width: "99%",
@@ -163,29 +244,36 @@ export function Colaboradores() {
           </thead>
           <tbody>
             {colaboradores.map((colab, index) => (
-              <tr key={index}>
+              <tr key={colab.id || index}>
                 <td>{colab.nombre}</td>
-                <td>{colab.area}</td>
-                <td>{colab.nacimiento}</td>
+                <td>{colab.area_trabajo}</td>
+                <td>{colab.fecha_nacimiento}</td>
                 <td>{colab.curp}</td>
                 <td>{colab.rfc}</td>
                 <td>{colab.domicilio}</td>
                 <td>{colab.telefono}</td>
-                <td>{colab.correo}</td>
+                <td>{colab.correo_personal}</td>
                 <td>
-                  <Button
-                    size="sm"
-                    onClick={() => abrirModalEditar(colab, index)}
-                  >
-                    Editar
-                  </Button>{" "}
-                  <Button
-                    size="sm"
-                    color="danger"
-                    onClick={() => handleEliminar(index)}
-                  >
-                    Eliminar
-                  </Button>
+                  <Box display="flex" gap={1}>
+                    <Tooltip title="Editar">
+                      <IconButton
+                        size="small"
+                        onClick={() => abrirModalEditar(colab, index)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="Eliminar">
+                      <IconButton
+                        size="small"
+                        color="error"
+                        onClick={() => handleEliminar(index)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </td>
               </tr>
             ))}
@@ -200,7 +288,6 @@ export function Colaboradores() {
         </table>
       </Card>
 
-      {/* Modal de Colaborador */}
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <Sheet
           sx={{
