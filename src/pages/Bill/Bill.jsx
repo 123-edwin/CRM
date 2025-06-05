@@ -1,12 +1,13 @@
 import { useState } from "react"
+import { useRoute } from "wouter";
 import IncomeForm from "@p/Bill/IncomeForm";
 import PaymentForm from "@p/Bill/PaymentForm";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
 export function Bill() {
-    const [activeTab, setActiveTab] = useState("I");
-
+    const [, params] = useRoute("/factura/:id");
+    const [activeTab, setActiveTab] = useState(params && params.id ? "P" : "I");
 
     return (
         <>
@@ -26,7 +27,7 @@ export function Bill() {
 
             {activeTab === "P" && (
                 <div>
-                    <PaymentForm tipo='P' />
+                    <PaymentForm tipo='P' facturaId={params ? params.id : null} />
                 </div>
             )}
         </>

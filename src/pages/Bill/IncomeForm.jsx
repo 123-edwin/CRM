@@ -219,7 +219,18 @@ function IncomeForm({ tipo }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ xml: xmlGenerated, sendEmail: sendEmail, emailDirection: emailDirection }),
+        body: JSON.stringify({
+          xml: xmlGenerated,
+          sendEmail: sendEmail,
+          emailDirection: emailDirection,
+          tipo_documento: tipo,
+          total: totalGlobal.toFixed(2),
+          restante: comprobante.metodoPago === "PPD" ? totalGlobal.toFixed(2) : "0.00",
+          nombre_receptor: receptor.nombre,
+          rfc_receptor: receptor.rfc,
+          regimen_receptor: receptor.regimen,
+          domicilio_receptor: receptor.domicilio,
+          fecha: fechaFormateada,}),
       });
 
       if (!resp.ok) {
@@ -336,7 +347,7 @@ function IncomeForm({ tipo }) {
               <FormLabel>Nombre emisor</FormLabel>
               <Input
                 type="text"
-                placeholder="Nombre receptor"
+                placeholder="Nombre emisor"
                 value={emisor.nombre}
                 onChange={(e) =>
                   setEmisor({ ...emisor, nombre: e.target.value })

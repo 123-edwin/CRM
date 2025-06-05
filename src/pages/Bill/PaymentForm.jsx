@@ -12,8 +12,10 @@ import FormControl from "@mui/joy/FormControl";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Checkbox from "@mui/joy/Checkbox";
+import { getBillById } from "@s/billServices";
 
-function PaymentForm({ tipo }) {
+function PaymentForm({ tipo, facturaId }) {
+
     const [emisor, setEmisor] = useState({ rfc: "", nombre: "", regimen: "" });
     const [receptor, setReceptor] = useState({
         rfc: "",
@@ -66,6 +68,36 @@ function PaymentForm({ tipo }) {
         setImpIVA16(impuesto);
         setRestante(nuevoRestante);
     }, [montoTotalPagos, saldoAnt]);
+
+    useEffect(() => {
+        if (facturaId) {
+            getBillById(facturaId)
+                .then((factura) => {
+                    setEmisor((prev) => ({
+                        ...prev,
+                        rfc: factura.rfc_emisor || "",
+                        nombre: factura.nombre_emisor || "",
+                        regimen: factura.regimen_emisor || ""
+                    }));
+                    setReceptor((prev) => ({
+                        ...prev,
+                        rfc: factura.rfc_receptor || "",
+                        nombre: factura.nombre_receptor || "",
+                        domicilio: factura.domicilio_receptor || "",
+                        regimen: factura.regimen_receptor || "",
+                        usoCFDI: "CP01"
+                    }));
+                    setComplemento((prev) => ({
+                        ...prev,
+                        idDocumento: factura.iddocumento || "",
+                        saldoAnt: Number(factura.restante) || 0
+                    }));
+                })
+                .catch((err) => {
+                    console.error("Error al precargar factura:", err);
+                });
+        }
+    }, [facturaId]);
 
     function formatDate(date) {
         const pad = (n) => (n < 10 ? "0" + n : n);
@@ -137,10 +169,10 @@ function PaymentForm({ tipo }) {
           IdDocumento="${idDocumento}"
           MonedaDR="${moneda}"
           EquivalenciaDR="${equivalenciaDR}"
-          NumParcialidad="${numParcialidad}"
-          ImpSaldoAnt="${saldoAnt.toFixed(2)}"
-          ImpPagado="${montoTotalPagos.toFixed(2)}"
-          ImpSaldoInsoluto="${restante.toFixed(2)}"
+          NumParcialidad="${Number(numParcialidad || 0)}"
+          ImpSaldoAnt="${Number(saldoAnt || 0).toFixed(2)}"
+          ImpPagado="${Number(montoTotalPagos || 0).toFixed(2)}"
+          ImpSaldoInsoluto="${Number(restante || 0).toFixed(2)}"
           ObjetoImpDR="02">
           <pago20:ImpuestosDR>
             <pago20:TrasladosDR>
@@ -176,7 +208,21 @@ function PaymentForm({ tipo }) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ xml: xmlPago, sendEmail: sendEmail, emailDirection: emailDirection }),
+                body: JSON.stringify({
+                    xml: xmlPago,
+                    sendEmail: sendEmail,
+                    emailDirection: emailDirection,
+                    tipo_documento: tipo,
+                    total: Number(montoTotalPagos || 0).toFixed(2),
+                    restante: Number(restante || 0).toFixed(2),
+                    nombre_receptor: receptor.nombre,
+                    timbre: idDocumento,
+                    rfc_receptor: receptor.rfc,
+                    regimen_receptor: receptor.regimen,
+                    domicilio_receptor: receptor.domicilio,
+                    fecha: fechaFormateada,
+                    metodoPago: formaPago
+                }),
             });
 
             if (!resp.ok) {
@@ -351,11 +397,11 @@ function PaymentForm({ tipo }) {
                             <FormLabel>Monto Total Pagos</FormLabel>
                             <Input
                                 type="number"
-                                value={montoTotalPagos}
+                                value={montoTotalPagos ?? 0}
                                 onChange={(e) =>
                                     setComplemento({
                                         ...complemento,
-                                        montoTotalPagos: parseFloat(e.target.value),
+                                        montoTotalPagos: parseFloat(e.target.value) || 0,
                                     })
                                 }
                             />
@@ -386,11 +432,11 @@ function PaymentForm({ tipo }) {
                             <FormLabel>Número de Parcialidad</FormLabel>
                             <Input
                                 type="number"
-                                value={numParcialidad}
+                                value={numParcialidad ?? 0}
                                 onChange={(e) =>
                                     setComplemento({
                                         ...complemento,
-                                        numParcialidad: parseInt(e.target.value),
+                                        numParcialidad: parseInt(e.target.value) || 0,
                                     })
                                 }
                             />
@@ -399,11 +445,11 @@ function PaymentForm({ tipo }) {
                             <FormLabel>Saldo Anterior</FormLabel>
                             <Input
                                 type="number"
-                                value={saldoAnt}
+                                value={saldoAnt ?? 0}
                                 onChange={(e) =>
                                     setComplemento({
                                         ...complemento,
-                                        saldoAnt: parseFloat(e.target.value),
+                                        saldoAnt: parseFloat(e.target.value) || 0,
                                     })
                                 }
                             />
@@ -444,6 +490,7 @@ function PaymentForm({ tipo }) {
 
 PaymentForm.propTypes = {
     tipo: PropTypes.oneOf(["P"]).isRequired,
+    facturaId: PropTypes.number.isRequired,
 };
 
 export default PaymentForm;
