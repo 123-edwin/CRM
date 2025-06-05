@@ -18,7 +18,7 @@ import { Propuestas } from "@p/Ventas/Propuestas";
 import { Nuevaprop } from "@p/Ventas/Nuevaprop";
 import { Presupuestos } from "@p/Ventas/Presupuestos";
 import { Facturas } from "@p/Ventas/Facturas";
-import {Bill} from "@p/Bill/Bill"; // Facturación
+import { Bill } from "@p/Bill/Bill"; // Facturación
 import { Pagos } from "@p/Ventas/Pagos";
 import { Notascredito } from "@p/Ventas/Notascredito";
 
@@ -37,6 +37,7 @@ import { ClientesPotenciales } from "@p/ClientesPoten/ClientesPotenciales";
 import { Soporte } from "@p/Soport/Soporte";
 import { NuevoTicket } from "@p/Soport/NuevoTicket";
 import { Calendario } from "@p/Utilidades/Calendario";
+import DeleteForm from "@p/Bill/DeleteForm";
 
 export function Rutas() {
   return (
@@ -48,6 +49,8 @@ export function Rutas() {
       <Route path="/perfil" component={Miperfil} />
       <Route path="/importacion" component={ImportacionCliente} />
       <Route path="/factura" component={Bill} />
+      <Route path="/factura/:id" component={Bill} />
+      <Route path="/deleteFactura/:id" component={DeleteForm} />
       <Route path="/editarp" component={EditarPerfil} />
       <Route path="/tareaper" component={TareaPersonal} />
       <Route path="/contratoss" component={Contrato} />
