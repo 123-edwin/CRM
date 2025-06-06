@@ -65,14 +65,15 @@ export function Rutas() {
       <Route path="/exportarr" component={Exportar} />*/}
       <Route path="/clientpoten" component={ClientesPotenciales} />
       <Route path="/prop" component={Propuestas} />
+
       <Route path="/pres" component={Presupuestos} />
       <Route path="/fact" component={Facturas} />
       <Route path="/pag" component={Pagos} />
       <Route path="/notascred" component={Notascredito} />
       {/*<Route path="/sop" component={Soporte} />
-      <Route path="/nuevotick" component={NuevoTicket} />
-      <Route path="/tareasem" component={TareaSemanal} />*/}
+      <Route path="/nuevotick" component={NuevoTicket} />*/}
       <Route path="/calen" component={Calendario} />
+      
       <Route path="/colab" component={Colaboradores} />
     </>
   );

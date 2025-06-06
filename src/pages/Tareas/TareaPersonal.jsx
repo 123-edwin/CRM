@@ -14,61 +14,11 @@ import Chip from "@mui/joy/Chip";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import Divider from "@mui/joy/Divider";
+
 import { useState } from "react";
 
 export function TareaPersonal() {
   const [open, setOpen] = useState(false);
-  const [tareas, setTareas] = useState([]);
-
-  // Estado para el formulario
-  const [form, setForm] = useState({
-    titulo: "",
-    texto: "",
-    fecha: "",
-    estado: "Pendiente",
-  });
-
-  // Manejar cambios en el formulario
-  const handleChange = (e) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  // Guardar nueva tarea
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setTareas((prev) => [
-      ...prev,
-      {
-        titulo: form.titulo,
-        texto: form.texto,
-        fecha: form.fecha,
-        estado: form.estado,
-        color:
-          form.estado === "Completada"
-            ? "success"
-            : form.estado === "En proceso"
-            ? "primary"
-            : "danger",
-        tachado: form.estado === "Completada",
-      },
-    ]);
-    setForm({
-      titulo: "",
-      texto: "",
-      fecha: "",
-      estado: "Pendiente",
-    });
-    setOpen(false);
-  };
-
-  // Contadores
-  const total = tareas.length;
-  const completadas = tareas.filter((t) => t.estado === "Completada").length;
-  const enProceso = tareas.filter((t) => t.estado === "En proceso").length;
-  const pendientes = tareas.filter((t) => t.estado === "Pendiente").length;
 
   return (
     <>
@@ -102,11 +52,11 @@ export function TareaPersonal() {
             }}
           >
             <Typography level="h3" sx={{ color: "#fff" }}>
-              TO DO LIST
+              TO DO LIST 
             </Typography>
           </Box>
 
-          <Box sx={{ backgroundColor: "#d7edff" }}>
+          <Box sx={{ backgroundColor: "#d7edff", }}>
             <List>
               {/* BOTÓN NUEVA TAREA */}
               <Button
@@ -126,62 +76,30 @@ export function TareaPersonal() {
               <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog>
                   <DialogTitle>Agregar tarea</DialogTitle>
-                  <form onSubmit={handleSubmit}>
+                  <form
+                    onSubmit={(event) => {
+                      event.preventDefault();
+                      setOpen(false);
+                    }}
+                  >
                     <Stack spacing={2}>
                       <FormControl>
                         <FormLabel>Título de la tarea</FormLabel>
-                        <Input
-                          name="titulo"
-                          value={form.titulo}
-                          onChange={handleChange}
-                          autoFocus
-                          required
-                        />
+                        <Input autoFocus required />
                       </FormControl>
                       <FormControl>
                         <FormLabel>Descripción</FormLabel>
-                        <Input
-                          name="texto"
-                          value={form.texto}
-                          onChange={handleChange}
-                          required
-                        />
+                        <Input required />
                       </FormControl>
                       <FormControl>
                         <FormLabel>Fecha</FormLabel>
-                        <Input
-                          name="fecha"
-                          type="date"
-                          value={form.fecha}
-                          onChange={handleChange}
-                        />
-                      </FormControl>
-                      <FormControl>
-                        <FormLabel>Estado</FormLabel>
-                        <select
-                          name="estado"
-                          value={form.estado}
-                          onChange={handleChange}
-                          style={{
-                            padding: "8px",
-                            borderRadius: "6px",
-                            border: "1px solid #ccc",
-                          }}
-                        >
-                          <option value="Pendiente">Pendiente</option>
-                          <option value="En proceso">En proceso</option>
-                          <option value="Completada">Completada</option>
-                        </select>
+                        <Input type="date" />
                       </FormControl>
                       <Box sx={{ display: "flex", gap: 2 }}>
-                        <Button type="submit" variant="solid" color="primary">
+                        <Button variant="solid" color="primary">
                           Guardar
                         </Button>
-                        <Button
-                          variant="outlined"
-                          color="neutral"
-                          onClick={() => setOpen(false)}
-                        >
+                        <Button variant="outlined" color="neutral">
                           Cerrar
                         </Button>
                       </Box>
@@ -218,7 +136,7 @@ export function TareaPersonal() {
                     <Typography
                       sx={{ color: "#fff", fontSize: 14, fontWeight: "bold" }}
                     >
-                      {total}
+                      6
                     </Typography>
                   </Box>
                 </Box>
@@ -250,7 +168,7 @@ export function TareaPersonal() {
                     <Typography
                       sx={{ color: "#fff", fontSize: 14, fontWeight: "bold" }}
                     >
-                      {completadas}
+                      2
                     </Typography>
                   </Box>
                 </Box>
@@ -282,7 +200,7 @@ export function TareaPersonal() {
                     <Typography
                       sx={{ color: "#fff", fontSize: 14, fontWeight: "bold" }}
                     >
-                      {enProceso}
+                      2
                     </Typography>
                   </Box>
                 </Box>
@@ -314,7 +232,7 @@ export function TareaPersonal() {
                     <Typography
                       sx={{ color: "#fff", fontSize: 14, fontWeight: "bold" }}
                     >
-                      {pendientes}
+                      2
                     </Typography>
                   </Box>
                 </Box>
@@ -345,7 +263,52 @@ export function TareaPersonal() {
           </Typography>
           <Divider />
 
-          {tareas.map(({ estado, color, texto, fecha, tachado, titulo }, i) => (
+          {[
+            {
+              estado: "En proceso",
+              color: "primary",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "10/02/2025",
+            },
+            {
+              estado: "Pendiente",
+              color: "danger",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "17/02/2025",
+            },
+            {
+              estado: "Completada",
+              color: "success",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "25/02/2025",
+              tachado: true,
+            },
+            {
+              estado: "Completada",
+              color: "success",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "26/02/2025",
+              tachado: true,
+            },
+            {
+              estado: "En proceso",
+              color: "primary",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "27/02/2025",
+            },
+            {
+              estado: "Pendiente",
+              color: "danger",
+              texto:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit porta mollis augue, pellentesque non eu iaculis dictumst egestas mi placerat.",
+              fecha: "28/02/2025",
+            },
+          ].map(({ estado, color, texto, fecha, tachado }, i) => (
             <Box key={i}>
               <ListItem alignItems="flex-start">
                 <Box>
@@ -357,7 +320,7 @@ export function TareaPersonal() {
                         alignItems: "center",
                       }}
                     >
-                      <strong>{titulo}</strong>
+                      <strong>Lorem ipsum</strong>
                       <Chip size="sm" color={color} variant="soft">
                         {estado}
                       </Chip>
