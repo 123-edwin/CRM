@@ -16,48 +16,13 @@ import {
 } from "@mui/joy";
 
 import { getTarea } from "@s/tareaServices";
+import { getEmployees } from "@s/employeesServices"; // agg colaboradres
 
 import { useState, useEffect } from "react";
 
 export function Tarea() {
-  const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+  const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes"];
   const [openAgregarModal, setOpenAgregarModal] = useState(false);
-
-
-
-useEffect(() => {
-  const fetchColab = async () => {
-    try {
-      const fetchData = await getTarea(); // ← obtiene del backend
-
-      const tareasAgrupadas = {
-        Lunes: [],
-        Martes: [],
-        Miércoles: [],
-        Jueves: [],
-        Viernes: [],
-        Sábado: [],
-      };
-
-      fetchData.forEach((tarea) => {
-        if (tareasAgrupadas[tarea.dia]) {
-          tareasAgrupadas[tarea.dia].push(tarea);
-        } else {
-          console.warn("Día no reconocido:", tarea.dia);
-        }
-      });
-
-      setTareasPorDia(tareasAgrupadas);
-    } catch (error) {
-      console.error("Error obteniendo tareas", error);
-    }
-  };
-
-  fetchColab();
-}, []);
-
-
-
 
   // Nuevo estado para modal detalle
   const [openDetalleModal, setOpenDetalleModal] = useState(false);
@@ -66,6 +31,8 @@ useEffect(() => {
 
   // Nuevo estado para modo edición
   const [modoEdicion, setModoEdicion] = useState(false);
+  const [employeesFiltro, setEmployeesFiltro] = useState("TODOS");
+  const [employees, setEmployees] = useState([]); //agg colaboradores
 
   const [tareasPorDia, setTareasPorDia] = useState({
     Lunes: [],
@@ -73,8 +40,47 @@ useEffect(() => {
     Miercoles: [],
     Jueves: [],
     Viernes: [],
-    Sabado: [],
   });
+
+  useEffect(() => {
+    const fetchColab = async () => {
+      try {
+        const fetchData = await getTarea(); // ← obtiene del backend
+
+        const tareasAgrupadas = {
+          Lunes: [],
+          Martes: [],
+          Miercoles: [],
+          Jueves: [],
+          Viernes: [],
+        };
+
+        fetchData.forEach((tarea) => {
+          if (tareasAgrupadas[tarea.dia]) {
+            tareasAgrupadas[tarea.dia].push(tarea);
+          } else {
+            console.warn("Día no reconocido:", tarea.dia);
+          }
+        });
+
+        setTareasPorDia(tareasAgrupadas);
+      } catch (error) {
+        console.error("Error obteniendo tareas", error);
+      }
+    };
+    // NUEVO: obtener colaboradores
+    const fetchEmployees = async () => {
+      try {
+        const data = await getEmployees();
+        setEmployees(data);
+      } catch (error) {
+        console.error("Error obteniendo colaboradores", error);
+      }
+    };
+
+    fetchColab();
+    fetchEmployees();
+  }, []);
 
   // Estado para tarea nueva o edición (cuando modoEdicion=true)
   const [nuevaTarea, setNuevaTarea] = useState({
@@ -113,45 +119,70 @@ useEffect(() => {
       alert("Favor de llenar los campos marcados con asterisco");
       return;
     }
+
     if (modoEdicion) {
-      // Edición: actualizar la tarea en tareasPorDia
-      setTareasPorDia((prev) => {
-        const listaDelDia = prev[nuevaTarea.dia];
-        const idx = listaDelDia.findIndex(
-          (t) =>
-            t.numero_tarea === tareaSeleccionada.numero_tarea &&
-            t.titulo === tareaSeleccionada.titulo
-        );
-        if (idx === -1) return prev; // no encontrada, no cambia nada
-
-        // Actualizar lista con la tarea modificada
-        const nuevaLista = [...listaDelDia];
-        nuevaLista[idx] = nuevaTarea;
-
-        // Si el día cambió, removemos de un día y agregamos en otro
-        if (nuevaTarea.dia !== tareaSeleccionada.dia) {
-          // Removemos la antigua de su día
-          const listaOriginal = prev[tareaSeleccionada.dia].filter(
-            (_, i) => i !== idx
-          );
-          return {
-            ...prev,
-            [tareaSeleccionada.dia]: listaOriginal,
-            [nuevaTarea.dia]: [...prev[nuevaTarea.dia], nuevaTarea],
-          };
-        }
-
-        return { ...prev, [nuevaTarea.dia]: nuevaLista };
-      });
+      // Llamada al backend para actualizar la tarea
+      fetch(`http://localhost:8080/tasks/updateTask/${tareaSeleccionada.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevaTarea),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Error al actualizar tarea");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // Actualiza el estado local con la tarea editada
+          setTareasPorDia((prev) => {
+            // Elimina la tarea antigua de todos los días
+            let nuevoPrev = { ...prev };
+            Object.keys(nuevoPrev).forEach((dia) => {
+              nuevoPrev[dia] = nuevoPrev[dia].filter((t) => t.id !== data.id);
+            });
+            // Agrega la tarea editada al nuevo día
+            return {
+              ...nuevoPrev,
+              [data.dia]: [...(nuevoPrev[data.dia] || []), data],
+            };
+          });
+        })
+        .catch((error) => {
+          console.error("Error al actualizar tarea:", error);
+          alert("Ocurrió un error al actualizar la tarea");
+        });
     } else {
-      // Nueva tarea
-      setTareasPorDia((prev) => ({
-        ...prev,
-        [nuevaTarea.dia]: [...prev[nuevaTarea.dia], nuevaTarea],
-      }));
+      // Crear nueva tarea en el backend
+      fetch("http://localhost:8080/tasks/createTask", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevaTarea),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Error al crear tarea");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // Agregar la tarea recién creada al estado local
+          setTareasPorDia((prev) => ({
+            ...prev,
+            [data.dia]: [...(prev[data.dia] || []), data],
+          }));
+        })
+        .catch((error) => {
+          console.error("Error al crear tarea:", error);
+          alert("Ocurrió un error al crear la tarea");
+        });
     }
 
-    // Cerrar modales y resetear estados
+    // Resetear estado y cerrar modales
     setOpenAgregarModal(false);
     setOpenDetalleModal(false);
     setModoEdicion(false);
@@ -183,60 +214,107 @@ useEffect(() => {
   // Botón Editar: abre modal de agregar en modo edición con datos cargados
   function editarTarea() {
     setModoEdicion(true);
-    setNuevaTarea(tareaSeleccionada);
+    setNuevaTarea({
+      ...tareaSeleccionada,
+      fecha_inicio: tareaSeleccionada.fecha_inicio
+        ? tareaSeleccionada.fecha_inicio.slice(0, 10)
+        : "",
+      fecha_vencimiento: tareaSeleccionada.fecha_vencimiento
+        ? tareaSeleccionada.fecha_vencimiento.slice(0, 10)
+        : "",
+    });
     setOpenAgregarModal(true);
     setOpenDetalleModal(false);
   }
 
   // Botón eliminar: elimina la tarea del día correspondiente
-  function eliminarTarea() {
-    setTareasPorDia((prev) => {
-      const nuevaLista = prev[tareaSeleccionada.dia].filter(
-        (t) =>
-          !(
-            t.numero_tarea === tareaSeleccionada.numero_tarea &&
-            t.titulo === tareaSeleccionada.titulo
-          )
-      );
-      return { ...prev, [tareaSeleccionada.dia]: nuevaLista };
-    });
-    setOpenDetalleModal(false);
-    setTareaSeleccionada(null);
+  function eliminarTarea(tarea) {
+    console.log(typeof tarea.id);
+    if (!window.confirm("¿Seguro que deseas eliminar esta tarea?")) return;
+
+    fetch(`http://localhost:8080/tasks/deleteTask/${tarea.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Error al eliminar tarea");
+        }
+        return res.json();
+      })
+      .then(() => {
+        setTareasPorDia((prev) => {
+          const nuevoPrev = { ...prev };
+          Object.keys(nuevoPrev).forEach((dia) => {
+            nuevoPrev[dia] = nuevoPrev[dia].filter((t) => t.id !== tarea.id);
+          });
+          return nuevoPrev;
+        });
+        setOpenDetalleModal(false);
+        setTareaSeleccionada(null);
+      })
+      .catch((error) => {
+        console.error("Error al eliminar tarea:", error);
+        alert("Ocurrió un error al eliminar la tarea");
+      });
   }
 
   return (
     <>
-      <Box sx={{ display: "flex", gap: 2, alignItems: "center", mt: 2 }}>
-        <Typography level="h1" sx={{ ml: 1 }}>
-          Tareas
-        </Typography>
-        <Button
-          type="button"
-          variant="solid"
-          size="sm"
-          onClick={() => {
-            setModoEdicion(false);
-            setNuevaTarea({
-              dia: "Lunes",
-              titulo: "",
-              numero_tarea: "",
-              estado: "",
-              prioridad: "",
-              fecha_inicio: "",
-              fecha_vencimiento: "",
-              asignado: "",
-              creador: "",
-              etiqueta: "",
-              finalidad: "",
-              control_cambio: "",
-              tipo_tarea: "",
-              descripcion: "",
-            });
-            setOpenAgregarModal(true);
-          }}
-        >
-          Agregar tarea
-        </Button>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 2,
+          alignItems: "center",
+          mt: 2,
+          justifyContent: "space-between",
+        }}
+      >
+        <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+          <Typography level="h1" sx={{ ml: 1 }}>
+            Tareas
+          </Typography>
+          <Button
+            type="button"
+            variant="solid"
+            size="sm"
+            onClick={() => {
+              setModoEdicion(false);
+              setNuevaTarea({
+                dia: "Lunes",
+                titulo: "",
+                numero_tarea: "",
+                estado: "",
+                prioridad: "",
+                fecha_inicio: "",
+                fecha_vencimiento: "",
+                asignado: "",
+                creador: "",
+                etiqueta: "",
+                finalidad: "",
+                control_cambio: "",
+                tipo_tarea: "",
+                descripcion: "",
+              });
+              setOpenAgregarModal(true);
+            }}
+          >
+            Agregar tarea
+          </Button>
+        </Box>
+        <FormControl size="sm" sx={{ minWidth: 200 }}>
+          <FormLabel>Filtrar por colaborador</FormLabel>
+          <Select
+            value={employeesFiltro}
+            onChange={(e, val) => setEmployeesFiltro(val)}
+          >
+            <Option value="TODOS">Todos</Option>
+            {employees.map((colab) => (
+              <Option key={colab.id} value={colab.nombre}>
+                {colab.nombre}
+              </Option>
+            ))}
+          </Select>
+        </FormControl>
       </Box>
 
       {/* Cards de días */}
@@ -278,7 +356,7 @@ useEffect(() => {
 
             <Box
               sx={{
-                backgroundColor: "#c8dfff",
+                backgroundColor: "#a8cbfe ",
                 p: 2,
                 height: "100%",
                 overflowY: "auto",
@@ -290,44 +368,57 @@ useEffect(() => {
                   Sin tareas
                 </Typography>
               ) : (
-                tareasPorDia[dia].map((tarea, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      mb: 1,
-                      p: 1,
-                      borderRadius: "sm",
-                      backgroundColor: "#e1e9ff",
-                      boxShadow: "sm",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => abrirDetalle(tarea)}
-                  >
-                    <Box>
-                      <Typography
-                        fontWeight="bold"
-                        sx={{
-                          wordBreak: "break-word",
-                          overflowWrap: "break-word",
-                        }}
-                      >
-                        #{tarea.numero_tarea} - {tarea.titulo}
-                      </Typography>
-                      <Typography level="body3">
-                        Estado: {tarea.estado}
-                      </Typography>
-                      <Typography level="body3">
-                        Prioridad: {tarea.prioridad}
-                      </Typography>
-                      <Typography level="body3">
-                        Asignado: {tarea.asignado}
-                      </Typography>
-                      <Typography level="body3">
-                        Vence: {tarea.fecha_vencimiento || "Sin fecha"}
-                      </Typography>
+                tareasPorDia[dia]
+                  .filter((tarea) => {
+                    if (employeesFiltro === "TODOS") return true;
+                    if (Array.isArray(tarea.asignado)) {
+                      return tarea.asignado.includes(employeesFiltro);
+                    }
+                    return tarea.asignado === employeesFiltro;
+                  })
+                  .map((tarea, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        mb: 1,
+                        p: 1,
+                        borderRadius: "sm",
+                        backgroundColor: "#fff",
+                        boxShadow: "sm",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => abrirDetalle(tarea)}
+                    >
+                      <Box>
+                        <Typography
+                          fontWeight="bold"
+                          sx={{
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                          }}
+                        >
+                          #{tarea.numero_tarea} - {tarea.titulo}
+                        </Typography>
+                        <Typography level="body3">
+                          Estado: {tarea.estado}
+                        </Typography>
+                        <Typography level="body3">
+                          Prioridad: {tarea.prioridad}
+                        </Typography>
+                        <Typography level="body3">
+                          Asignado: {tarea.asignado}
+                        </Typography>
+                        <Typography level="body3">
+                          Vence:{" "}
+                          {tarea.fecha_vencimiento
+                            ? new Date(
+                                tarea.fecha_vencimiento
+                              ).toLocaleDateString()
+                            : "Sin fecha"}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                ))
+                  ))
               )}
             </Box>
           </Card>
@@ -445,20 +536,32 @@ useEffect(() => {
 
             <FormControl required>
               <FormLabel>Asignado</FormLabel>
-              <Input
+              <Select
                 name="asignado"
                 value={nuevaTarea.asignado}
-                onChange={handleChange}
-              />
+                onChange={(e, val) =>
+                  setNuevaTarea((prev) => ({ ...prev, asignado: val }))
+                }
+              >
+                {employees.map((colab) => (
+                  <Option key={colab.id} value={colab.nombre}>
+                    {colab.nombre}
+                  </Option>
+                ))}
+              </Select>
             </FormControl>
 
-            <FormControl>
+            <FormControl required>
               <FormLabel>Creador</FormLabel>
-              <Input
+              <Select
                 name="creador"
                 value={nuevaTarea.creador}
-                onChange={handleChange}
-              />
+                onChange={(e, val) =>
+                  setNuevaTarea((prev) => ({ ...prev, creador: val }))
+                }
+              >
+                <Option value="Juan Pablo Liñan">Juan Pablo Liñan</Option>
+              </Select>
             </FormControl>
 
             <FormControl>
@@ -579,6 +682,7 @@ useEffect(() => {
                 <Option value="Diaria">Diaria</Option>
                 <Option value="Semanal">Semanal</Option>
                 <Option value="Mensual">Mensual</Option>
+                <Option value="No aplica">No aplica</Option>
               </Select>
             </FormControl>
 
@@ -620,11 +724,22 @@ useEffect(() => {
               </Typography>
 
               <Stack spacing={1}>
-                {Object.entries(tareaSeleccionada).map(([key, value]) => (
-                  <Typography key={key}>
-                    <strong>{key.replace(/_/g, " ")}:</strong> {value || "-"}
-                  </Typography>
-                ))}
+                {Object.entries(tareaSeleccionada).map(([key, value]) => {
+                  // Detecta si el campo es una fecha
+                  const esFecha =
+                    key === "fecha_inicio" || key === "fecha_vencimiento";
+                  let mostrarValor = value;
+                  if (esFecha && value) {
+                    // Formatea la fecha a formato local (puedes cambiar el formato si lo deseas)
+                    mostrarValor = new Date(value).toLocaleDateString();
+                  }
+                  return (
+                    <Typography key={key}>
+                      <strong>{key.replace(/_/g, " ")}:</strong>{" "}
+                      {mostrarValor || "-"}
+                    </Typography>
+                  );
+                })}
               </Stack>
 
               <Box sx={{ mt: 3, display: "flex", gap: 2 }}>
@@ -638,7 +753,7 @@ useEffect(() => {
                 <Button
                   variant="outlined"
                   color="danger"
-                  onClick={eliminarTarea}
+                  onClick={() => eliminarTarea(tareaSeleccionada)}
                 >
                   Eliminar
                 </Button>
