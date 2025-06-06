@@ -12,6 +12,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Checkbox from "@mui/joy/Checkbox";
+import { getClients } from "@s/clientServices";
 
 
 import { useState, useEffect } from "react";
@@ -49,7 +50,7 @@ function IncomeForm({ tipo }) {
   //Estados para email
   const [sendEmail, setSendEmail] = useState(false);
   //Direccion de correo electrónico
-  const emailDirection = "erios8@ucol.mx"
+  const [emailDirection, setEmailDirection] = useState("")
 
   // Estados para los totales: subtotal, descuento, IVA y total
   const [subTotalGlobal, setSubTotalGlobal] = useState(0);
@@ -58,6 +59,12 @@ function IncomeForm({ tipo }) {
   const [totalGlobal, setTotalGlobal] = useState(0);
 
   const [xml, setXml] = useState("");
+
+  // Estado para lista de clientes
+  const [clientes, setClientes] = useState([]);
+
+  // Estado para el índice del cliente seleccionado
+  const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
 
   // Función para agregar un nuevo concepto al arreglo
   const agregarConcepto = () => {
@@ -266,6 +273,34 @@ function IncomeForm({ tipo }) {
     }
   };
 
+  // Traer clientes al montar
+  useEffect(() => {
+    async function fetchClientes() {
+      try {
+        const data = await getClients();
+        setClientes(data);
+      } catch (err) {
+        console.error("Error al obtener clientes:", err);
+      }
+    }
+    fetchClientes();
+  }, []);
+
+  // Cuando cambia el cliente seleccionado, autocompletar receptor y email
+  useEffect(() => {
+    if (clienteSeleccionado !== null && clientes[clienteSeleccionado]) {
+      const c = clientes[clienteSeleccionado];
+      setReceptor({
+        rfc: c.rfc || "",
+        nombre: c.empresa || "",
+        domicilio: "", // No traer domicilio fiscal
+        regimen: c.regimen || "",
+        usoCFDI: ""
+      });
+      setEmailDirection(c.email_principal || "");
+    }
+  }, [clienteSeleccionado, clientes]);
+
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
@@ -416,14 +451,23 @@ function IncomeForm({ tipo }) {
             </FormControl>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Nombre receptor</FormLabel>
-              <Input
-                type="text"
-                placeholder="Nombre receptor"
-                value={receptor.nombre}
-                onChange={(e) =>
-                  setReceptor({ ...receptor, nombre: e.target.value })
-                }
-              />
+              <Select
+                name="nombreReceptor"
+                id="nombreReceptor"
+                color="primary"
+                placeholder="Selecciona empresa"
+                sx={{ width: 300, height: 45 }}
+                size="md"
+                variant="outlined"
+                value={clienteSeleccionado}
+                onChange={(_, value) => setClienteSeleccionado(value)}
+              >
+                {clientes.map((c, idx) => (
+                  <Option key={c._id || idx} value={idx}>
+                    {c.empresa}
+                  </Option>
+                ))}
+              </Select>
             </FormControl>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Domicilio Fiscal Receptor</FormLabel>
@@ -441,35 +485,17 @@ function IncomeForm({ tipo }) {
           <br />
 
           <Box sx={{ display: "flex", gap: 2 }}>
-
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Regimen Fiscal Receptor</FormLabel>
-              <Select name="regimenReceptor" id="regimenReceptor" color="primary" placeholder="Regimen Fiscal Receptor"
-                sx={{ width: 300, height: 45 }}
-                size="md"
-                variant="outlined" value={receptor.regimen} onChange={(_, value) => { setReceptor({ ...receptor, regimen: value }) }}>
-                <Option value="601">General de Ley Personas Morales</Option>
-                <Option value="603">Personas Morales con Fines no Lucrativos</Option>
-                <Option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</Option>
-                <Option value="606">Arrendamiento</Option>
-                <Option value="607">Régimen de Enajenación o Adquisición de Bienes</Option>
-                <Option value="608">Demás ingresos</Option>
-                <Option value="610">Residentes en el Extranjero sin Establecimiento Permanente en México</Option>
-                <Option value="611">Ingresos por Dividendos (socios y accionistas)</Option>
-                <Option value="612">Personas Físicas con Actividades Empresariales y Profesionales</Option>
-                <Option value="614">Ingresos por intereses</Option>
-                <Option value="615">Régimen de los ingresos por obtención de premios</Option>
-                <Option value="616">Sin obligaciones fiscales</Option>
-                <Option value="620">Sociedades Cooperativas de Producción que optan por diferir sus ingresos</Option>
-                <Option value="621">Incorporación Fiscal</Option>
-                <Option value="622">Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</Option>
-                <Option value="623">Opcional para Grupos de Sociedades</Option>
-                <Option value="624">Coordinados</Option>
-                <Option value="625">Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</Option>
-                <Option value="626">Régimen Simplificado de Confianza</Option>
-              </Select>
+              <Input
+                type="text"
+                placeholder="Regimen Fiscal Receptor"
+                value={receptor.regimen}
+                onChange={(e) =>
+                  setReceptor({ ...receptor, regimen: e.target.value })
+                }
+              />
             </FormControl>
-
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Uso CFDI</FormLabel>
               <Select name="usoCFDI" id="usoCFDI" color="primary" placeholder="Uso de CFDI"
@@ -502,7 +528,6 @@ function IncomeForm({ tipo }) {
                 <Option value="CN01">Nómina</Option>
               </Select>
             </FormControl>
-
           </Box>
 
           <br />
