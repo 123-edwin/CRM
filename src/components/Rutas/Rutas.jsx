@@ -38,6 +38,7 @@ import { Soporte } from "@p/Soport/Soporte";
 import { NuevoTicket } from "@p/Soport/NuevoTicket";
 import { Calendario } from "@p/Utilidades/Calendario";
 import DeleteForm from "@p/Bill/DeleteForm";
+import {Colaboradores} from "@p/Utilidades/Colaboradores";
 
 export function Rutas() {
   return (
@@ -73,6 +74,7 @@ export function Rutas() {
       <Route path="/nuevotick" component={NuevoTicket} />
       <Route path="/calen" component={Calendario} />
       <Route path="/tareasem" component={TareaSemanal} />
+      <Route path="/colab" component={Colaboradores} />
     </>
   );
 }

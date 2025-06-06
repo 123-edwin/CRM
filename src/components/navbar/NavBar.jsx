@@ -14,7 +14,7 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import ModalClose from "@mui/joy/ModalClose";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
-import Add from "@mui/icons-material/Add";
+//import Add from "@mui/icons-material/Add";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "wouter";
@@ -293,6 +293,11 @@ export function NavBar() {
               <Link href="/calen">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Calendario
+                </ListItemButton>
+              </Link>
+              <Link href="/colab">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Colaboradores
                 </ListItemButton>
               </Link>
             </List>
