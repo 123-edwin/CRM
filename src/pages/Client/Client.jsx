@@ -1,17 +1,10 @@
 import "./Client.css";
-
-import refreshIcon from "/refresh.svg";
 import Typography from "@mui/joy/Typography";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import Sheet from "@mui/joy/Sheet";
 import Button from "@mui/joy/Button";
 import ButtonGroup from "@mui/joy/ButtonGroup";
 import Box from "@mui/joy/Box";
-import Dropdown from "@mui/joy/Dropdown";
-import Menu from "@mui/joy/Menu";
-import MenuButton from "@mui/joy/MenuButton";
-import MenuItem from "@mui/joy/MenuItem";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Checkbox from "@mui/joy/Checkbox";
@@ -51,106 +44,12 @@ export function Client() {
 
       {/*RECUADRO DEL TIEMPO*/}
 
-      <Sheet
-        sx={{
-          bgcolor: "background.level1",
-          borderRadius: "sm",
-          p: 2,
-          my: 1.5,
-          display: "flex",
-          gap: 2,
-          "& > div": { flex: 1 },
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            1
-          </Typography>
-          <Typography
-            level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
-          >
-            Total de clientes
-          </Typography>
-        </Box>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            1
-          </Typography>
-          <Typography
-            level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#239d02" }}
-          >
-            Clientes activos
-          </Typography>
-        </Box>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
-          <Typography
-            level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#b40202" }}
-          >
-            Clientes desactivados
-          </Typography>
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Link
-            to="/contactos"
-            style={{ display: "flex", alignItems: "center", gap: 3 }}
-          >
-            <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-              0
-            </Typography>
-            <Typography
-              level="body-xs"
-              sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#0378ac" }}
-            >
-              Contactos activos
-            </Typography>
-          </Link>
-        </Box>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
-          <Typography
-            level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem", color: "#b40202" }}
-          >
-            Contactos inactivos
-          </Typography>
-        </Box>
-
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-          <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
-            0
-          </Typography>
-          <Typography
-            level="body-xs"
-            sx={{ fontWeight: "lg", fontSize: "0.9rem" }}
-          >
-            Conectados actualmente
-          </Typography>
-        </Box>
-      </Sheet>
-
       {/*BOTONES*/}
 
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap", mb: 3 }}>
         <Link href="/form">
-          <Button onClick={function () {}} variant="outlined">
+          <Button onClick={function () { }} variant="outlined">
             + Nuevo Cliente
-          </Button>
-        </Link>
-
-        <Link href="/importacion">
-          <Button onClick={function () {}} variant="outlined">
-            Importación De Clientes
           </Button>
         </Link>
       </Box>
@@ -168,51 +67,10 @@ export function Client() {
                 mb: 2,
               }}
             >
-              <Select defaultValue="10" sx={{ width: 110 }}>
-                <Option value="10">10</Option>
-                <Option value="25">25</Option>
-                <Option value="50">50</Option>
-                <Option value="100">100</Option>
-                <Option value="todo">Todo</Option>
-              </Select>
 
               <ButtonGroup>
-                <Dropdown>
-                  <MenuButton
-                    variant="outlined"
-                    color="neutral"
-                    sx={{ width: 100, height: 48, borderRadius: "8px" }}
-                  >
-                    <p>Exportar</p>
-                  </MenuButton>
-
-                  <Menu
-                    variant="outlined"
-                    placement="bottom-start"
-                    disablePortalsize="sm"
-                    sx={{
-                      "--ListItemDecorator-size": "24px",
-                      "--ListItem-minHeight": "40px",
-                      "--ListDivider-gap": "4px",
-                      minWidth: 100,
-                    }}
-                  >
-                    <MenuItem>Excel</MenuItem>
-                    <MenuItem>CSV</MenuItem>
-                    <MenuItem>PDF</MenuItem>
-                    <MenuItem>Imprimir</MenuItem>
-                  </Menu>
-                </Dropdown>
 
                 <>
-                  <Button
-                    variant="outlined"
-                    color="neutral"
-                    onClick={() => setOpen(true)}
-                  >
-                    {" "}
-                    Acciones masivas
-                  </Button>
 
                   <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
@@ -230,9 +88,6 @@ export function Client() {
                         },
                       })}
                     >
-                      <Typography id="nested-modal-title" level="h2">
-                        Acciones masivas
-                      </Typography>
                       <Typography
                         id="nested-modal-description"
                         textColor="text.tertiary"
@@ -297,14 +152,6 @@ export function Client() {
                     </ModalDialog>
                   </Modal>
                 </>
-
-                <Button>
-                  <img
-                    src={refreshIcon}
-                    alt="Refresh"
-                    className="refresh-icon"
-                  />
-                </Button>
               </ButtonGroup>
             </Box>
           </div>
