@@ -14,7 +14,7 @@ import ListItemButton from "@mui/joy/ListItemButton";
 import ModalClose from "@mui/joy/ModalClose";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MenuIcon from "@mui/icons-material/Menu";
-import Add from "@mui/icons-material/Add";
+//import Add from "@mui/icons-material/Add";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Link } from "wouter";
@@ -52,7 +52,7 @@ export function NavBar() {
 
         {/* Dropdown */}
         <Box sx={{ flex: 1, display: "flex", gap: 1, px: 2 }}>
-          <Dropdown>
+          {/*<Dropdown>
             <MenuButton
               variant="outlined"
               color="neutral"
@@ -75,7 +75,7 @@ export function NavBar() {
               <MenuItem>Factura</MenuItem>
               <MenuItem>Presupuesto</MenuItem>
               <MenuItem>Propuesta</MenuItem>
-              {/*<MenuItem>Nota de crédito</MenuItem>*/}
+              {/*<MenuItem>Nota de crédito</MenuItem>/}
               <MenuItem>Cliente</MenuItem>
               <MenuItem>Proyecto</MenuItem>
               <MenuItem>Tarea</MenuItem>
@@ -84,9 +84,9 @@ export function NavBar() {
               <MenuItem>Artículo</MenuItem>
               <MenuItem>Ticket</MenuItem>
               <MenuItem>Miembro del equipo</MenuItem>
-              <MenuItem>Evento</MenuItem>*/}
+              <MenuItem>Evento</MenuItem>
             </Menu>
-          </Dropdown>
+          </Dropdown>*/}
         </Box>
 
         {/* Buscador, notificaciones y perfil */}
@@ -152,7 +152,7 @@ export function NavBar() {
           "& .MuiDrawer-content": {
             width: 350,
             background:
-            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))"
+            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))",
             //backgroundColor: "#576bff ",
           },
         }}
@@ -293,6 +293,11 @@ export function NavBar() {
               <Link href="/calen">
                 <ListItemButton sx={{ color: "#ffffff" }}>
                   Calendario
+                </ListItemButton>
+              </Link>
+              <Link href="/colab">
+                <ListItemButton sx={{ color: "#ffffff" }}>
+                  Colaboradores
                 </ListItemButton>
               </Link>
             </List>
