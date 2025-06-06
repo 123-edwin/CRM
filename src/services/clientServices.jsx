@@ -26,6 +26,27 @@ export const getOnlyClient = async (id) => {
     }
 }
 
+export const addClient = async (clientData) => {
+    try {
+        const res = await fetch("http://localhost:8080/clients/post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(clientData)
+        });
+        if (!res.ok) {
+            throw new Error(`Error HTTP: ${res.status}`);
+        }
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error al agregar cliente:", error);
+        throw error;
+    }
+}
+
+
 
 
 

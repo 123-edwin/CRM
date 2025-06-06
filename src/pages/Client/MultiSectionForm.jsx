@@ -12,44 +12,75 @@ import IconButton from "@mui/joy/IconButton";
 import { Link } from "wouter";
 
 import { useState } from "react";
+import { addClient } from "../../services/clientServices";
 
 export function MultiSectionForm() {
   const [activeTab, setActiveTab] = useState("detalles");
   const [formData, setFormData] = useState({
     empresa: "",
     telefono: "",
+    tipo_cliente: "",
+    dominio: "",
+    respaldo_renovacion_sitio_web: "",
+    plan_diseno_web: "",
+    plan_redes_sociales: "",
+    fecha_inicio_redes: "",
+    fecha_renovacion_redes: "",
+    servidor_ubicacion: "",
+    fecha_inicio_servidor: "",
+    fecha_termino_servidor: "",
+    dominio_ubicacion: "",
+    fecha_inicio_dominio: "",
+    fecha_termino_dominio: "",
+    contacto_principal: "",
+    email_principal: "",
+    activo: "",
     website: "",
-    tipoCliente: "",
     moneda: "",
     direccion: "",
     localidad: "",
     provincia: "",
-    codigoPostal: "",
+    codigo_postal: "",
     pais: "",
-    razonSocial: "",
+    razon_social: "",
     rfc: "",
     regimen: "",
-    dominio: "",
-    respaldoRenovacion: "",
-    planDiseño: "",
-    planRedes: "",
-    diseñoGrafico: "",
+    diseno_grafico: "",
     produccion: "",
-    tipoServicio: "",
-    calleCobro: "",
-    calleEnvio: "",
-    localidadCobro: "",
-    localidadEnvio: "",
-    departamentoCobro: "",
-    departamentoEnvio: "",
-    cpCobro: "",
-    cpEnvio: "",
-    paisCobro: "",
-    paisEnvio: "",
-    // etc
+    instagram_usuario: "",
+    instagram_contrasena: "",
+    youtube_usuario: "",
+    youtube_contrasena: "",
+    servidor_usuario: "",
+    servidor_contrasena: "",
+    wordpress_usuario: "",
+    wordpress_contrasena: "",
+    observaciones: "",
+    correo_electronicos_corporativos: "",
+    cobro_calle: "",
+    cobro_localidad: "",
+    cobro_departamento: "",
+    cobro_codigo_postal: "",
+    cobro_pais: "",
+    envio_calle: "",
+    envio_localidad: "",
+    envio_departamento: "",
+    envio_codigo_postal: "",
+    envio_pais: ""
   });
 
   // Este estado controla qué sección se muestra
+  const handleSubmit = async (e) => {
+    e && e.preventDefault && e.preventDefault();
+    try {
+      await addClient(formData);
+      alert("Cliente agregado correctamente");
+      // Opcional: limpiar el formulario o redirigir
+    } catch (err) {
+      alert("Error al agregar cliente");
+      console.error("Error al agregar cliente:", err);
+    }
+  };
 
   return (
     <div>
@@ -97,6 +128,8 @@ export function MultiSectionForm() {
 
       <section className="form-section">
         <div className="form-container">
+
+
           {activeTab === "detalles" && (
             <div className="form-questions">
               <h2>Detalles del cliente</h2>
@@ -139,12 +172,12 @@ export function MultiSectionForm() {
               </FormControl>
 
               <FormControl>
-                <FormLabel htmlFor="tipoCliente">Tipo de cliente</FormLabel>
+                <FormLabel htmlFor="tipo_cliente">Tipo de cliente</FormLabel>
                 <Select
-                  id="tipoCliente"
-                  value={formData.tipoCliente}
+                  id="tipo_cliente"
+                  value={formData.tipo_cliente}
                   onChange={(event, newValue) => {
-                    setFormData({ ...formData, tipoCliente: newValue });
+                    setFormData({ ...formData, tipo_cliente: newValue });
                   }}
                   placeholder="Selecciona un tipo de cliente"
                 >
@@ -207,9 +240,9 @@ export function MultiSectionForm() {
                 <FormLabel>Código Postal</FormLabel>
                 <Input
                   type="number"
-                  value={formData.codigoPostal}
+                  value={formData.codigo_postal}
                   onChange={(e) =>
-                    setFormData({ ...formData, codigoPostal: e.target.value })
+                    setFormData({ ...formData, codigo_postal: e.target.value })
                   }
                 ></Input>
               </FormControl>
@@ -225,6 +258,42 @@ export function MultiSectionForm() {
                 ></Input>
               </FormControl>
 
+              <FormControl>
+                <FormLabel>Contacto principal</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.contacto_principal}
+                  onChange={(e) =>
+                    setFormData({ ...formData, contacto_principal: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Email principal</FormLabel>
+                <Input
+                  type="email"
+                  value={formData.email_principal}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email_principal: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Activo</FormLabel>
+                <Select
+                  value={formData.activo ? "si" : "no"}
+                  onChange={(event, newValue) =>
+                    setFormData({ ...formData, activo: newValue === "si" })
+                  }
+                  placeholder="Selecciona si está activo"
+                >
+                  <Option value="si">Sí</Option>
+                  <Option value="no">No</Option>
+                </Select>
+              </FormControl>
+
               <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
                 <Button>Guardar</Button>
               </Box>
@@ -236,14 +305,14 @@ export function MultiSectionForm() {
               <h2>Campos personalizados</h2>
 
               <FormControl>
-                <FormLabel htmlFor="razonSocial">Razón Social</FormLabel>
+                <FormLabel htmlFor="razon_social">Razón Social</FormLabel>
                 <Input
                   required
                   type="text"
-                  id="razonSocial"
-                  value={formData.razonSocial}
+                  id="razon_social"
+                  value={formData.razon_social}
                   onChange={(e) =>
-                    setFormData({ ...formData, razonSocial: e.target.value })
+                    setFormData({ ...formData, razon_social: e.target.value })
                   }
                 ></Input>
               </FormControl>
@@ -288,15 +357,13 @@ export function MultiSectionForm() {
               </FormControl>
 
               <FormControl>
-                <FormLabel>Respaldo y renovación sitio web</FormLabel>
+                <FormLabel htmlFor="respaldo_renovacion">Respaldo y renovación sitio web</FormLabel>
                 <Input
                   type="date"
-                  value={formData.respaldoRenovacion}
+                  id="respaldo_renovacion"
+                  value={formData.respaldo_renovacion_sitio_web}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      respaldoRenovacion: e.target.value,
-                    })
+                    setFormData({ ...formData, respaldo_renovacion_sitio_web: e.target.value })
                   }
                 ></Input>
               </FormControl>
@@ -304,10 +371,10 @@ export function MultiSectionForm() {
               <FormControl>
                 <FormLabel>Plan diseño web</FormLabel>
                 <Select
-                  id="diseñoweb"
-                  value={formData.diseñoweb}
+                  id="plan_diseno_web"
+                  value={formData.plan_diseno_web}
                   onChange={(event, newValue) => {
-                    setFormData({ ...formData, diseñoweb: newValue });
+                    setFormData({ ...formData, plan_diseno_web: newValue });
                   }}
                   placeholder="Nada seleccionado"
                 >
@@ -324,10 +391,10 @@ export function MultiSectionForm() {
               <FormControl>
                 <FormLabel>Plan de redes sociales</FormLabel>
                 <Select
-                  id="planRedes"
-                  value={formData.planRedes}
+                  id="plan_redes_sociales"
+                  value={formData.plan_redes_sociales}
                   onChange={(event, newValue) => {
-                    setFormData({ ...formData, planRedes: newValue });
+                    setFormData({ ...formData, plan_redes_sociales: newValue });
                   }}
                   placeholder="Nada seleccionado"
                 >
@@ -341,10 +408,10 @@ export function MultiSectionForm() {
               <FormControl>
                 <FormLabel>Diseño gráfico</FormLabel>
                 <Select
-                  id="planDiseño"
-                  value={formData.planDiseño}
+                  id="diseno_grafico"
+                  value={formData.diseno_grafico}
                   onChange={(event, newValue) => {
-                    setFormData({ ...formData, planDiseño: newValue });
+                    setFormData({ ...formData, diseno_grafico: newValue });
                   }}
                   placeholder="Nada seleccionado"
                 >
@@ -395,255 +462,218 @@ export function MultiSectionForm() {
                 </Select>
               </FormControl>
 
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Instagram usuario</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.instausuario}
-                    onChange={(e) =>
-                      setFormData({ ...formData, instausuario: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Instagram contraseña</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.instacontra}
-                    onChange={(e) =>
-                      setFormData({ ...formData, instacontra: e.target.value })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>YouTube usuario</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.youtubeusuario}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        youtubeusuario: e.target.value,
-                      })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>YouTube contraseña</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.youtubecontra}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        youtubecontra: e.target.value,
-                      })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Fecha inicio redes sociales</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.inicioRedes}
-                    onChange={(e) =>
-                      setFormData({ ...formData, inicioRedes: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Fecha renovación redes sociales</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.renovacionRedes}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        renovacionRedes: e.target.value,
-                      })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Servidor ubicación</FormLabel>
-                  <Select
-                    id="servidorUbi"
-                    value={formData.servidorUbi}
-                    onChange={(event, newValue) => {
-                      setFormData({ ...formData, servidorUbi: newValue });
-                    }}
-                    placeholder="Nada seleccionado"
-                  >
-                    <Option value="one">Su empresa</Option>
-                    <Option value="two">HostGator</Option>
-                    <Option value="three">BlueHost</Option>
-                    <Option value="four">Externo</Option>
-                    <Option value="five">Shopify</Option>
-                    <Option value="six">Neubox</Option>
-                    <Option value="seven">Amazon</Option>
-                  </Select>
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Dominio ubicación</FormLabel>
-                  <Select
-                    id="dominioUBi"
-                    value={formData.dominioUbi}
-                    onChange={(event, newValue) => {
-                      setFormData({ ...formData, dominioUbi: newValue });
-                    }}
-                    placeholder="Nada seleccionado"
-                  >
-                    <Option value="one">Su empresa</Option>
-                    <Option value="two">HostGator</Option>
-                    <Option value="three">BlueHost</Option>
-                    <Option value="four">Externo</Option>
-                    <Option value="five">Shopify</Option>
-                    <Option value="six">Neubox</Option>
-                    <Option value="seven">Amazon</Option>
-                  </Select>
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Servidor usuario</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.servidorUsu}
-                    onChange={(e) =>
-                      setFormData({ ...formData, servidorUsu: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Servidor contraseña</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.servidorCont}
-                    onChange={(e) =>
-                      setFormData({ ...formData, servidorCont: e.target.value })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Wordpress usuario</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.wordpressUsu}
-                    onChange={(e) =>
-                      setFormData({ ...formData, wordpressUsu: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Wordpress contraseña</FormLabel>
-                  <Input
-                    type="text"
-                    value={formData.wordpressContra}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        wordpressContra: e.target.value,
-                      })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Dominio fecha de inicio</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.domInicio}
-                    onChange={(e) =>
-                      setFormData({ ...formData, domInicio: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Dominio fehca de termino</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.domTermino}
-                    onChange={(e) =>
-                      setFormData({ ...formData, domTermino: e.target.value })
-                    }
-                  />
-                </FormControl>
-              </Box>
-
-              <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Servidor fecha de inicio</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.servInicio}
-                    onChange={(e) =>
-                      setFormData({ ...formData, servInicio: e.target.value })
-                    }
-                  />
-                </FormControl>
-
-                <FormControl sx={{ flex: 1 }}>
-                  <FormLabel>Servidor fehca de termino</FormLabel>
-                  <Input
-                    type="date"
-                    value={formData.servTermino}
-                    onChange={(e) =>
-                      setFormData({ ...formData, servTermino: e.target.value })
-                    }
-                  />
-                </FormControl>
-              </Box>
+              <FormControl>
+                <FormLabel>Instagram usuario</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.instagram_usuario}
+                  onChange={(e) =>
+                    setFormData({ ...formData, instagram_usuario: e.target.value })
+                  }
+                />
+              </FormControl>
 
               <FormControl>
-                <FormLabel>Observaciones</FormLabel>
+                <FormLabel>Instagram contraseña</FormLabel>
                 <Input
-                  required
                   type="text"
-                  id="observaciones"
-                  value={formData.observaciones}
+                  value={formData.instagram_contrasena}
                   onChange={(e) =>
-                    setFormData({ ...formData, observaciones: e.target.value })
+                    setFormData({ ...formData, instagram_contrasena: e.target.value })
                   }
-                ></Input>
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>YouTube usuario</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.youtube_usuario}
+                  onChange={(e) =>
+                    setFormData({ ...formData, youtube_usuario: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>YouTube contraseña</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.youtube_contrasena}
+                  onChange={(e) =>
+                    setFormData({ ...formData, youtube_contrasena: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Servidor usuario</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.servidor_usuario}
+                  onChange={(e) =>
+                    setFormData({ ...formData, servidor_usuario: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Servidor contraseña</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.servidor_contrasena}
+                  onChange={(e) =>
+                    setFormData({ ...formData, servidor_contrasena: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Wordpress usuario</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.wordpress_usuario}
+                  onChange={(e) =>
+                    setFormData({ ...formData, wordpress_usuario: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Wordpress contraseña</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.wordpress_contrasena}
+                  onChange={(e) =>
+                    setFormData({ ...formData, wordpress_contrasena: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Respaldo y renovación sitio web</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.respaldo_renovacion_sitio_web}
+                  onChange={(e) =>
+                    setFormData({ ...formData, respaldo_renovacion_sitio_web: e.target.value })
+                  }
+                />
               </FormControl>
 
               <FormControl>
                 <FormLabel>Correo electrónicos corporativos</FormLabel>
                 <Input
-                  required
                   type="text"
-                  id="correoCorporativo"
-                  value={formData.correoCorporativo}
+                  value={formData.correo_electronicos_corporativos}
                   onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      correoCorporativo: e.target.value,
-                    })
+                    setFormData({ ...formData, correo_electronicos_corporativos: e.target.value })
                   }
-                ></Input>
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Dominio ubicación</FormLabel>
+                <Select
+                  value={formData.dominio_ubicacion}
+                  onChange={(event, newValue) => {
+                    setFormData({ ...formData, dominio_ubicacion: newValue });
+                  }}
+                  placeholder="Nada seleccionado"
+                >
+                  <Option value="su_empresa">Su empresa</Option>
+                  <Option value="hostgator">HostGator</Option>
+                  <Option value="bluehost">BlueHost</Option>
+                  <Option value="externo">Externo</Option>
+                  <Option value="shopify">Shopify</Option>
+                  <Option value="neubox">Neubox</Option>
+                  <Option value="amazon">Amazon</Option>
+                </Select>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Servidor ubicación</FormLabel>
+                <Select
+                  value={formData.servidor_ubicacion}
+                  onChange={(event, newValue) => {
+                    setFormData({ ...formData, servidor_ubicacion: newValue });
+                  }}
+                  placeholder="Nada seleccionado"
+                >
+                  <Option value="su_empresa">Su empresa</Option>
+                  <Option value="hostgator">HostGator</Option>
+                  <Option value="bluehost">BlueHost</Option>
+                  <Option value="externo">Externo</Option>
+                  <Option value="shopify">Shopify</Option>
+                  <Option value="neubox">Neubox</Option>
+                  <Option value="amazon">Amazon</Option>
+                </Select>
+              </FormControl>
+{/*hazte tp*/}
+              <FormControl>
+                <FormLabel>Dominio fecha de inicio</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_inicio_dominio}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_inicio_dominio: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Dominio fecha de termino</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_termino_dominio}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_termino_dominio: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Servidor fecha de inicio</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_inicio_servidor}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_inicio_servidor: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Servidor fecha de termino</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_termino_servidor}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_termino_servidor: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Fecha inicio redes sociales</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_inicio_redes}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_inicio_redes: e.target.value })
+                  }
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Fecha renovación redes sociales</FormLabel>
+                <Input
+                  type="date"
+                  value={formData.fecha_renovacion_redes}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fecha_renovacion_redes: e.target.value })
+                  }
+                />
               </FormControl>
 
               <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
@@ -662,9 +692,9 @@ export function MultiSectionForm() {
                   <FormLabel>Calle</FormLabel>
                   <Input
                     type="text"
-                    value={formData.calle1}
+                    value={formData.cobro_calle}
                     onChange={(e) =>
-                      setFormData({ ...formData, calle1: e.target.value })
+                      setFormData({ ...formData, cobro_calle: e.target.value })
                     }
                   />
                 </FormControl>
@@ -674,9 +704,9 @@ export function MultiSectionForm() {
                   <FormLabel>Calle</FormLabel>
                   <Input
                     type="text"
-                    value={formData.calle2}
+                    value={formData.envio_calle}
                     onChange={(e) =>
-                      setFormData({ ...formData, calle2: e.target.value })
+                      setFormData({ ...formData, envio_calle: e.target.value })
                     }
                   />
                 </FormControl>
@@ -688,9 +718,9 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="localidad1"
-                    value={formData.localidad1}
+                    value={formData.cobro_localidad}
                     onChange={(e) =>
-                      setFormData({ ...formData, localidad1: e.target.value })
+                      setFormData({ ...formData, cobro_localidad: e.target.value })
                     }
                   ></Input>
                 </FormControl>
@@ -700,9 +730,9 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="localidad2"
-                    value={formData.localidad2}
+                    value={formData.envio_localidad}
                     onChange={(e) =>
-                      setFormData({ ...formData, localidad2: e.target.value })
+                      setFormData({ ...formData, envio_localidad: e.target.value })
                     }
                   ></Input>
                 </FormControl>
@@ -714,11 +744,11 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="departamento1"
-                    value={formData.departamento1}
+                    value={formData.cobro_departamento}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        departamento1: e.target.value,
+                        cobro_departamento: e.target.value,
                       })
                     }
                   ></Input>
@@ -729,11 +759,11 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="departamento2"
-                    value={formData.departamento2}
+                    value={formData.envio_departamento}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        departamento2: e.target.value,
+                        envio_departamento: e.target.value,
                       })
                     }
                   ></Input>
@@ -746,14 +776,11 @@ export function MultiSectionForm() {
                   <Input
                     type="number"
                     id="codigoPostal1"
-                    value={formData.codigoPostal1}
+                    value={formData.cobro_codigo_postal}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        codigoPostal1: e.target.value,
-                      })
+                      setFormData({ ...formData, cobro_codigo_postal: e.target.value })
                     }
-                  ></Input>
+                  />
                 </FormControl>
 
                 <FormControl>
@@ -761,14 +788,11 @@ export function MultiSectionForm() {
                   <Input
                     type="number"
                     id="codigoPostal2"
-                    value={formData.codigoPostal2}
+                    value={formData.envio_codigo_postal}
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        codigoPostal12: e.target.value,
-                      })
+                      setFormData({ ...formData, envio_codigo_postal: e.target.value })
                     }
-                  ></Input>
+                  />
                 </FormControl>
               </Box>
 
@@ -778,9 +802,9 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="pais1"
-                    value={formData.pais1}
+                    value={formData.cobro_pais}
                     onChange={(e) =>
-                      setFormData({ ...formData, pais1: e.target.value })
+                      setFormData({ ...formData, cobro_pais: e.target.value })
                     }
                   ></Input>
                 </FormControl>
@@ -790,9 +814,9 @@ export function MultiSectionForm() {
                   <Input
                     type="text"
                     id="pais2"
-                    value={formData.pais2}
+                    value={formData.envio_pais}
                     onChange={(e) =>
-                      setFormData({ ...formData, pais2: e.target.value })
+                      setFormData({ ...formData, envio_pais: e.target.value })
                     }
                   ></Input>
                 </FormControl>
@@ -800,6 +824,9 @@ export function MultiSectionForm() {
 
               <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
                 <Button>Guardar</Button>
+              </Box>
+              <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
+                <Button onClick={handleSubmit}>Enviar</Button>
               </Box>
             </div>
           )}

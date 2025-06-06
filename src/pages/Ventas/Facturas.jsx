@@ -11,6 +11,7 @@ import Dropdown from "@mui/joy/Dropdown";
 import Menu from "@mui/joy/Menu";
 import MenuButton from "@mui/joy/MenuButton";
 import MenuItem from "@mui/joy/MenuItem";
+import { FileUploadButton } from "@c/botonesEspeciales/archivosMultiple"
 
 const downloadPdf = (base64, idFactura) => {
   const byteCharacters = atob(base64); // decodificar base64
@@ -49,6 +50,8 @@ export function Facturas() {
             Crear factura
           </Button>
         </Link>
+
+        <FileUploadButton/>
       </Box>
 
       {/*RECUADRO*/}
@@ -115,10 +118,10 @@ export function Facturas() {
                     </MenuButton>
                     <Menu>
                       <Link href={`/factura/${factura.id}`}>
-                      <MenuItem>Emitir pago</MenuItem>
+                        <MenuItem>Emitir pago</MenuItem>
                       </Link>
                       <Link href={`/deleteFactura/${factura.id}`}>
-                      <MenuItem>Eliminar</MenuItem>
+                        <MenuItem>Eliminar</MenuItem>
                       </Link>
                     </Menu>
                   </Dropdown>
