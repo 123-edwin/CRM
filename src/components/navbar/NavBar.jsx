@@ -94,7 +94,7 @@ export function NavBar() {
         <Box
           sx={{ display: "flex", flexShrink: 0, gap: 2, alignItems: "center" }}
         >
-          {/Buscar/}
+          {/*Buscar*/}
           <Input
             placeholder="Search"
             variant="soft"
@@ -106,14 +106,14 @@ export function NavBar() {
             }}
           />
 
-          {/Notificación/}
+          {/*Notificación*/}
           <Badge badgeContent={1} variant="solid" color="danger">
             <IconButton variant="soft" sx={{ borderRadius: "50%" }}>
               <NotificationsIcon />
             </IconButton>
           </Badge>
 
-          {/Menú de perfil/}
+          {/*Menú de perfil*/}
           <Dropdown>
             <MenuButton
               variant="plain"
@@ -152,7 +152,7 @@ export function NavBar() {
           "& .MuiDrawer-content": {
             width: 350,
             background:
-            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))"
+            "linear-gradient(to top,rgb(29, 59, 86),hsl(207, 55.10%, 19.20%))",
             //backgroundColor: "#576bff ",
           },
         }}

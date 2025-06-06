@@ -30,7 +30,7 @@ export function Notascredito() {
         </Link>
       </Box>
 
-      {/TABLA/}
+      {/*TABLA*/}
 
       <Card
         sx={{
@@ -43,7 +43,7 @@ export function Notascredito() {
           mt: 3,
         }}
       >
-        {/SELECT, BOTON Y ACTUALIZAR/}
+        {/*SELECT, BOTON Y ACTUALIZAR*/}
 
         <Box
           sx={{ display: "flex", justifyContent: "flex-start", gap: 2, mb: 2 }}
