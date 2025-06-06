@@ -52,7 +52,7 @@ export function NavBar() {
 
         {/* Dropdown */}
         <Box sx={{ flex: 1, display: "flex", gap: 1, px: 2 }}>
-          <Dropdown>
+          {/*<Dropdown>
             <MenuButton
               variant="outlined"
               color="neutral"
@@ -84,9 +84,9 @@ export function NavBar() {
               <MenuItem>Artículo</MenuItem>
               <MenuItem>Ticket</MenuItem>
               <MenuItem>Miembro del equipo</MenuItem>
-              <MenuItem>Evento</MenuItem>*/}
+              <MenuItem>Evento</MenuItem>
             </Menu>
-          </Dropdown>
+          </Dropdown>*/}
         </Box>
 
         {/* Buscador, notificaciones y perfil */}
