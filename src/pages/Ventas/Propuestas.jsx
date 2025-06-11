@@ -122,7 +122,7 @@ export function Propuestas() {
           "& > div": { flex: 1 },
         }}
       >
-        {["Por iniciar", "En progreso", "En espera", "Completo"].map(
+        {["Borrador", "Enviada", "Abierta", "En estudio", "Rechazada", "Aceptada"].map(
           (estado, i) => (
             <Box key={i} sx={{ display: "flex", alignItems: "center", gap: 3 }}>
               <Typography sx={{ fontWeight: "lg", fontSize: "0.9rem" }}>
@@ -320,10 +320,12 @@ export function Propuestas() {
                 }
                 required
               >
-                <Option value="Por iniciar">Por iniciar</Option>
-                <Option value="En progreso">En progreso</Option>
-                <Option value="En espera">En espera</Option>
-                <Option value="Completo">Completo</Option>
+                <Option value="Borrador">Borrador</Option>
+                <Option value="Enviada">Enviada</Option>
+                <Option value="Abierta">Abierta</Option>
+                <Option value="En estudio">En estudio</Option>
+                <Option value="Rechazada">Rechazada</Option>
+                <Option value="Aceptada">Aceptada</Option>
               </Select>
             </FormControl>
 
