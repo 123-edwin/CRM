@@ -20,10 +20,14 @@
 
 .form-container {
     display: flex;
-    flex-direction: column; /* Acomoda su contenido en columna */
-    align-items: flex-start; /* Alinea contenido al inicio (izquierda) */
-    width: 100%; /* Ocupa todo el ancho disponible del contenedor padre */
-    max-width: 650px; /* ✅ Ajusta este valor según el tamaño que desees */
+    flex-direction: column;
+    /* Acomoda su contenido en columna */
+    align-items: flex-start;
+    /* Alinea contenido al inicio (izquierda) */
+    width: 100%;
+    /* Ocupa todo el ancho disponible del contenedor padre */
+    max-width: 650px;
+    /* ✅ Ajusta este valor según el tamaño que desees */
     background-color: #ffffff76;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -31,4 +35,8 @@
     margin-bottom: 1rem;
     overflow: hidden;
     padding: 1rem;
+    max-height: 80vh;
+    /* Limita la altura máxima al 80% de la ventana */
+    overflow-y: auto;
+    /* Habilita scroll vertical si el contenido excede */
 }

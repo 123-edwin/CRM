@@ -37,9 +37,6 @@ export function MultiSectionForm() {
     activo: "",
     website: "",
     moneda: "",
-    direccion: "",
-    localidad: "",
-    provincia: "",
     codigo_postal: "",
     pais: "",
     razon_social: "",
@@ -66,7 +63,15 @@ export function MultiSectionForm() {
     envio_localidad: "",
     envio_departamento: "",
     envio_codigo_postal: "",
-    envio_pais: ""
+    envio_pais: "",
+
+    estado: "",
+    municipio: "",
+    colonia: "",
+    calle: "",
+    numero_interior: "",
+    numero_exterior: ""
+
   });
 
   // Este estado controla qué sección se muestra
@@ -86,7 +91,7 @@ export function MultiSectionForm() {
     <div>
       {/* Barra de pestañas */}
 
-      <nav style={{ display: "flex", gap: "1rem" }} className="tabs">
+      <nav style={{ display: "flex", gap: "1rem", marginTop: '1rem' }} className="tabs">
         <Box
           sx={{
             display: "flex",
@@ -204,34 +209,12 @@ export function MultiSectionForm() {
               </FormControl>
 
               <FormControl>
-                <FormLabel>Dirección</FormLabel>
+                <FormLabel>País</FormLabel>
                 <Input
                   type="text"
-                  value={formData.direccion}
+                  value={formData.pais}
                   onChange={(e) =>
-                    setFormData({ ...formData, direccion: e.target.value })
-                  }
-                ></Input>
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>Localidad</FormLabel>
-                <Input
-                  type="text"
-                  value={formData.localidad}
-                  onChange={(e) =>
-                    setFormData({ ...formData, localidad: e.target.value })
-                  }
-                ></Input>
-              </FormControl>
-
-              <FormControl>
-                <FormLabel>Provincia</FormLabel>
-                <Input
-                  type="text"
-                  value={formData.provincia}
-                  onChange={(e) =>
-                    setFormData({ ...formData, provincia: e.target.value })
+                    setFormData({ ...formData, pais: e.target.value })
                   }
                 ></Input>
               </FormControl>
@@ -247,16 +230,102 @@ export function MultiSectionForm() {
                 ></Input>
               </FormControl>
 
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Estado</FormLabel>
+                <Select name="estado" id="estado" color="primary" placeholder="Estado"
+                  sx={{ width: 300, height: 45 }}
+                  size="md"
+                  variant="outlined" value={formData.estado} onChange={(_, value) => { setFormData({ ...formData, estado: value }) }}>
+                  <Option value="Aguascalientes">Aguascalientes</Option>
+                  <Option value="Baja California">Baja California</Option>
+                  <Option value="Baja California Sur">Baja California Sur</Option>
+                  <Option value="Campeche">Campeche</Option>
+                  <Option value="Coahuila de Zaragoza">Coahuila de Zaragoza</Option>
+                  <Option value="Colima">Colima</Option>
+                  <Option value="Chiapas">Chiapas</Option>
+                  <Option value="Chihuahua">Chihuahua</Option>
+                  <Option value="Ciudad de México">Ciudad de México</Option>
+                  <Option value="Durango">Durango</Option>
+                  <Option value="Guanajuato">Guanajuato</Option>
+                  <Option value="Guerrero">Guerrero</Option>
+                  <Option value="Hidalgo">Hidalgo</Option>
+                  <Option value="Jalisco">Jalisco</Option>
+                  <Option value="México">México</Option>
+                  <Option value="Michoacán de Ocampo">Michoacán de Ocampo</Option>
+                  <Option value="Morelos">Morelos</Option>
+                  <Option value="Nayarit">Nayarit</Option>
+                  <Option value="Nuevo León">Nuevo León</Option>
+                  <Option value="Oaxaca">Oaxaca</Option>
+                  <Option value="Puebla">Puebla</Option>
+                  <Option value="Querétaro">Querétaro</Option>
+                  <Option value="Quintana Roo">Quintana Roo</Option>
+                  <Option value="San Luis Potosí">San Luis Potosí</Option>
+                  <Option value="Sinaloa">Sinaloa</Option>
+                  <Option value="Sonora">Sonora</Option>
+                  <Option value="Tabasco">Tabasco</Option>
+                  <Option value="Tamaulipas">Tamaulipas</Option>
+                  <Option value="Tlaxcala">Tlaxcala</Option>
+                  <Option value="Veracruz de Ignacio de la Llave">Veracruz de Ignacio de la Llave</Option>
+                  <Option value="Yucatán">Yucatán</Option>
+                  <Option value="Zacatecas">Zacatecas</Option>
+                </Select>
+              </FormControl>
+
               <FormControl>
-                <FormLabel>País</FormLabel>
+                <FormLabel>Municipio</FormLabel>
                 <Input
                   type="text"
-                  value={formData.pais}
+                  value={formData.municipio}
                   onChange={(e) =>
-                    setFormData({ ...formData, pais: e.target.value })
+                    setFormData({ ...formData, municipio: e.target.value })
                   }
                 ></Input>
               </FormControl>
+
+              <FormControl>
+                <FormLabel>Colonia</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.colonia}
+                  onChange={(e) =>
+                    setFormData({ ...formData, colonia: e.target.value })
+                  }
+                ></Input>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Calle</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.calle}
+                  onChange={(e) =>
+                    setFormData({ ...formData, calle: e.target.value })
+                  }
+                ></Input>
+              </FormControl> 
+
+              <FormControl>
+                <FormLabel>Número interior</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.numero_interior}
+                  onChange={(e) =>
+                    setFormData({ ...formData, numero_interior: e.target.value })
+                  }
+                ></Input>
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Número exterior</FormLabel>
+                <Input
+                  type="text"
+                  value={formData.numero_exterior}
+                  onChange={(e) =>
+                    setFormData({ ...formData, numero_exterior: e.target.value })
+                  }
+                ></Input>
+              </FormControl>
+
 
               <FormControl>
                 <FormLabel>Contacto principal</FormLabel>
@@ -294,29 +363,6 @@ export function MultiSectionForm() {
                 </Select>
               </FormControl>
 
-              <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
-                <Button>Guardar</Button>
-              </Box>
-            </div>
-          )}
-
-          {activeTab === "campos" && (
-            <div className="form-questions">
-              <h2>Campos personalizados</h2>
-
-              <FormControl>
-                <FormLabel htmlFor="razon_social">Razón Social</FormLabel>
-                <Input
-                  required
-                  type="text"
-                  id="razon_social"
-                  value={formData.razon_social}
-                  onChange={(e) =>
-                    setFormData({ ...formData, razon_social: e.target.value })
-                  }
-                ></Input>
-              </FormControl>
-
               <FormControl>
                 <FormLabel htmlFor="rfc">RFC</FormLabel>
                 <Input
@@ -331,17 +377,55 @@ export function MultiSectionForm() {
               </FormControl>
 
               <FormControl>
-                <FormLabel htmlFor="regimen">Régimen</FormLabel>
+                <FormLabel htmlFor="razon_social">Razón Social</FormLabel>
                 <Input
                   required
                   type="text"
-                  id="regimen"
-                  value={formData.regimen}
+                  id="razon_social"
+                  value={formData.razon_social}
                   onChange={(e) =>
-                    setFormData({ ...formData, regimen: e.target.value })
+                    setFormData({ ...formData, razon_social: e.target.value })
                   }
                 ></Input>
               </FormControl>
+
+              <FormControl sx={{ flex: 1 }}>
+                <FormLabel>Regimen Fiscal Emisor</FormLabel>
+                <Select name="regimenEmisor" id="regimenEmisor" color="primary" placeholder="Regimen Fiscal Emisor"
+                  sx={{ width: 300, height: 45 }}
+                  size="md"
+                  variant="outlined" value={formData.regimen} onChange={(_, value) => { setFormData({ ...formData, regimen: value }) }}>
+                  <Option value="601">General de Ley Personas Morales</Option>
+                  <Option value="603">Personas Morales con Fines no Lucrativos</Option>
+                  <Option value="605">Sueldos y Salarios e Ingresos Asimilados a Salarios</Option>
+                  <Option value="606">Arrendamiento</Option>
+                  <Option value="607">Régimen de Enajenación o Adquisición de Bienes</Option>
+                  <Option value="608">Demás ingresos</Option>
+                  <Option value="610">Residentes en el Extranjero sin Establecimiento Permanente en México</Option>
+                  <Option value="611">Ingresos por Dividendos (socios y accionistas)</Option>
+                  <Option value="612">Personas Físicas con Actividades Empresariales y Profesionales</Option>
+                  <Option value="614">Ingresos por intereses</Option>
+                  <Option value="615">Régimen de los ingresos por obtención de premios</Option>
+                  <Option value="616">Sin obligaciones fiscales</Option>
+                  <Option value="620">Sociedades Cooperativas de Producción que optan por diferir sus ingresos</Option>
+                  <Option value="621">Incorporación Fiscal</Option>
+                  <Option value="622">Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras</Option>
+                  <Option value="623">Opcional para Grupos de Sociedades</Option>
+                  <Option value="624">Coordinados</Option>
+                  <Option value="625">Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas</Option>
+                  <Option value="626">Régimen Simplificado de Confianza</Option>
+                </Select>
+              </FormControl>
+
+              <Box sx={{ display: "flex", flexWrap: "wrap", mt: 3 }}>
+                <Button>Guardar</Button>
+              </Box>
+            </div>
+          )}
+
+          {activeTab === "campos" && (
+            <div className="form-questions">
+              <h2>Campos personalizados</h2>
 
               <FormControl>
                 <FormLabel htmlFor="dominio">Dominio</FormLabel>
@@ -609,7 +693,7 @@ export function MultiSectionForm() {
                   <Option value="amazon">Amazon</Option>
                 </Select>
               </FormControl>
-{/*hazte tp*/}
+              {/*hazte tp*/}
               <FormControl>
                 <FormLabel>Dominio fecha de inicio</FormLabel>
                 <Input
