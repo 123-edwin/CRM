@@ -39,7 +39,7 @@ function PaymentForm({ tipo, facturaId }) {
     //Estados para email
     const [sendEmail, setSendEmail] = useState(false);
     //Direccion de correo electrónico
-    const emailDirection = "erios8@ucol.mx"
+    const [emailDirection, setEmailDirection] = useState("")
 
     // Estados calculados en tiempo real: base, impuesto y restante
     const [baseIVA16, setBaseIVA16] = useState(0);
@@ -92,6 +92,7 @@ function PaymentForm({ tipo, facturaId }) {
                         idDocumento: factura.iddocumento || "",
                         saldoAnt: Number(factura.restante) || 0
                     }));
+                    setEmailDirection(factura.email || "erios8@ucol.mx");
                 })
                 .catch((err) => {
                     console.error("Error al precargar factura:", err);
@@ -401,7 +402,7 @@ function PaymentForm({ tipo, facturaId }) {
                                 onChange={(e) =>
                                     setComplemento({
                                         ...complemento,
-                                        montoTotalPagos: parseFloat(e.target.value) || 0,
+                                        montoTotalPagos: parseFloat(e.target.value),
                                     })
                                 }
                             />

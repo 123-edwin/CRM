@@ -12,6 +12,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Checkbox from "@mui/joy/Checkbox";
+import { getClients } from "@s/clientServices";
 
 
 import { useState, useEffect } from "react";
@@ -49,7 +50,7 @@ function IncomeForm({ tipo }) {
   //Estados para email
   const [sendEmail, setSendEmail] = useState(false);
   //Direccion de correo electrónico
-  const emailDirection = "erios8@ucol.mx"
+  const [emailDirection, setEmailDirection] = useState("")
 
   // Estados para los totales: subtotal, descuento, IVA y total
   const [subTotalGlobal, setSubTotalGlobal] = useState(0);
@@ -58,6 +59,12 @@ function IncomeForm({ tipo }) {
   const [totalGlobal, setTotalGlobal] = useState(0);
 
   const [xml, setXml] = useState("");
+
+  // Estado para lista de clientes
+  const [clientes, setClientes] = useState([]);
+
+  // Estado para el índice del cliente seleccionado
+  const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
 
   // Función para agregar un nuevo concepto al arreglo
   const agregarConcepto = () => {
@@ -230,7 +237,8 @@ function IncomeForm({ tipo }) {
           rfc_receptor: receptor.rfc,
           regimen_receptor: receptor.regimen,
           domicilio_receptor: receptor.domicilio,
-          fecha: fechaFormateada,}),
+          fecha: fechaFormateada,
+        }),
       });
 
       if (!resp.ok) {
@@ -265,6 +273,34 @@ function IncomeForm({ tipo }) {
       alert("Error al enviar el XML al backend: " + err.message);
     }
   };
+
+  // Traer clientes al montar
+  useEffect(() => {
+    async function fetchClientes() {
+      try {
+        const data = await getClients();
+        setClientes(data);
+      } catch (err) {
+        console.error("Error al obtener clientes:", err);
+      }
+    }
+    fetchClientes();
+  }, []);
+
+  // Cuando cambia el cliente seleccionado, autocompletar receptor y email
+  useEffect(() => {
+    if (clienteSeleccionado !== null && clientes[clienteSeleccionado]) {
+      const c = clientes[clienteSeleccionado];
+      setReceptor({
+        rfc: c.rfc || "",
+        nombre: c.empresa || "",
+        domicilio: "", // No traer domicilio fiscal
+        regimen: c.regimen || "",
+        usoCFDI: ""
+      });
+      setEmailDirection(c.email_principal || "");
+    }
+  }, [clienteSeleccionado, clientes]);
 
   return (
     <>
@@ -416,14 +452,23 @@ function IncomeForm({ tipo }) {
             </FormControl>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Nombre receptor</FormLabel>
-              <Input
-                type="text"
-                placeholder="Nombre receptor"
-                value={receptor.nombre}
-                onChange={(e) =>
-                  setReceptor({ ...receptor, nombre: e.target.value })
-                }
-              />
+              <Select
+                name="nombreReceptor"
+                id="nombreReceptor"
+                color="primary"
+                placeholder="Selecciona empresa"
+                sx={{ width: 300, height: 45 }}
+                size="md"
+                variant="outlined"
+                value={clienteSeleccionado}
+                onChange={(_, value) => setClienteSeleccionado(value)}
+              >
+                {clientes.map((c, idx) => (
+                  <Option key={c._id || idx} value={idx}>
+                    {c.empresa}
+                  </Option>
+                ))}
+              </Select>
             </FormControl>
             <FormControl sx={{ flex: 1 }}>
               <FormLabel>Domicilio Fiscal Receptor</FormLabel>
@@ -443,8 +488,8 @@ function IncomeForm({ tipo }) {
           <Box sx={{ display: "flex", gap: 2 }}>
 
             <FormControl sx={{ flex: 1 }}>
-              <FormLabel>Regimen Fiscal Receptor</FormLabel>
-              <Select name="regimenReceptor" id="regimenReceptor" color="primary" placeholder="Regimen Fiscal Receptor"
+              <FormLabel>Regimen Fiscal Emisor</FormLabel>
+              <Select name="regimenEmisor" id="regimenEmisor" color="primary" placeholder="Regimen Fiscal Emisor"
                 sx={{ width: 300, height: 45 }}
                 size="md"
                 variant="outlined" value={receptor.regimen} onChange={(_, value) => { setReceptor({ ...receptor, regimen: value }) }}>
@@ -502,7 +547,6 @@ function IncomeForm({ tipo }) {
                 <Option value="CN01">Nómina</Option>
               </Select>
             </FormControl>
-
           </Box>
 
           <br />
